@@ -1,4 +1,4 @@
-Below is a **vastly expanded, more detailed** version of the end-to-end implementation guide. It’s designed to **streamline collaboration** among your team, **accelerate** your model development, and **make deployment a breeze**. Each section includes additional context, best practices, and pro tips so that any team member—no matter their background—can jump in and move forward confidently.
+Below is a **vastly expanded, more detailed** version of the end-to-end implementation guide. It's designed to **streamline collaboration** among your team, **accelerate** your model development, and **make deployment a breeze**. Each section includes additional context, best practices, and pro tips so that any team member—no matter their background—can jump in and move forward confidently.
 
 ---
 
@@ -20,24 +20,33 @@ Below is a **vastly expanded, more detailed** version of the end-to-end implemen
    4. [Phase 4: Feature Fusion and Modeling](#phase-4-feature-fusion-and-modeling)  
    5. [Phase 5: Model Training Workflow](#phase-5-model-training-workflow)  
    6. [Phase 6: Deployment](#phase-6-deployment)  
-5. [Collaboration & Workflow](#collaboration--workflow)  
-6. [Codebase Organization](#codebase-organization)  
-7. [Testing & Evaluation](#testing--evaluation)  
-8. [FAQ & Tips](#faq--tips)  
-9. [Final Checklist](#final-checklist)  
+5. [Development Environment Setup](#development-environment-setup)
+6. [Collaboration & Workflow](#collaboration--workflow)  
+7. [Codebase Organization](#codebase-organization)  
+8. [Testing & Evaluation](#testing--evaluation)  
+9. [FAQ & Tips](#faq--tips)  
+10. [Final Checklist](#final-checklist)  
 
 ---
 
 ## 1. Project Overview
 
-Your team’s assignment is to **predict how many upvotes** a Hacker News post is likely to receive based on:
+Your team's assignment is to **predict how many upvotes** a Hacker News post is likely to receive based on:
 - **Title**: Text input, can reveal topic, buzzwords, popularity
 - **Author**: Certain authors might have historically high or low traction
 - **URL/Domain**: Well-known domains (e.g., `paulgraham.com`) might correlate with more upvotes
 - **Submission Age**: Posts from 2006 vs. 2025 might have different distributions
 - (Optionally) **Comments**: Beware of **future leakage**; if you use comment counts, factor in the timestamp
 
-Ultimately, you’ll provide a **REST endpoint** that accepts post metadata in JSON and outputs a **predicted upvote count**.
+Ultimately, you'll provide a **REST endpoint** that accepts post metadata in JSON and outputs a **predicted upvote count**.
+
+### Enhanced Approach with User-Level Features
+
+In our implementation, we're enriching the model by incorporating both:
+- **Post-level features**: Title, domain, posting time, etc.
+- **User-level features**: Author karma, account age at posting time
+
+This captures not just what and when was posted, but also who posted it, giving the model stronger predictive power by accounting for author reputation and experience.
 
 ---
 
@@ -90,8 +99,8 @@ A high-level flow of your system:
                             ▼
                       Title Embeddings
                             │
-   Author Embedding/One-hot │  Domain Embedding/One-hot
-        Age (numeric)       │
+   Author Embedding/One-hot │  Domain Embedding/One-hot  User Features
+        Age (numeric)       │  (karma, account age)
                             ▼
                       ┌───────────┐
                       │   Fusion  │  (Concatenate all features)
@@ -118,6 +127,12 @@ A high-level flow of your system:
      LIMIT 10000;
      ```
    - Start small (e.g., 10k rows) to avoid 28GB timeouts.
+   
+   **Implementation Details**:
+   - We're using SQLAlchemy with environment variables for DB connection
+   - Credentials stored in `.env` file (not committed to Git)
+   - Extraction script in `src/utils/data_extraction.py`
+   - Saving data as parquet files for faster loading
 
 2. **Explore**  
    - Plot histograms of `score` distribution.  
@@ -130,8 +145,13 @@ A high-level flow of your system:
    - Overlapping data for training vs. testing?
 
 **Pro Tip**: 
-- Conduct time-based splits if you want to simulate “future data.” 
+- Conduct time-based splits if you want to simulate "future data." 
 - Summarize EDA findings in a shared notebook or short markdown report.
+
+**User-Level Analysis**:
+- We've expanded the EDA to include author karma, account age, and their relationship with post scores
+- Examining whether high-karma authors tend to receive more upvotes on average
+- Investigating post performance as a function of author account age at post time
 
 ---
 
@@ -207,7 +227,7 @@ Capture broad language semantics from Wikipedia so your model can interpret word
 1. **Title Embeddings**:  
    - For a given title, you might average the embeddings of each token. 
    - Alternatively, sum them or use a more advanced approach (like an LSTM).  
-   - Let’s keep it simple: **average** your token embeddings.
+   - Let's keep it simple: **average** your token embeddings.
    
    ```python
    def get_title_embedding(title_tokens, model):
@@ -234,13 +254,20 @@ Capture broad language semantics from Wikipedia so your model can interpret word
 4. **Age**:  
    - Numeric, might need normalization (e.g., min-max scaling).
 
-5. **Concatenate** all these into a single vector:
+5. **User Features** (Our Enhanced Approach):
+   - **Author Karma**: Log-transformed to handle skewness
+   - **Account Age at Post Time**: The difference between post time and author account creation
+   - These features help the model learn that established users with higher karma tend to get different upvote patterns
+
+6. **Concatenate** all these into a single vector:
    ```python
    fused_vector = np.concatenate([
        title_embedding,   # e.g., shape (100,)
        author_embedding,  # e.g., shape (16,)
        domain_embedding,  # e.g., shape (8,)
-       [age_normalized]   # shape (1,)
+       [age_normalized],  # shape (1,)
+       [log_karma],       # shape (1,)
+       [account_age]      # shape (1,)
    ])
    ```
 
@@ -292,6 +319,11 @@ Capture broad language semantics from Wikipedia so your model can interpret word
    - Use **MSE**, **MAE**, or **RMSE** on the validation/test set. 
    - Plot predictions vs. actual scores. 
    - Watch out for outliers (very large upvote counts).
+
+**Log-Transformation**:
+- Our implementation applies log transformation (`log(score + 1)`) to the target variable
+- This makes the distribution more normal and improves model performance
+- Remember to convert predictions back to original scale: `exp(pred) - 1`
 
 ---
 
@@ -365,48 +397,117 @@ Capture broad language semantics from Wikipedia so your model can interpret word
    }'
    ```
 
+**Enhanced API Implementation**:
+- Our API accepts optional user-level features (karma, account age)
+- If not provided, the API uses reasonable defaults
+- API returns both the predicted upvotes and the log-transformed prediction
+
 ---
 
-## 5. Collaboration & Workflow
+## 5. Development Environment Setup
+
+### Virtual Environment
+
+Setting up a consistent development environment helps ensure all team members can run the code:
+
+1. **Create a Python virtual environment**:
+   ```bash
+   # Create a virtual environment in the project directory
+   python -m venv .venv
+   
+   # Activate the virtual environment
+   # On Windows:
+   .venv\Scripts\activate
+   # On macOS/Linux:
+   source .venv/bin/activate
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Deactivate when done**:
+   ```bash
+   deactivate
+   ```
+
+### Environment Variables
+
+For database credentials and sensitive information, we use environment variables:
+
+1. **Create a `.env` file** (copy from `.env.example`):
+   ```
+   # Database credentials
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   DB_HOST=your_host
+   DB_PORT=5432
+   DB_NAME=your_dbname
+   ```
+
+2. **Load variables in code**:
+   ```python
+   from dotenv import load_dotenv
+   import os
+   
+   # Load .env file
+   load_dotenv()
+   
+   # Access variables
+   username = os.getenv('DB_USERNAME')
+   ```
+
+3. **Add `.env` to `.gitignore`** to prevent committing credentials.
+
+---
+
+## 6. Collaboration & Workflow
 
 1. **Standups**: Start the day with 5-10 minute check-ins.  
 2. **Pair Programming**: For tricky tasks like Word2Vec fine-tuning or Docker, pair up.  
 3. **Version Control**:  
    - Create feature branches (`feature/EDA`, `feature/model`, etc.).  
    - Use Pull Requests to merge into `main`.
+   - Add CI/CD workflow for testing
 
 ---
 
-## 6. Codebase Organization
+## 7. Codebase Organization
 
-A suggested directory structure:
+Our actual implemented directory structure:
 
 ```
 project-root/
 ├── data/
-│   ├── raw/           # Wikipedia, HackerNews dumps
-│   └── processed/     # Cleaned subsets, tokenized data
+│   ├── raw/              # Wikipedia, Database extracts (items, users)
+│   └── processed/        # Cleaned datasets, embeddings, models, tokenized data
 ├── notebooks/
-│   ├── EDA.ipynb
-│   └── TrainingExperiments.ipynb
+│   ├── EDA.ipynb         # Exploratory data analysis
+│   └── TrainingExperiments.ipynb    # Model training experiments
 ├── src/
 │   ├── training/
-│   │   ├── word2vec_pipeline.py   # Pretrain + fine-tune methods
-│   │   └── model.py               # PyTorch MLP class
+│   │   ├── word2vec_pipeline.py   # Word2Vec training and fine-tuning
+│   │   └── model.py               # PyTorch MLP model definition
 │   ├── utils/
 │   │   ├── data_prep.py           # tokenization, transformations
 │   │   └── sql_queries.py
+│   │   └── data_extraction.py     # Database extraction script
 │   └── api/
-│       ├── main.py                # FastAPI endpoints
+│       ├── main.py                # FastAPI endpoint
 │       └── model_loader.py        # loads model, embeddings
-├── Dockerfile
-├── requirements.txt
-└── README.md
+├── artifacts/            # Project documentation
+│   └── PredictHackerNews.md       # This implementation guide
+├── .env.example          # Template for environment variables
+├── .gitignore            # Files to exclude from version control
+├── Dockerfile            # Docker container definition
+├── requirements.txt      # Python dependencies
+└── README.md             # Project overview and setup instructions
 ```
 
 ---
 
-## 7. Testing & Evaluation
+## 8. Testing & Evaluation
 
 1. **Local Testing**:  
    - Unit tests on data transformations.  
@@ -421,11 +522,11 @@ project-root/
 
 4. **Sanity Checks**:
    - For random or nonsense titles, does your model return a realistic upvote range?  
-   - For known high-buzzword titles (“AI beats crypto again!”), do you see a higher upvote count?
+   - For known high-buzzword titles ("AI beats crypto again!"), do you see a higher upvote count?
 
 ---
 
-## 8. FAQ & Tips
+## 9. FAQ & Tips
 
 1. **How do we handle extremely high upvote outliers?**  
    - Consider a **log-transform** on the scores if a small fraction of items have super high upvotes. 
@@ -433,7 +534,7 @@ project-root/
 
 2. **Should we use Comments as a Feature?**  
    - Potentially. But watch out for **future leakage** and missing timestamp alignment.  
-   - If you do it, consider time-based logic to only include comments known at the submission’s “current” time.
+   - If you do it, consider time-based logic to only include comments known at the submission's "current" time.
 
 3. **Data Too Large?**  
    - Sample from the DB or use chunking. 
@@ -444,16 +545,27 @@ project-root/
    - If time remains, explore advanced approaches like RNN or even a small transformer.
 
 5. **Is Docker mandatory?**  
-   - Yes—this ensures a consistent environment. And you’ll run on Computa with Docker.
+   - Yes—this ensures a consistent environment. And you'll run on Computa with Docker.
+
+6. **How to handle database credentials?**
+   - Use a `.env` file to store credentials
+   - Load them with `python-dotenv` at runtime
+   - Never commit credentials to version control
+
+7. **How to develop as a team?**
+   - Use virtual environments for consistency
+   - Share the `.env.example` template without actual credentials
+   - Run the same data extraction to ensure everyone has the same dataset
 
 ---
 
-## 9. Final Checklist
+## 10. Final Checklist
 
+- [ ] **Environment Setup**: Virtual environment, dependencies, and .env file.
 - [ ] **EDA Completed**: SQL queries, distribution analysis, outlier detection, summary stats.  
 - [ ] **Word2Vec Pre-trained**: On Wikipedia or a large enough textual corpus.  
 - [ ] **Word2Vec Fine-tuned**: On Hacker News titles for domain adaptation.  
-- [ ] **Feature Fusion**: Title embeddings, author/domain encoding, numeric features.  
+- [ ] **Feature Fusion**: Title embeddings, author/domain encoding, numeric features, user features.  
 - [ ] **MLP Model Trained**: Evaluate MSE/RMSE/MAE.  
 - [ ] **API Deployed**: `/predict` endpoint returning upvote predictions.  
 - [ ] **Docker**: Container builds successfully, runs your FastAPI app.  
@@ -462,6 +574,6 @@ project-root/
 
 ---
 
-**With this blueprint, you have a comprehensive, step-by-step guide** that ensures your entire team can **track progress**, understand how to **transform data** and **build models**, and know exactly **how to collaborate** on code and deployment. You’ll produce a robust upvote prediction system while practicing real-world data science and MLOps skills.
+**With this blueprint, we have a comprehensive, step-by-step guide** that ensures your entire team can **track progress**, understand how to **transform data** and **build models**, and know exactly **how to collaborate** on code and deployment. You'll produce a robust upvote prediction system while practicing real-world data science and MLOps skills.
 
 **Best of luck building your Hacker News upvote predictor!** 🌟
