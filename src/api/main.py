@@ -11,7 +11,8 @@ from datetime import datetime
 
 # Add parent directory to path to import from other modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from training.word2vec_pipeline import get_title_embedding
+from training.embedding import get_title_embedding
+from training.word2vec_model import Word2VecModel
 from training.model import UpvotePredictor
 
 # Initialize FastAPI app
