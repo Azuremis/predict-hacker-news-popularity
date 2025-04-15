@@ -5,7 +5,6 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
-from gensim.models import Word2Vec
 import logging
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
@@ -70,13 +69,13 @@ class UpvotePredictor(nn.Module):
         """Forward pass."""
         return self.model(x)
 
-def extract_features(df_items, df_users, word2vec_model, log_transform=True):
+def extract_features(df_items, df_users, word2vec_dir, log_transform=True):
     """Extract and combine features for model training.
     
     Args:
         df_items: DataFrame of Hacker News items
         df_users: DataFrame of Hacker News users
-        word2vec_model: Trained Word2Vec model
+        word2vec_dir: Directory containing the saved Word2Vec model
         log_transform: Whether to log-transform the target variable
         
     Returns:
@@ -93,7 +92,7 @@ def extract_features(df_items, df_users, word2vec_model, log_transform=True):
     logger.info("Extracting title embeddings")
     title_embeddings = []
     for title in df['title']:
-        embedding = get_title_embedding(title, word2vec_model)
+        embedding = get_title_embedding(title, word2vec_dir)
         title_embeddings.append(embedding)
     
     # Convert to numpy array
@@ -340,7 +339,7 @@ def main():
     # Paths
     items_path = '../data/raw/items_100k.parquet'
     users_path = '../data/raw/users_100k.parquet'
-    word2vec_path = '../data/processed/word2vec_hn_finetuned.model'
+    word2vec_dir = '../data/processed/word2vec_hn'
     output_dir = '../data/processed/model'
     
     # Load data
@@ -350,12 +349,8 @@ def main():
     logger.info(f"Loading users data from {users_path}")
     df_users = pd.read_parquet(users_path)
     
-    # Load Word2Vec model
-    logger.info(f"Loading Word2Vec model from {word2vec_path}")
-    word2vec_model = Word2Vec.load(word2vec_path)
-    
     # Extract features
-    X, y, feature_names = extract_features(df_items, df_users, word2vec_model, log_transform=True)
+    X, y, feature_names = extract_features(df_items, df_users, word2vec_dir, log_transform=True)
     
     # Split data
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)

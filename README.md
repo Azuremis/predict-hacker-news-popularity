@@ -14,6 +14,13 @@ project-root/
 │   └── Training.ipynb # Model training experiments
 ├── src/
 │   ├── training/      # Word2Vec and model training code
+│   │   ├── text_preprocessing.py  # Text cleaning and tokenization
+│   │   ├── vocabulary.py          # Vocabulary building
+│   │   ├── dataset.py             # Dataset preparation
+│   │   ├── word2vec_model.py      # Model architecture
+│   │   ├── training.py            # Training functions
+│   │   ├── embedding.py           # Embedding generation
+│   │   └── word2vec_pipeline.py   # Main orchestrator
 │   ├── utils/         # Helper functions and data processing
 │   └── api/           # FastAPI service for predictions
 ├── Dockerfile
@@ -112,6 +119,76 @@ source venv/bin/activate
    - Deploy FastAPI service
    - Test predictions with sample posts
 
+## Word2Vec Architecture
+
+We've implemented a custom Word2Vec from scratch, broken down into modular components for better understanding and team collaboration. Each component handles a specific part of the Word2Vec pipeline:
+
+### Components
+
+1. **Text Preprocessing (`text_preprocessing.py`)**
+   - Functions for text cleaning, tokenization, and corpus preparation
+   - Handles both Wikipedia and Hacker News text data
+   - Main functions: `clean_text()`, `tokenize_text()`, `preprocess_wikipedia_corpus()`, `process_hacker_news_titles()`
+
+2. **Vocabulary Management (`vocabulary.py`)**
+   - Builds vocabulary from tokenized text
+   - Implements frequency-based subsampling of common words
+   - Constructs negative sampling tables using unigram distribution
+   - Main class: `Word2VecVocab`
+
+3. **Dataset Preparation (`dataset.py`)**
+   - Creates training pairs (center word + context word)
+   - Implements context window sampling
+   - Generates negative samples for training
+   - Main class: `SkipGramDataset` (extends PyTorch's Dataset)
+
+4. **Model Architecture (`word2vec_model.py`)**
+   - Implements Skip-gram with negative sampling using PyTorch
+   - Maintains separate input/output embedding matrices
+   - Computes loss for positive and negative examples
+   - Main class: `Word2VecModel` (extends nn.Module)
+
+5. **Training Process (`training.py`)**
+   - Functions for training and fine-tuning Word2Vec models
+   - Implements learning rate scheduling for better convergence
+   - Handles model saving and loading
+   - Main functions: `train_word2vec_custom()`, `finetune_word2vec_custom()`
+
+6. **Embedding Utilities (`embedding.py`)**
+   - Functions for generating embeddings from trained models
+   - Provides evaluation metrics and similarity calculations
+   - Includes analogy finding capabilities
+   - Main functions: `get_title_embedding()`, `evaluate_word2vec_model()`, `find_analogy()`
+
+7. **Pipeline Orchestration (`word2vec_pipeline.py`)**
+   - Ties together all components into a coherent workflow
+   - Handles the end-to-end training and evaluation process
+   - Main function: `main()`
+
+### Data Flow
+
+The Word2Vec pipeline follows this flow:
+
+1. Text data is cleaned and tokenized (`text_preprocessing.py`)
+2. Vocabulary is built from tokens (`vocabulary.py`)
+3. Training dataset is created with positive and negative examples (`dataset.py`)
+4. Model is initialized with random embeddings (`word2vec_model.py`)
+5. Training occurs through batched gradient descent (`training.py`)
+6. Trained model generates embeddings for new text (`embedding.py`)
+7. The entire process is orchestrated by the pipeline (`word2vec_pipeline.py`)
+
+### For Team Members
+
+- If you're interested in **text processing**, focus on `text_preprocessing.py`
+- If you want to understand **vocabulary building** and **negative sampling**, explore `vocabulary.py`
+- For **context window sampling** and **dataset creation**, look at `dataset.py`
+- To learn about the **neural network architecture**, examine `word2vec_model.py`
+- For **training dynamics** and **optimization**, study `training.py`
+- If you're interested in **using the embeddings**, investigate `embedding.py`
+- To see how everything fits together, review `word2vec_pipeline.py`
+
+Each file includes examples that can be run directly to demonstrate its functionality.
+
 ## Database Connection Details
 
 The database connection details are stored in the `.env` file. The default values are:
@@ -136,4 +213,4 @@ The database connection details are stored in the `.env` file. The default value
 
 ## Contributors
 
-- [Your Name]
+- @AlexVOiceover @Ardrito @dimitar-seraffimov @JasonWarrenUK @Liam40

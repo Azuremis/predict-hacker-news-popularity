@@ -11,7 +11,8 @@ from datetime import datetime
 
 # Add parent directory to path to import from other modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from training.word2vec_pipeline import get_title_embedding
+from training.embedding import get_title_embedding
+from training.word2vec_model import Word2VecModel
 from training.model import UpvotePredictor
 
 # Initialize FastAPI app
@@ -22,8 +23,8 @@ app = FastAPI(title="Hacker News Upvote Predictor",
 # Model paths
 MODEL_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 
                          "data/processed/model")
-WORD2VEC_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 
-                            "data/processed/word2vec_hn_finetuned.model")
+WORD2VEC_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 
+                            "data/processed/word2vec_hn")
 
 # Input model
 class HackerNewsPost(BaseModel):
@@ -55,7 +56,8 @@ class PredictionResponse(BaseModel):
     features_used: dict
 
 # Global variables for loaded models
-word2vec_model = None
+word2vec_embeddings = None
+word2vec_vocab = None
 predictor_model = None
 scaler = None
 input_dim = None
@@ -63,24 +65,22 @@ input_dim = None
 @app.on_event("startup")
 async def load_models():
     """Load models on startup."""
-    global word2vec_model, predictor_model, scaler, input_dim
+    global word2vec_embeddings, word2vec_vocab, predictor_model, scaler, input_dim
     
     try:
-        # Import Word2Vec here to avoid loading it in global scope
-        from gensim.models import Word2Vec
+        # Load Word2Vec embeddings
+        vocab_path = os.path.join(WORD2VEC_DIR, "vocab_hn.pth")
+        embeddings_path = os.path.join(WORD2VEC_DIR, "word2vec_hn_in.npy")
         
-        # Load Word2Vec model
-        if os.path.exists(WORD2VEC_PATH):
-            word2vec_model = Word2Vec.load(WORD2VEC_PATH)
-            print(f"Loaded Word2Vec model with {len(word2vec_model.wv.key_to_index)} vocabulary items")
+        if os.path.exists(vocab_path) and os.path.exists(embeddings_path):
+            word2vec_vocab = torch.load(vocab_path)
+            word2vec_embeddings = np.load(embeddings_path)
+            print(f"Loaded Word2Vec embeddings with {word2vec_embeddings.shape[0]} vocabulary items")
         else:
-            print(f"WARNING: Word2Vec model not found at {WORD2VEC_PATH}. Using dummy embeddings.")
-            # Create a dummy model for testing
-            word2vec_model = type('obj', (object,), {
-                'vector_size': 100,
-                'wv': {'__getitem__': lambda self, key: np.zeros(100)}
-            })
-            word2vec_model.wv.__getitem__ = lambda key: np.zeros(100)
+            print(f"WARNING: Word2Vec files not found at {WORD2VEC_DIR}. Using dummy embeddings.")
+            # Create dummy embeddings
+            word2vec_vocab = {'word_to_id': {}, 'id_to_word': {}}
+            word2vec_embeddings = np.zeros((1, 100))  # Default embedding size
         
         # Load PyTorch model
         model_path = os.path.join(MODEL_DIR, "upvote_model.pth")
@@ -124,7 +124,7 @@ async def root():
         "message": "Hacker News Upvote Predictor API",
         "docs": "/docs",
         "models_loaded": {
-            "word2vec": word2vec_model is not None,
+            "word2vec": word2vec_embeddings is not None and word2vec_vocab is not None,
             "predictor": predictor_model is not None,
             "scaler": scaler is not None
         }
@@ -134,12 +134,12 @@ async def root():
 async def predict_upvotes(post: HackerNewsPost):
     """Predict upvotes for a Hacker News post."""
     # Check if models are loaded
-    if word2vec_model is None or predictor_model is None or scaler is None:
+    if word2vec_embeddings is None or word2vec_vocab is None or predictor_model is None or scaler is None:
         raise HTTPException(status_code=503, detail="Models not loaded. Please try again later.")
     
     try:
         # Extract title embedding
-        title_embedding = get_title_embedding(post.title, word2vec_model)
+        title_embedding = get_title_embedding(post.title, WORD2VEC_DIR)
         
         # Process other features
         title_length = len(post.title)
@@ -218,7 +218,7 @@ async def health_check():
     return {
         "status": "healthy",
         "models_loaded": {
-            "word2vec": word2vec_model is not None,
+            "word2vec": word2vec_embeddings is not None and word2vec_vocab is not None,
             "predictor": predictor_model is not None,
             "scaler": scaler is not None
         }

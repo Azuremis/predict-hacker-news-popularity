@@ -1,10 +1,10 @@
-Below is a **vastly expanded, more detailed** version of the end-to-end implementation guide. It's designed to **streamline collaboration** among your team, **accelerate** your model development, and **make deployment a breeze**. Each section includes additional context, best practices, and pro tips so that any team member—no matter their background—can jump in and move forward confidently.
+Below is an **updated** end-to-end implementation guide, **removing reliance on Gensim** or any other pre-implemented Word2Vec library. Instead, you'll implement the **Word2Vec** algorithm **from scratch** (in either pure Python + NumPy or PyTorch). All other aspects (data fusion, MLP training, FastAPI deployment, Docker, etc.) remain the same, but now you'll build your word embeddings with your own custom code.
 
 ---
 
-# 🚀 AI @ FAC Week 1 Project – Ultimate Implementation Reference
+# 🚀 AI @ FAC Week 1 Project – Ultimate Implementation Reference 
 
-> **Goal**: Build a **regression model** that predicts **Hacker News upvotes** from post metadata (title, author, domain, etc.). Implement a **Word2Vec** pipeline, fuse features, and deploy a **FastAPI** service in a **Docker** container, returning an estimated upvote count via an HTTP POST endpoint.
+> **Goal**: Build a **regression model** that predicts **Hacker News upvotes** from post metadata (title, author, domain, etc.). Implement a **Word2Vec** *from scratch*, fuse features, and deploy a **FastAPI** service in a **Docker** container, returning an estimated upvote count via an HTTP POST endpoint.
 
 ---
 
@@ -15,7 +15,7 @@ Below is a **vastly expanded, more detailed** version of the end-to-end implemen
 3. [Architecture Summary](#architecture-summary)  
 4. [Detailed Steps](#detailed-steps)  
    1. [Phase 1: Exploratory Data Analysis (EDA)](#phase-1-exploratory-data-analysis-eda)  
-   2. [Phase 2: Pre-train Word2Vec](#phase-2-pre-train-word2vec)  
+   2. [Phase 2: Pre-train Word2Vec (From Scratch)](#phase-2-pre-train-word2vec-from-scratch)  
    3. [Phase 3: Fine-tune Word2Vec for HN Titles](#phase-3-fine-tune-word2vec-for-hn-titles)  
    4. [Phase 4: Feature Fusion and Modeling](#phase-4-feature-fusion-and-modeling)  
    5. [Phase 5: Model Training Workflow](#phase-5-model-training-workflow)  
@@ -31,12 +31,12 @@ Below is a **vastly expanded, more detailed** version of the end-to-end implemen
 
 ## 1. Project Overview
 
-Your team's assignment is to **predict how many upvotes** a Hacker News post is likely to receive based on:
-- **Title**: Text input, can reveal topic, buzzwords, popularity
-- **Author**: Certain authors might have historically high or low traction
-- **URL/Domain**: Well-known domains (e.g., `paulgraham.com`) might correlate with more upvotes
-- **Submission Age**: Posts from 2006 vs. 2025 might have different distributions
-- (Optionally) **Comments**: Beware of **future leakage**; if you use comment counts, factor in the timestamp
+Your team's assignment is to **predict how many upvotes** a Hacker News post is likely to receive, based on:
+- **Title**: Text input (topic/buzzwords)
+- **Author**: Some authors get more traction
+- **URL/Domain**: Certain domains (e.g., `paulgraham.com`) might be more popular
+- **Submission Age**: Posts from 2006 vs. 2025 can have different distributions
+- (Optionally) **Comments**: Watch out for potential data leakage via comment counts
 
 Ultimately, you'll provide a **REST endpoint** that accepts post metadata in JSON and outputs a **predicted upvote count**.
 
@@ -51,7 +51,7 @@ This captures not just what and when was posted, but also who posted it, giving 
 ---
 
 ## 2. Core Requirements
-
+ 
 1. **EDA**:  
    - Investigate data distribution, scale, missing values, and outliers.
 
@@ -75,32 +75,31 @@ This captures not just what and when was posted, but also who posted it, giving 
 ---
 
 ## 3. Architecture Summary
-
 A high-level flow of your system:
-
 ```
                 ┌─────────────────────────┐
                 │ Wikipedia (text corpus) │
                 └───────────┬─────────────┘
                             │
                             ▼
-                    Word2Vec Training
+                Custom Word2Vec Training
+                 (from scratch, no gensim)
                             │
                             ▼
-                    Word2Vec Model (.bin)
+                    Word2Vec Embeddings
                             │
        ┌────────────────────┴────────────────────┐
        │                                         │
        ▼                                         ▼
   HN Title Data                          Fine-tune Word2Vec
-  (tokenized)                                   
+  (tokenized)   ←------------------------→  (again, from scratch)
        │                                         │
        └────────────────────┬────────────────────┘
                             ▼
                       Title Embeddings
                             │
-   Author Embedding/One-hot │  Domain Embedding/One-hot  User Features
-        Age (numeric)       │  (karma, account age)
+   Author Embedding/One-hot │  Domain Embedding/One-hot
+        Age (numeric)       │
                             ▼
                       ┌───────────┐
                       │   Fusion  │  (Concatenate all features)
@@ -138,109 +137,100 @@ A high-level flow of your system:
    - Plot histograms of `score` distribution.  
    - Check popular domains, authors, average title length.  
    - Inspect potential correlations (domain → upvotes? author → upvotes?).
-
-3. **Identify Data Issues**  
+3.   **Identify Data Issues**  
    - Missing or null authors?  
    - Very old posts with suspicious zero or extremely high `score`?  
    - Overlapping data for training vs. testing?
 
-**Pro Tip**: 
-- Conduct time-based splits if you want to simulate "future data." 
-- Summarize EDA findings in a shared notebook or short markdown report.
+   **Pro Tip**: 
+   - Conduct time-based splits if you want to simulate "future data." 
+   - Summarize EDA findings in a shared notebook or short markdown report.
 
-**User-Level Analysis**:
-- We've expanded the EDA to include author karma, account age, and their relationship with post scores
-- Examining whether high-karma authors tend to receive more upvotes on average
-- Investigating post performance as a function of author account age at post time
+   **User-Level Analysis**:
+   - We've expanded the EDA to include author karma, account age, and their relationship with post scores
+   - Examining whether high-karma authors tend to receive more upvotes on average
+   - Investigating post performance as a function of author account age at post time
 
----
+### Phase 2: Pre-train Word2Vec (From Scratch)
 
-### Phase 2: Pre-train Word2Vec
+Our implementation uses PyTorch to build Word2Vec from scratch, with the following components:
 
-#### Purpose
-Capture broad language semantics from Wikipedia so your model can interpret words more effectively.
+1. **Vocabulary Management** (`vocabulary.py`):
+   - Built word-to-id and id-to-word dictionaries for efficient token lookup
+   - Implemented negative sampling with frequency-based distribution
+   - Added subsampling of frequent words to improve training efficiency
 
-#### Steps
-1. **Obtain Wikipedia Corpus**  
-   - A subset or full dump. 
-   - Ensure you have a pipeline for cleaning HTML markup and removing non-text.
+2. **Skip-gram Dataset** (`dataset.py`):
+   - Created a custom PyTorch Dataset for skip-gram with negative sampling
+   - Generates center-context word pairs from tokenized sentences
+   - Applies subsampling to reduce the impact of frequent words
+   - Returns tensors for center words, context words, and negative samples
 
-2. **Tokenize the Articles**  
-   - Use `spacy`, `NLTK`, or a custom regex-based tokenizer.
-   - Convert text into sequences of tokens (lowercase, remove punctuation, etc.).
+3. **Word2Vec Model** (`word2vec_model.py`):
+   - Implemented a PyTorch module for the Skip-gram model
+   - Separate embedding layers for center and context words
+   - Binary cross-entropy loss for positive and negative samples
+   - Gradient clipping to prevent exploding gradients
 
-3. **Train Word2Vec**  
-   - Example with `gensim`:
-     ```python
-     from gensim.models import Word2Vec
-     
-     # Suppose 'all_sentences' is an iterable of token lists
-     w2v_model = Word2Vec(
-         sentences=all_sentences,
-         vector_size=100,   # Try 100 to start; can go bigger
-         window=5,         
-         min_count=5,      # Ignores rare words
-         workers=4,        # Adjust to CPU cores
-         sg=1              # Skip-gram model
-     )
-     
-     w2v_model.save("wiki_word2vec.model")
-     ```
-   - **Validate**: Check if synonyms or related words cluster well. 
-   - **Pro Tip**: Keep an eye on training time and memory usage. Smaller subsets can still yield decent embeddings.
+4. **Training Pipeline** (`training.py`):
+   - Optimized with Adam optimizer and learning rate scheduling
+   - Implemented batch processing for efficient training
+   - Added checkpointing to save model state during training
+   - Included comprehensive logging for monitoring training progress
+
+5. **Text Processing** (`text_preprocessing.py`):
+   - Specialized tokenization for Wikipedia corpus and HN titles
+   - Cleaned and normalized text data for better embedding quality
+   - Managed sentence segmentation and special character handling
+
+**Our Implementation Checklist**:
+- [x] **Vocabulary-building**: Created dictionaries for word-to-id and id-to-word mappings
+- [x] **Negative sampling**: Implemented efficient training approach with unigram distribution
+- [x] **Properly sampling context windows**: Created positive and negative word pairs
+- [x] **Learning rate scheduling**: Added cosine annealing scheduler for better convergence
 
 ---
 
 ### Phase 3: Fine-tune Word2Vec for HN Titles
 
 1. **Extract Titles**  
-   ```python
+   ```sql
    SELECT title 
    FROM "hacker_news"."items" 
    WHERE title IS NOT NULL
    ```
-2. **Tokenize** similarly to Wikipedia corpus for consistency.
-3. **Load Pre-trained Model**  
-   ```python
-   from gensim.models import Word2Vec
-
-   w2v_model = Word2Vec.load("wiki_word2vec.model")
-   ```
-4. **Fine-tune**  
-   ```python
-   w2v_model.build_vocab(hn_titles, update=True)
-   w2v_model.train(
-       hn_titles,
-       total_examples=w2v_model.corpus_count,
-       epochs=5
-   )
-   w2v_model.save("hn_finetuned_word2vec.model")
-   ```
-   - Now your embeddings better reflect Hacker News style/terminology.
+2. **Preprocess & Tokenize** 
+   - Convert to lowercase  
+   - Remove punctuation  
+   - Possibly remove stopwords if it helps
+3. **Initialize from Pre-trained Weights**  
+   - Load `W_in` from Wikipedia training.  
+   - Rebuild your skip-gram/CBOW training loop but with smaller data from HN.  
+   - Let the initial embeddings = `W_in (wiki)`.  
+4. **Adapt**  
+   - Add new HN-specific tokens to your vocabulary if not present.  
+   - Train a few epochs on HN titles to shift embeddings toward Hacker News lingo.  
+   - Save final `W_in` again, e.g. `hn_finetuned_in.npy`.
 
 ---
 
 ### Phase 4: Feature Fusion and Modeling
 
-**Main Idea**: Convert each piece of data into numeric vectors, then merge.
-
-1. **Title Embeddings**:  
-   - For a given title, you might average the embeddings of each token. 
-   - Alternatively, sum them or use a more advanced approach (like an LSTM).  
-   - Let's keep it simple: **average** your token embeddings.
-   
-   ```python
-   def get_title_embedding(title_tokens, model):
-       embeddings = []
-       for token in title_tokens:
-           if token in model.wv:
-               embeddings.append(model.wv[token])
-       if embeddings:
-           return np.mean(embeddings, axis=0)
-       else:
-           # Return a zero vector if no known tokens
-           return np.zeros(model.vector_size)
-   ```
+1. **Title Embeddings**  
+   - Each title → tokens → average (or sum) the embeddings from your `W_in`.  
+   - Example:
+     ```python
+     def get_title_embedding(token_list, W_in, word_to_id):
+         vectors = []
+         for token in token_list:
+             if token in word_to_id:
+                 idx = word_to_id[token]
+                 vectors.append(W_in[idx])
+         if vectors:
+             return np.mean(vectors, axis=0)
+         else:
+             return np.zeros(W_in.shape[1])  # embedding_dim
+     ```
 
 2. **Author Embedding**:  
    - Option 1: One-hot encode authors if you have memory for up to ~1M. Possibly too large. 
@@ -458,7 +448,7 @@ For database credentials and sensitive information, we use environment variables
    username = os.getenv('DB_USERNAME')
    ```
 
-3. **Add `.env` to `.gitignore`** to prevent committing credentials.
+3. **Add `.env` to `.gitignore** to prevent committing credentials.
 
 ---
 
@@ -487,11 +477,16 @@ project-root/
 │   └── TrainingExperiments.ipynb    # Model training experiments
 ├── src/
 │   ├── training/
-│   │   ├── word2vec_pipeline.py   # Word2Vec training and fine-tuning
+│   │   ├── word2vec_pipeline.py   # Word2Vec training and fine-tuning pipeline
+│   │   ├── word2vec_model.py      # PyTorch implementation of Word2Vec
+│   │   ├── vocabulary.py          # Vocabulary building and negative sampling
+│   │   ├── dataset.py             # SkipGramDataset for training
+│   │   ├── text_preprocessing.py  # Text cleaning and tokenization
+│   │   ├── training.py            # Training loop and optimization
+│   │   ├── embedding.py           # Embedding utilities
 │   │   └── model.py               # PyTorch MLP model definition
 │   ├── utils/
-│   │   ├── data_prep.py           # tokenization, transformations
-│   │   └── sql_queries.py
+│   │   ├── data_prep.py           # Data transformation utilities
 │   │   └── data_extraction.py     # Database extraction script
 │   └── api/
 │       ├── main.py                # FastAPI endpoint
@@ -561,10 +556,10 @@ project-root/
 
 ## 10. Final Checklist
 
-- [ ] **Environment Setup**: Virtual environment, dependencies, and .env file.
-- [ ] **EDA Completed**: SQL queries, distribution analysis, outlier detection, summary stats.  
-- [ ] **Word2Vec Pre-trained**: On Wikipedia or a large enough textual corpus.  
-- [ ] **Word2Vec Fine-tuned**: On Hacker News titles for domain adaptation.  
+- [x] **Environment Setup**: Virtual environment, dependencies, and .env file.
+- [x] **EDA Completed**: SQL queries, distribution analysis, outlier detection, summary stats.  
+- [ ] **Word2Vec Pre-trained**: Custom Word2Vec implementation from scratch on Wikipedia corpus.  
+- [ ] **Word2Vec Fine-tuned**: Fine-tuned on Hacker News titles for domain adaptation.  
 - [ ] **Feature Fusion**: Title embeddings, author/domain encoding, numeric features, user features.  
 - [ ] **MLP Model Trained**: Evaluate MSE/RMSE/MAE.  
 - [ ] **API Deployed**: `/predict` endpoint returning upvote predictions.  
