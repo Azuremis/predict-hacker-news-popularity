@@ -10,7 +10,7 @@ project-root/
 │   ├── raw/           # Database extracts (items, users)
 │   └── processed/     # Cleaned datasets, embeddings
 ├── notebooks/
-│   ├── EDA.ipynb      # Exploratory Data Analysis
+│   ├── EDA_HackerNews.ipynb      # Exploratory Data Analysis
 │   └── Training.ipynb # Model training experiments
 ├── src/
 │   ├── training/      # Word2Vec and model training code
@@ -68,7 +68,7 @@ project-root/
    pip install jupyter
    
    # Start Jupyter notebook
-   jupyter notebook notebooks/EDA.ipynb
+   jupyter notebook notebooks/EDA_HackerNews.ipynb
    ```
 
 ## Development Workflow
