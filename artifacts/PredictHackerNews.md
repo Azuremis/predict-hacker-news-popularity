@@ -364,6 +364,10 @@ python src/training/word2vec_pipeline.py --model_type cbow_softmax
    from fastapi import FastAPI
    from pydantic import BaseModel
    import torch
+   import numpy as np
+   from typing import Optional
+   import os
+   import logging
 
    app = FastAPI()
 
@@ -372,23 +376,116 @@ python src/training/word2vec_pipeline.py --model_type cbow_softmax
        title: str
        author: str
        url: str
-       age: float
+       post_time: str
+       user_karma: Optional[int] = None
+       user_age_days: Optional[int] = None
 
-   # Load your model and word2vec in startup event or global scope
-   model = torch.load("hn_upvote_model.pth")
-   word2vec = # load your Word2Vec
+   # Define schema for response
+   class PredictionResponse(BaseModel):
+       predicted_upvotes: int
+       log_predicted_upvotes: float
+       title: str
+       author: str
+       features_used: dict
+       embedding_model: str  # Indicates which model was used (skipgram or cbow_softmax)
 
-   @app.post("/predict")
+   # Configure paths to model artifacts
+   skipgram_model_path = "data/models/skipgram_word2vec.pt"
+   cbow_softmax_model_path = "data/models/cbow_softmax_word2vec.pt"
+   mlp_model_path = "data/models/upvote_predictor.pt"
+   vocab_path = "data/processed/vocabulary.json"
+
+   # Load models at startup
+   @app.on_event("startup")
+   async def load_models():
+       global word2vec_model, mlp_model, vocab, embedding_model_type
+       
+       logging.info("Loading prediction models...")
+       
+       # First try to load Skip-gram model
+       if os.path.exists(skipgram_model_path):
+           word2vec_model = SkipGramModel.load(skipgram_model_path)
+           embedding_model_type = "skipgram"
+           logging.info("Loaded Skip-gram Word2Vec model")
+       # Then try CBOW softmax model
+       elif os.path.exists(cbow_softmax_model_path):
+           word2vec_model = CBOWSoftmaxModel.load(cbow_softmax_model_path)
+           embedding_model_type = "cbow_softmax"
+           logging.info("Loaded CBOW softmax Word2Vec model")
+       # Fall back to dummy if neither is available
+       else:
+           # Create dummy model for testing
+           logging.warning("No Word2Vec models found. Using dummy embeddings.")
+           word2vec_model = DummyEmbedder(embedding_dim=100)
+           embedding_model_type = "dummy"
+       
+       # Load MLP model
+       mlp_model = torch.load(mlp_model_path)
+       mlp_model.eval()
+       
+       # Load vocabulary
+       with open(vocab_path, 'r') as f:
+           vocab = json.load(f)
+       
+       logging.info("Models loaded successfully")
+
+   @app.post("/predict", response_model=PredictionResponse)
    def predict_upvotes(post: HNPost):
-       # 1) Tokenize title, get embedding
-       # 2) Get author/domain embedding
-       # 3) Combine with age
-       # 4) Pass through MLP
-       # 5) Return predicted upvotes as JSON
-       fused_input = create_fused_vector(post, word2vec)
+       # 1) Tokenize title
+       tokens = preprocess_text(post.title)
+       
+       # 2) Get embeddings using the loaded model (either Skip-gram or CBOW)
+       title_embedding = word2vec_model.get_sentence_embedding(tokens)
+       
+       # 3) Extract features from other fields
+       domain = extract_domain(post.url)
+       timestamp = parse_datetime(post.post_time)
+       
+       # 4) Create feature dictionary
+       features = {
+           "title_embedding": title_embedding,
+           "title_length": len(post.title),
+           "title_word_count": len(tokens),
+           "domain": encode_domain(domain),
+           "year": timestamp.year,
+           "month": timestamp.month,
+           "day_of_week": timestamp.weekday(),
+           "hour": timestamp.hour
+       }
+       
+       # 5) Add user features if available
+       if post.user_karma is not None:
+           features["log_karma"] = np.log1p(post.user_karma)
+       
+       if post.user_age_days is not None:
+           features["account_age_days"] = post.user_age_days
+       
+       # 6) Create fused vector
+       fused_vector = create_fused_vector(features)
+       
+       # 7) Get prediction from MLP model
        with torch.no_grad():
-           prediction = model(fused_input).item()
-       return {"predicted_upvotes": prediction}
+           log_prediction = mlp_model(torch.tensor(fused_vector, dtype=torch.float32)).item()
+       
+       # 8) Return prediction and metadata
+       return PredictionResponse(
+           predicted_upvotes=int(np.expm1(log_prediction)),
+           log_predicted_upvotes=float(log_prediction),
+           title=post.title,
+           author=post.author,
+           features_used={
+               "title_embedding_size": len(title_embedding),
+               "title_length": features["title_length"],
+               "title_word_count": features["title_word_count"],
+               "account_age_days": features.get("account_age_days"),
+               "log_karma": features.get("log_karma"),
+               "year": features["year"],
+               "month": features["month"],
+               "day_of_week": features["day_of_week"],
+               "hour": features["hour"]
+           },
+           embedding_model=embedding_model_type
+       )
    ```
 
 2. **Dockerize**:
@@ -397,21 +494,35 @@ python src/training/word2vec_pipeline.py --model_type cbow_softmax
    FROM python:3.9-slim
 
    WORKDIR /app
+   
+   # Install dependencies
    COPY requirements.txt .
-   RUN pip install -r requirements.txt
+   RUN pip install --no-cache-dir -r requirements.txt
 
+   # Copy code and models
    COPY . /app
+
+   # Make sure model directories exist
+   RUN mkdir -p data/models data/processed
 
    # Expose port
    EXPOSE 8000
 
+   # Run the FastAPI server
    CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
    ```
 
 3. **Build & Run**:
    ```bash
+   # Build the Docker image
    docker build -t hn-upvote-predictor .
-   docker run -d -p 8000:8000 hn-upvote-predictor
+   
+   # Run the container with models volume mounted
+   docker run -d \
+     -p 8000:8000 \
+     -v $(pwd)/data:/app/data \
+     --name hn-predictor \
+     hn-upvote-predictor
    ```
 
 4. **Test**:
@@ -422,14 +533,44 @@ python src/training/word2vec_pipeline.py --model_type cbow_softmax
         "title": "Show HN: My new AI plugin",
         "author": "pg",
         "url": "http://paulgraham.com",
-        "age": 567890
+        "post_time": "2023-05-10T14:30:00Z",
+        "user_karma": 15000,
+        "user_age_days": 3650
    }'
    ```
 
-**Enhanced API Implementation**:
-- Our API accepts optional user-level features (karma, account age)
-- If not provided, the API uses reasonable defaults
-- API returns both the predicted upvotes and the log-transformed prediction
+5. **Response**:
+   ```json
+   {
+     "predicted_upvotes": 42,
+     "log_predicted_upvotes": 3.7612,
+     "title": "Show HN: My new AI plugin",
+     "author": "pg",
+     "features_used": {
+       "title_embedding_size": 100,
+       "title_length": 22,
+       "title_word_count": 5,
+       "account_age_days": 3650,
+       "log_karma": 9.6158,
+       "year": 2023,
+       "month": 5,
+       "day_of_week": 2,
+       "hour": 14
+     },
+     "embedding_model": "skipgram"
+   }
+   ```
+
+**Model Handling Features**:
+
+- **Automatic Architecture Detection**: The API automatically detects which Word2Vec models are available in the `data/models` directory
+- **Priority System**: Skip-gram is tried first, then CBOW softmax as a fallback
+- **Graceful Degradation**: If no models are available, a dummy embedder is used for testing
+- **Model Type Transparency**: The response includes which embedding model was used for the prediction
+- **Consistent Interface**: Both model architectures use the same interface for getting sentence embeddings
+- **Efficient Loading**: Models are loaded once at startup, not per-request
+- **No Code Duplication**: The same endpoint handles both models seamlessly
+- **Runtime Logging**: The API logs which model type was loaded for easier debugging
 
 ---
 

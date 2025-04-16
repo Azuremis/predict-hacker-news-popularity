@@ -234,6 +234,54 @@ The database connection details are stored in the `.env` file. The default value
 - Author karma
 - Account age at post time
 
+## API Implementation
+
+The project includes a FastAPI service that serves predictions through an HTTP endpoint:
+
+### API Features
+- Automatically detects and loads either Skip-gram or CBOW softmax model
+- Prioritizes Skip-gram if available, falls back to CBOW softmax
+- Returns the model type used in the prediction response
+- Handles optional user features (karma, account age)
+- Returns both log-transformed and exponentiated predictions
+- Includes detailed feature information used for the prediction
+
+### Example Request
+```bash
+curl -X POST "http://localhost:8000/predict" \
+-H "Content-Type: application/json" \
+-d '{
+     "title": "Show HN: My new AI plugin",
+     "author": "pg",
+     "url": "http://paulgraham.com",
+     "post_time": "2023-05-10T14:30:00Z",
+     "user_karma": 15000,
+     "user_age_days": 3650
+}'
+```
+
+### Example Response
+```json
+{
+  "predicted_upvotes": 42,
+  "log_predicted_upvotes": 3.7612,
+  "title": "Show HN: My new AI plugin",
+  "author": "pg",
+  "features_used": {
+    "title_embedding_size": 100,
+    "title_length": 22,
+    "title_word_count": 5,
+    "account_age_days": 3650,
+    "log_karma": 9.6158,
+    "year": 2023,
+    "month": 5,
+    "day_of_week": 2,
+    "hour": 14
+  },
+  "embedding_model": "skipgram"
+}
+```
+
 ## Contributors
 
 - @AlexVOiceover @Ardrito @dimitar-seraffimov @JasonWarrenUK @Liam40
