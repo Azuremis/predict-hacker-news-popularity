@@ -123,6 +123,29 @@ source venv/bin/activate
 
 We've implemented a custom Word2Vec from scratch, broken down into modular components for better understanding and team collaboration. Each component handles a specific part of the Word2Vec pipeline:
 
+### Available Models
+
+Our implementation supports two Word2Vec architectures:
+
+1. **Skip-gram with Negative Sampling**
+   - Predicts context words from a center word
+   - Uses negative sampling for efficient training
+   - Better for infrequent words and larger datasets
+   - Generally produces higher quality embeddings
+
+2. **CBOW (Continuous Bag of Words) with Softmax**
+   - Predicts a target word from surrounding context words
+   - Uses full softmax for output probability distribution
+   - Computationally more expensive but potentially more accurate
+   - Better for smaller datasets with frequent terms
+
+To specify which model to use, set the `--model_type` parameter when running the pipeline:
+```bash
+python src/training/word2vec_pipeline.py --model_type skipgram
+# or
+python src/training/word2vec_pipeline.py --model_type cbow_softmax
+```
+
 ### Components
 
 1. **Text Preprocessing (`text_preprocessing.py`)**
@@ -137,22 +160,22 @@ We've implemented a custom Word2Vec from scratch, broken down into modular compo
    - Main class: `Word2VecVocab`
 
 3. **Dataset Preparation (`dataset.py`)**
-   - Creates training pairs (center word + context word)
-   - Implements context window sampling
-   - Generates negative samples for training
-   - Main class: `SkipGramDataset` (extends PyTorch's Dataset)
+   - Creates training pairs based on model architecture
+   - For Skip-gram: center word + context word pairs
+   - For CBOW with softmax: context words + target word pairs
+   - Main classes: `SkipGramDataset` and `CBOWSoftmaxDataset`
 
 4. **Model Architecture (`word2vec_model.py`)**
-   - Implements Skip-gram with negative sampling using PyTorch
-   - Maintains separate input/output embedding matrices
-   - Computes loss for positive and negative examples
-   - Main class: `Word2VecModel` (extends nn.Module)
+   - Implements both available architectures using PyTorch
+   - Skip-gram with negative sampling: `Word2VecModel` class
+   - CBOW with softmax: `CBOWSoftmaxModel` class
+   - Maintains appropriate embedding matrices for each approach
 
 5. **Training Process (`training.py`)**
    - Functions for training and fine-tuning Word2Vec models
    - Implements learning rate scheduling for better convergence
    - Handles model saving and loading
-   - Main functions: `train_word2vec_custom()`, `finetune_word2vec_custom()`
+   - Main functions: `train_word2vec_custom()`, `train_cbow_softmax_custom()`, `finetune_word2vec_custom()`, `finetune_cbow_softmax_custom()`
 
 6. **Embedding Utilities (`embedding.py`)**
    - Functions for generating embeddings from trained models
@@ -171,7 +194,7 @@ The Word2Vec pipeline follows this flow:
 
 1. Text data is cleaned and tokenized (`text_preprocessing.py`)
 2. Vocabulary is built from tokens (`vocabulary.py`)
-3. Training dataset is created with positive and negative examples (`dataset.py`)
+3. Training dataset is created based on the chosen model architecture (`dataset.py`)
 4. Model is initialized with random embeddings (`word2vec_model.py`)
 5. Training occurs through batched gradient descent (`training.py`)
 6. Trained model generates embeddings for new text (`embedding.py`)
