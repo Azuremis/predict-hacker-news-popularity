@@ -117,10 +117,10 @@ def train_word2vec_custom(sentences, output_dir, vector_size=100, window=5,
     return model, vocab
 
 
-def train_cbow_custom(sentences, output_dir, vector_size=100, window=5, 
-                      min_count=5, neg_samples=5, epochs=5, batch_size=512, 
-                      lr=0.025, min_lr=0.0001):
-    """Train custom CBOW model on corpus.
+def train_cbow_softmax_custom(sentences, output_dir, vector_size=100, window=5, 
+                          min_count=5, epochs=5, batch_size=512, 
+                          lr=0.025, min_lr=0.0001):
+    """Train custom CBOW model with softmax on corpus.
     
     Args:
         sentences: List of tokenized sentences
@@ -128,22 +128,21 @@ def train_cbow_custom(sentences, output_dir, vector_size=100, window=5,
         vector_size: Dimensionality of the embeddings
         window: Maximum distance between context and predicted word
         min_count: Minimum word count to be included in the vocabulary
-        neg_samples: Number of negative samples per positive context
         epochs: Number of training epochs
         batch_size: Batch size for training
         lr: Initial learning rate
         min_lr: Minimum learning rate
         
     Returns:
-        Trained CBOW model, vocabulary
+        Trained CBOW model with softmax, vocabulary
     """
     # Import here to avoid circular imports
     from vocabulary import Word2VecVocab
-    from dataset import CBOWDataset
-    from word2vec_model import CBOWModel
+    from dataset import CBOWSoftmaxDataset
+    from word2vec_model import CBOWSoftmaxModel
     
-    logger.info(f"Training custom CBOW model on corpus with {len(sentences)} sentences")
-    logger.info(f"Parameters: vector_size={vector_size}, window={window}, min_count={min_count}, neg_samples={neg_samples}")
+    logger.info(f"Training custom CBOW model with softmax on corpus with {len(sentences)} sentences")
+    logger.info(f"Parameters: vector_size={vector_size}, window={window}, min_count={min_count}")
     
     start_time = time.time()
     
@@ -152,11 +151,11 @@ def train_cbow_custom(sentences, output_dir, vector_size=100, window=5,
     vocab_size = vocab.build(sentences)
     
     # Create dataset and dataloader
-    dataset = CBOWDataset(sentences, vocab, window_size=window, neg_samples=neg_samples)
+    dataset = CBOWSoftmaxDataset(sentences, vocab, window_size=window)
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
     
     # Initialize model
-    model = CBOWModel(vocab_size=vocab_size, embedding_dim=vector_size)
+    model = CBOWSoftmaxModel(vocab_size=vocab_size, embedding_dim=vector_size)
     
     # Initialize optimizer
     optimizer = optim.Adam(model.parameters(), lr=lr)
@@ -170,9 +169,9 @@ def train_cbow_custom(sentences, output_dir, vector_size=100, window=5,
     logger.info(f"Starting training for {epochs} epochs")
     for epoch in range(epochs):
         total_loss = 0
-        for i, (context_ids, target_ids, neg_ids, num_context) in enumerate(dataloader):
+        for i, (context_ids, target_ids, num_context) in enumerate(dataloader):
             # Forward pass
-            loss = model(context_ids, target_ids, neg_ids, num_context)
+            loss = model(context_ids, target_ids, num_context)
             
             # Backward pass
             optimizer.zero_grad()
@@ -194,10 +193,10 @@ def train_cbow_custom(sentences, output_dir, vector_size=100, window=5,
     
     # Save embeddings as NumPy arrays
     in_embeddings = model.get_context_embeddings()
-    out_embeddings = model.get_target_embeddings()
+    out_weights = model.get_output_weights()
     
-    np.save(os.path.join(output_dir, "cbow_in.npy"), in_embeddings)
-    np.save(os.path.join(output_dir, "cbow_out.npy"), out_embeddings)
+    np.save(os.path.join(output_dir, "cbow_softmax_in.npy"), in_embeddings)
+    np.save(os.path.join(output_dir, "cbow_softmax_out.npy"), out_weights)
     
     # Save vocabulary
     vocab_data = {
@@ -212,10 +211,10 @@ def train_cbow_custom(sentences, output_dir, vector_size=100, window=5,
         'model_state_dict': model.state_dict(),
         'vocab_size': vocab_size,
         'embedding_dim': vector_size
-    }, os.path.join(output_dir, "cbow_model.pth"))
+    }, os.path.join(output_dir, "cbow_softmax_model.pth"))
     
     elapsed_time = time.time() - start_time
-    logger.info(f"CBOW training completed in {elapsed_time:.2f} seconds")
+    logger.info(f"CBOW with softmax training completed in {elapsed_time:.2f} seconds")
     logger.info(f"Model saved to {output_dir}")
     
     return model, vocab
@@ -355,11 +354,11 @@ def finetune_word2vec_custom(base_model_dir, titles, output_dir, epochs=5, lr=0.
     return model, vocab
 
 
-def finetune_cbow_custom(base_model_dir, titles, output_dir, epochs=5, lr=0.01, min_lr=0.0001, batch_size=256):
-    """Fine-tune pre-trained CBOW model on Hacker News titles.
+def finetune_cbow_softmax_custom(base_model_dir, titles, output_dir, epochs=5, lr=0.01, min_lr=0.0001, batch_size=256):
+    """Fine-tune pre-trained CBOW softmax model on Hacker News titles.
     
     Args:
-        base_model_dir: Directory containing pre-trained CBOW model
+        base_model_dir: Directory containing pre-trained CBOW softmax model
         titles: List of tokenized Hacker News titles
         output_dir: Directory to save the fine-tuned model
         epochs: Number of training epochs
@@ -368,24 +367,24 @@ def finetune_cbow_custom(base_model_dir, titles, output_dir, epochs=5, lr=0.01, 
         batch_size: Batch size for training
         
     Returns:
-        Fine-tuned CBOW model, vocabulary
+        Fine-tuned CBOW softmax model, vocabulary
     """
     # Import here to avoid circular imports
     from vocabulary import Word2VecVocab
-    from dataset import CBOWDataset
-    from word2vec_model import CBOWModel
+    from dataset import CBOWSoftmaxDataset
+    from word2vec_model import CBOWSoftmaxModel
     
-    logger.info(f"Fine-tuning CBOW model on {len(titles)} Hacker News titles")
+    logger.info(f"Fine-tuning CBOW softmax model on {len(titles)} Hacker News titles")
     
     # Load pre-trained model
-    model_path = os.path.join(base_model_dir, "cbow_model.pth")
+    model_path = os.path.join(base_model_dir, "cbow_softmax_model.pth")
     vocab_path = os.path.join(base_model_dir, "vocab.pth")
     
     checkpoint = torch.load(model_path)
     vocab_data = torch.load(vocab_path)
     
     # Initialize model with pre-trained weights
-    model = CBOWModel(vocab_size=checkpoint['vocab_size'], embedding_dim=checkpoint['embedding_dim'])
+    model = CBOWSoftmaxModel(vocab_size=checkpoint['vocab_size'], embedding_dim=checkpoint['embedding_dim'])
     model.load_state_dict(checkpoint['model_state_dict'])
     
     # Reconstruct vocabulary
@@ -410,12 +409,12 @@ def finetune_cbow_custom(base_model_dir, titles, output_dir, epochs=5, lr=0.01, 
         
         # Create new model with expanded vocabulary
         new_vocab_size = old_vocab_size + len(new_words)
-        new_model = CBOWModel(vocab_size=new_vocab_size, embedding_dim=embedding_dim)
+        new_model = CBOWSoftmaxModel(vocab_size=new_vocab_size, embedding_dim=embedding_dim)
         
-        # Copy existing embeddings
+        # Copy existing embeddings and output weights
         with torch.no_grad():
             new_model.context_embeddings.weight[:old_vocab_size] = model.context_embeddings.weight
-            new_model.target_embeddings.weight[:old_vocab_size] = model.target_embeddings.weight
+            new_model.output_weights.weight[:old_vocab_size] = model.output_weights.weight
         
         # Update vocabulary
         for i, word in enumerate(new_words, start=old_vocab_size):
@@ -425,7 +424,7 @@ def finetune_cbow_custom(base_model_dir, titles, output_dir, epochs=5, lr=0.01, 
         model = new_model
     
     # Create dataset and dataloader
-    dataset = CBOWDataset(titles, vocab, window_size=5, neg_samples=5)
+    dataset = CBOWSoftmaxDataset(titles, vocab, window_size=5)
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
     
     # Initialize optimizer
@@ -440,9 +439,9 @@ def finetune_cbow_custom(base_model_dir, titles, output_dir, epochs=5, lr=0.01, 
     logger.info(f"Starting fine-tuning for {epochs} epochs")
     for epoch in range(epochs):
         total_loss = 0
-        for i, (context_ids, target_ids, neg_ids, num_context) in enumerate(dataloader):
+        for i, (context_ids, target_ids, num_context) in enumerate(dataloader):
             # Forward pass
-            loss = model(context_ids, target_ids, neg_ids, num_context)
+            loss = model(context_ids, target_ids, num_context)
             
             # Backward pass
             optimizer.zero_grad()
@@ -464,10 +463,10 @@ def finetune_cbow_custom(base_model_dir, titles, output_dir, epochs=5, lr=0.01, 
     
     # Save embeddings as NumPy arrays
     in_embeddings = model.get_context_embeddings()
-    out_embeddings = model.get_target_embeddings()
+    out_weights = model.get_output_weights()
     
-    np.save(os.path.join(output_dir, "cbow_hn_in.npy"), in_embeddings)
-    np.save(os.path.join(output_dir, "cbow_hn_out.npy"), out_embeddings)
+    np.save(os.path.join(output_dir, "cbow_softmax_hn_in.npy"), in_embeddings)
+    np.save(os.path.join(output_dir, "cbow_softmax_hn_out.npy"), out_weights)
     
     # Save vocabulary
     vocab_data = {
@@ -482,9 +481,9 @@ def finetune_cbow_custom(base_model_dir, titles, output_dir, epochs=5, lr=0.01, 
         'model_state_dict': model.state_dict(),
         'vocab_size': len(vocab.word_to_id),
         'embedding_dim': model.embedding_dim
-    }, os.path.join(output_dir, "cbow_hn_model.pth"))
+    }, os.path.join(output_dir, "cbow_softmax_hn_model.pth"))
     
-    logger.info(f"Fine-tuned CBOW model saved to {output_dir}")
+    logger.info(f"Fine-tuned CBOW softmax model saved to {output_dir}")
     
     return model, vocab
 
@@ -518,11 +517,11 @@ if __name__ == "__main__":
         batch_size=2
     )
     
-    # Train CBOW model
-    cbow_output_dir = "example_cbow_model"
-    cbow_model, cbow_vocab = train_cbow_custom(
+    # Train CBOW model with softmax
+    cbow_softmax_output_dir = "example_cbow_softmax_model"
+    cbow_softmax_model, cbow_softmax_vocab = train_cbow_softmax_custom(
         sentences=sentences,
-        output_dir=cbow_output_dir,
+        output_dir=cbow_softmax_output_dir,
         vector_size=50,
         window=2,
         min_count=1,
@@ -543,11 +542,11 @@ if __name__ == "__main__":
         epochs=2
     )
     
-    # Fine-tune CBOW model
-    finetuned_cbow_model, finetuned_cbow_vocab = finetune_cbow_custom(
-        base_model_dir=cbow_output_dir,
+    # Fine-tune CBOW model with softmax
+    finetuned_cbow_softmax_model, finetuned_cbow_softmax_vocab = finetune_cbow_softmax_custom(
+        base_model_dir=cbow_softmax_output_dir,
         titles=titles,
-        output_dir="finetuned_cbow_model",
+        output_dir="finetuned_cbow_softmax_model",
         epochs=2
     )
     

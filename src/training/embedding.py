@@ -21,13 +21,14 @@ def get_title_embedding(title, model_dir):
     Returns:
         Numpy array with title embedding (average of word vectors)
     """
-    # Check if this is a CBOW or Skip-gram model based on file names
-    is_cbow = 'cbow' in os.path.basename(model_dir)
+    # Check if this is a CBOW with softmax or Skip-gram model based on file names
+    dir_name = os.path.basename(model_dir)
+    is_cbow_softmax = 'cbow_softmax' in dir_name
     
     # Set file paths based on model type
-    if is_cbow:
+    if is_cbow_softmax:
         vocab_path = os.path.join(model_dir, "vocab_hn.pth")
-        embedding_path = os.path.join(model_dir, "cbow_hn_in.npy")
+        embedding_path = os.path.join(model_dir, "cbow_softmax_hn_in.npy")
     else:  # Skip-gram
         vocab_path = os.path.join(model_dir, "vocab_hn.pth")
         embedding_path = os.path.join(model_dir, "word2vec_hn_in.npy")
@@ -67,7 +68,7 @@ def evaluate_word2vec_model(model, vocab, word_pairs=None):
         # Skip-gram model
         embeddings = model.get_center_embeddings()
     else:
-        # CBOW model
+        # CBOW softmax model
         embeddings = model.get_context_embeddings()
     
     # Normalize embeddings for cosine similarity
@@ -130,7 +131,7 @@ def find_analogy(model, vocab, word1, word2, word3, top_n=5):
         # Skip-gram model
         embeddings = model.get_center_embeddings()
     else:
-        # CBOW model
+        # CBOW softmax model
         embeddings = model.get_context_embeddings()
     
     norms = np.sqrt((embeddings ** 2).sum(axis=1))
@@ -178,12 +179,13 @@ def load_embeddings_model(model_dir):
         model: Loaded model
         vocab: Loaded vocabulary
     """
-    # Check if this is a CBOW or Skip-gram model based on file names
-    is_cbow = 'cbow' in os.path.basename(model_dir)
+    # Check model type based on directory name
+    dir_name = os.path.basename(model_dir)
+    is_cbow_softmax = 'cbow_softmax' in dir_name
     
-    if is_cbow:
-        from word2vec_model import CBOWModel
-        model_path = os.path.join(model_dir, "cbow_model.pth")
+    if is_cbow_softmax:
+        from word2vec_model import CBOWSoftmaxModel
+        model_path = os.path.join(model_dir, "cbow_softmax_model.pth")
     else:
         from word2vec_model import Word2VecModel
         model_path = os.path.join(model_dir, "word2vec_model.pth")
@@ -200,8 +202,8 @@ def load_embeddings_model(model_dir):
     vocab_data = torch.load(vocab_path)
     
     # Initialize model with trained weights
-    if is_cbow:
-        model = CBOWModel(vocab_size=checkpoint['vocab_size'], embedding_dim=checkpoint['embedding_dim'])
+    if is_cbow_softmax:
+        model = CBOWSoftmaxModel(vocab_size=checkpoint['vocab_size'], embedding_dim=checkpoint['embedding_dim'])
     else:
         model = Word2VecModel(vocab_size=checkpoint['vocab_size'], embedding_dim=checkpoint['embedding_dim'])
     

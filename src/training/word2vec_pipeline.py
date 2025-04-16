@@ -12,16 +12,19 @@ logger = logging.getLogger(__name__)
 # Import components from separate modules
 from text_preprocessing import preprocess_wikipedia_corpus, process_hacker_news_titles, tokenize_text
 from vocabulary import Word2VecVocab
-from dataset import SkipGramDataset, CBOWDataset
-from word2vec_model import Word2VecModel, CBOWModel
-from training import train_word2vec_custom, finetune_word2vec_custom, train_cbow_custom, finetune_cbow_custom
+from dataset import SkipGramDataset, CBOWSoftmaxDataset
+from word2vec_model import Word2VecModel, CBOWSoftmaxModel
+from training import (
+    train_word2vec_custom, finetune_word2vec_custom,
+    train_cbow_softmax_custom, finetune_cbow_softmax_custom
+)
 from embedding import get_title_embedding, evaluate_word2vec_model
 
 def main(model_type='skipgram'):
     """Main function to orchestrate the entire Word2Vec pipeline.
     
     Args:
-        model_type: Either 'skipgram' or 'cbow'
+        model_type: Either 'skipgram' or 'cbow_softmax'
     """
     logger.info(f"Starting Word2Vec pipeline with {model_type.upper()} architecture")
     start_time = time.time()
@@ -32,10 +35,10 @@ def main(model_type='skipgram'):
     # Paths based on model type
     if model_type.lower() == 'skipgram':
         model_name = 'word2vec'
-    elif model_type.lower() == 'cbow':
-        model_name = 'cbow'
+    elif model_type.lower() == 'cbow_softmax':
+        model_name = 'cbow_softmax'
     else:
-        raise ValueError("model_type must be either 'skipgram' or 'cbow'")
+        raise ValueError("model_type must be either 'skipgram' or 'cbow_softmax'")
     
     # Paths
     wiki_raw_path = 'data/raw/wikipedia_sample.txt'
@@ -69,8 +72,8 @@ def main(model_type='skipgram'):
             min_count=5,
             epochs=5
         )
-    else:  # CBOW
-        wiki_model, wiki_vocab = train_cbow_custom(
+    else:  # CBOW with softmax
+        wiki_model, wiki_vocab = train_cbow_softmax_custom(
             sentences=sentences,
             output_dir=wiki_model_dir,
             vector_size=100,
@@ -92,8 +95,8 @@ def main(model_type='skipgram'):
             output_dir=hn_model_dir,
             epochs=5
         )
-    else:  # CBOW
-        hn_model, hn_vocab = finetune_cbow_custom(
+    else:  # CBOW with softmax
+        hn_model, hn_vocab = finetune_cbow_softmax_custom(
             base_model_dir=wiki_model_dir,
             titles=titles,
             output_dir=hn_model_dir,
@@ -117,9 +120,9 @@ if __name__ == "__main__":
     import argparse
     
     # Set up command line arguments
-    parser = argparse.ArgumentParser(description='Run Word2Vec pipeline with Skip-gram or CBOW architecture')
-    parser.add_argument('--model_type', type=str, default='skipgram', choices=['skipgram', 'cbow'],
-                       help='Model architecture to use: skipgram or cbow (default: skipgram)')
+    parser = argparse.ArgumentParser(description='Run Word2Vec pipeline with Skip-gram or CBOW with softmax architecture')
+    parser.add_argument('--model_type', type=str, default='skipgram', choices=['skipgram', 'cbow_softmax'],
+                       help='Model architecture to use: skipgram or cbow_softmax (default: skipgram)')
     
     args = parser.parse_args()
     main(model_type=args.model_type) 
