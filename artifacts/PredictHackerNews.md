@@ -1,10 +1,10 @@
-Below is a **vastly expanded, more detailed** version of the end-to-end implementation guide. It's designed to **streamline collaboration** among your team, **accelerate** your model development, and **make deployment a breeze**. Each section includes additional context, best practices, and pro tips so that any team member—no matter their background—can jump in and move forward confidently.
+Below is an **updated** end-to-end implementation guide, **removing reliance on Gensim** or any other pre-implemented Word2Vec library. Instead, you'll implement the **Word2Vec** algorithm **from scratch** (in either pure Python + NumPy or PyTorch). All other aspects (data fusion, MLP training, FastAPI deployment, Docker, etc.) remain the same, but now you'll build your word embeddings with your own custom code.
 
 ---
 
-# 🚀 AI @ FAC Week 1 Project – Ultimate Implementation Reference
+# 🚀 AI @ FAC Week 1 Project – Ultimate Implementation Reference 
 
-> **Goal**: Build a **regression model** that predicts **Hacker News upvotes** from post metadata (title, author, domain, etc.). Implement a **Word2Vec** pipeline, fuse features, and deploy a **FastAPI** service in a **Docker** container, returning an estimated upvote count via an HTTP POST endpoint.
+> **Goal**: Build a **regression model** that predicts **Hacker News upvotes** from post metadata (title, author, domain, etc.). Implement a **Word2Vec** *from scratch*, fuse features, and deploy a **FastAPI** service in a **Docker** container, returning an estimated upvote count via an HTTP POST endpoint.
 
 ---
 
@@ -15,7 +15,7 @@ Below is a **vastly expanded, more detailed** version of the end-to-end implemen
 3. [Architecture Summary](#architecture-summary)  
 4. [Detailed Steps](#detailed-steps)  
    1. [Phase 1: Exploratory Data Analysis (EDA)](#phase-1-exploratory-data-analysis-eda)  
-   2. [Phase 2: Pre-train Word2Vec](#phase-2-pre-train-word2vec)  
+   2. [Phase 2: Pre-train Word2Vec (From Scratch)](#phase-2-pre-train-word2vec-from-scratch)  
    3. [Phase 3: Fine-tune Word2Vec for HN Titles](#phase-3-fine-tune-word2vec-for-hn-titles)  
    4. [Phase 4: Feature Fusion and Modeling](#phase-4-feature-fusion-and-modeling)  
    5. [Phase 5: Model Training Workflow](#phase-5-model-training-workflow)  
@@ -31,12 +31,12 @@ Below is a **vastly expanded, more detailed** version of the end-to-end implemen
 
 ## 1. Project Overview
 
-Your team's assignment is to **predict how many upvotes** a Hacker News post is likely to receive based on:
-- **Title**: Text input, can reveal topic, buzzwords, popularity
-- **Author**: Certain authors might have historically high or low traction
-- **URL/Domain**: Well-known domains (e.g., `paulgraham.com`) might correlate with more upvotes
-- **Submission Age**: Posts from 2006 vs. 2025 might have different distributions
-- (Optionally) **Comments**: Beware of **future leakage**; if you use comment counts, factor in the timestamp
+Your team's assignment is to **predict how many upvotes** a Hacker News post is likely to receive, based on:
+- **Title**: Text input (topic/buzzwords)
+- **Author**: Some authors get more traction
+- **URL/Domain**: Certain domains (e.g., `paulgraham.com`) might be more popular
+- **Submission Age**: Posts from 2006 vs. 2025 can have different distributions
+- (Optionally) **Comments**: Watch out for potential data leakage via comment counts
 
 Ultimately, you'll provide a **REST endpoint** that accepts post metadata in JSON and outputs a **predicted upvote count**.
 
@@ -51,7 +51,7 @@ This captures not just what and when was posted, but also who posted it, giving 
 ---
 
 ## 2. Core Requirements
-
+ 
 1. **EDA**:  
    - Investigate data distribution, scale, missing values, and outliers.
 
@@ -75,32 +75,31 @@ This captures not just what and when was posted, but also who posted it, giving 
 ---
 
 ## 3. Architecture Summary
-
 A high-level flow of your system:
-
 ```
                 ┌─────────────────────────┐
                 │ Wikipedia (text corpus) │
                 └───────────┬─────────────┘
                             │
                             ▼
-                    Word2Vec Training
+                Custom Word2Vec Training
+                 (from scratch, no gensim)
                             │
                             ▼
-                    Word2Vec Model (.bin)
+                    Word2Vec Embeddings
                             │
        ┌────────────────────┴────────────────────┐
        │                                         │
        ▼                                         ▼
   HN Title Data                          Fine-tune Word2Vec
-  (tokenized)                                   
+  (tokenized)   ←------------------------→  (again, from scratch)
        │                                         │
        └────────────────────┬────────────────────┘
                             ▼
                       Title Embeddings
                             │
-   Author Embedding/One-hot │  Domain Embedding/One-hot  User Features
-        Age (numeric)       │  (karma, account age)
+   Author Embedding/One-hot │  Domain Embedding/One-hot
+        Age (numeric)       │
                             ▼
                       ┌───────────┐
                       │   Fusion  │  (Concatenate all features)
@@ -138,109 +137,139 @@ A high-level flow of your system:
    - Plot histograms of `score` distribution.  
    - Check popular domains, authors, average title length.  
    - Inspect potential correlations (domain → upvotes? author → upvotes?).
-
-3. **Identify Data Issues**  
+3.   **Identify Data Issues**  
    - Missing or null authors?  
    - Very old posts with suspicious zero or extremely high `score`?  
    - Overlapping data for training vs. testing?
 
-**Pro Tip**: 
-- Conduct time-based splits if you want to simulate "future data." 
-- Summarize EDA findings in a shared notebook or short markdown report.
+   **Pro Tip**: 
+   - Conduct time-based splits if you want to simulate "future data." 
+   - Summarize EDA findings in a shared notebook or short markdown report.
 
-**User-Level Analysis**:
-- We've expanded the EDA to include author karma, account age, and their relationship with post scores
-- Examining whether high-karma authors tend to receive more upvotes on average
-- Investigating post performance as a function of author account age at post time
+   **User-Level Analysis**:
+   - We've expanded the EDA to include author karma, account age, and their relationship with post scores
+   - Examining whether high-karma authors tend to receive more upvotes on average
+   - Investigating post performance as a function of author account age at post time
 
----
+### Phase 2: Pre-train Word2Vec (From Scratch)
 
-### Phase 2: Pre-train Word2Vec
+Our implementation uses PyTorch to build Word2Vec from scratch, with the following components:
 
-#### Purpose
-Capture broad language semantics from Wikipedia so your model can interpret words more effectively.
+#### Available Word2Vec Models
 
-#### Steps
-1. **Obtain Wikipedia Corpus**  
-   - A subset or full dump. 
-   - Ensure you have a pipeline for cleaning HTML markup and removing non-text.
+We support two Word2Vec architectures:
 
-2. **Tokenize the Articles**  
-   - Use `spacy`, `NLTK`, or a custom regex-based tokenizer.
-   - Convert text into sequences of tokens (lowercase, remove punctuation, etc.).
+1. **Skip-gram with Negative Sampling**
+   - Predicts context words from a center word
+   - Uses negative sampling to efficiently approximate the full softmax
+   - Handles rare words better than CBOW
+   - Computationally efficient for large vocabularies
 
-3. **Train Word2Vec**  
-   - Example with `gensim`:
-     ```python
-     from gensim.models import Word2Vec
-     
-     # Suppose 'all_sentences' is an iterable of token lists
-     w2v_model = Word2Vec(
-         sentences=all_sentences,
-         vector_size=100,   # Try 100 to start; can go bigger
-         window=5,         
-         min_count=5,      # Ignores rare words
-         workers=4,        # Adjust to CPU cores
-         sg=1              # Skip-gram model
-     )
-     
-     w2v_model.save("wiki_word2vec.model")
-     ```
-   - **Validate**: Check if synonyms or related words cluster well. 
-   - **Pro Tip**: Keep an eye on training time and memory usage. Smaller subsets can still yield decent embeddings.
+2. **CBOW (Continuous Bag of Words) with Softmax**
+   - Predicts a target word from its surrounding context words
+   - Uses full softmax over the vocabulary for output probabilities
+   - Computationally more intensive but can be more accurate
+   - May perform better on smaller datasets with frequent terms
+
+The model type can be specified when running the Word2Vec pipeline:
+```bash
+python src/training/word2vec_pipeline.py --model_type skipgram
+# or
+python src/training/word2vec_pipeline.py --model_type cbow_softmax
+```
+
+#### Implementation Components
+
+1. **Vocabulary Management** (`vocabulary.py`):
+   - Built word-to-id and id-to-word dictionaries for efficient token lookup
+   - Implemented negative sampling with frequency-based distribution
+   - Added subsampling of frequent words to improve training efficiency
+
+2. **Dataset Preparation** (`dataset.py`):
+   - `SkipGramDataset`: For Skip-gram with negative sampling
+     - Creates center-context word pairs from tokenized sentences
+     - Generates negative samples for each positive example
+   - `CBOWSoftmaxDataset`: For CBOW with softmax
+     - Creates context-target word pairs from tokenized sentences
+     - Handles variable-length contexts with padding
+
+3. **Model Architecture** (`word2vec_model.py`):
+   - `Word2VecModel`: Skip-gram with negative sampling
+     - Separate embedding layers for center and context words
+     - Optimized loss function with positive and negative sampling
+   - `CBOWSoftmaxModel`: CBOW with softmax
+     - Context word embeddings and output projection layer
+     - Uses CrossEntropyLoss for the softmax computation
+
+4. **Training Pipeline** (`training.py`):
+   - Optimized with Adam optimizer and learning rate scheduling
+   - Implemented batch processing for efficient training
+   - Added checkpointing to save model state during training
+   - Included comprehensive logging for monitoring training progress
+
+5. **Text Processing** (`text_preprocessing.py`):
+   - Specialized tokenization for Wikipedia corpus and HN titles
+   - Cleaned and normalized text data for better embedding quality
+   - Managed sentence segmentation and special character handling
+
+**Our Implementation Checklist**:
+- [x] **Vocabulary-building**: Created dictionaries for word-to-id and id-to-word mappings
+- [x] **Negative sampling**: Implemented efficient training approach with unigram distribution
+- [x] **Context window sampling**: Created appropriate word pairs for both model types
+- [x] **Learning rate scheduling**: Added cosine annealing scheduler for better convergence
 
 ---
 
 ### Phase 3: Fine-tune Word2Vec for HN Titles
 
 1. **Extract Titles**  
-   ```python
+   ```sql
    SELECT title 
    FROM "hacker_news"."items" 
    WHERE title IS NOT NULL
    ```
-2. **Tokenize** similarly to Wikipedia corpus for consistency.
-3. **Load Pre-trained Model**  
-   ```python
-   from gensim.models import Word2Vec
-
-   w2v_model = Word2Vec.load("wiki_word2vec.model")
-   ```
-4. **Fine-tune**  
-   ```python
-   w2v_model.build_vocab(hn_titles, update=True)
-   w2v_model.train(
-       hn_titles,
-       total_examples=w2v_model.corpus_count,
-       epochs=5
-   )
-   w2v_model.save("hn_finetuned_word2vec.model")
-   ```
-   - Now your embeddings better reflect Hacker News style/terminology.
+2. **Preprocess & Tokenize** 
+   - Convert to lowercase  
+   - Remove punctuation  
+   - Possibly remove stopwords if it helps
+3. **Initialize from Pre-trained Weights**  
+   - Load the pretrained embeddings from Wikipedia training
+   - For Skip-gram: load center and context embeddings
+   - For CBOW with softmax: load context embeddings and output weights
+4. **Fine-tuning Process**
+   - Using the same model architecture (Skip-gram or CBOW softmax)
+   - Train for a few epochs on Hacker News titles
+   - Lower learning rate to avoid catastrophic forgetting
+   - Expand vocabulary as needed for HN-specific terms
+5. **Handling New Vocabulary**
+   - Identify new words in HN titles not present in Wikipedia
+   - Expand embedding matrices to accommodate new vocabulary
+   - Initialize new word vectors with random values
+   - Update vocabulary mappings with new words
+6. **Save Fine-tuned Model**
+   - Save the model state dict for later use
+   - Export embeddings as NumPy arrays for easier integration
+   - Save updated vocabulary for consistent tokenization
 
 ---
 
 ### Phase 4: Feature Fusion and Modeling
 
-**Main Idea**: Convert each piece of data into numeric vectors, then merge.
-
-1. **Title Embeddings**:  
-   - For a given title, you might average the embeddings of each token. 
-   - Alternatively, sum them or use a more advanced approach (like an LSTM).  
-   - Let's keep it simple: **average** your token embeddings.
-   
-   ```python
-   def get_title_embedding(title_tokens, model):
-       embeddings = []
-       for token in title_tokens:
-           if token in model.wv:
-               embeddings.append(model.wv[token])
-       if embeddings:
-           return np.mean(embeddings, axis=0)
-       else:
-           # Return a zero vector if no known tokens
-           return np.zeros(model.vector_size)
-   ```
+1. **Title Embeddings**  
+   - Each title → tokens → average (or sum) the embeddings from your `W_in`.  
+   - Example:
+     ```python
+     def get_title_embedding(token_list, W_in, word_to_id):
+         vectors = []
+         for token in token_list:
+             if token in word_to_id:
+                 idx = word_to_id[token]
+                 vectors.append(W_in[idx])
+         if vectors:
+             return np.mean(vectors, axis=0)
+         else:
+             return np.zeros(W_in.shape[1])  # embedding_dim
+     ```
 
 2. **Author Embedding**:  
    - Option 1: One-hot encode authors if you have memory for up to ~1M. Possibly too large. 
@@ -335,6 +364,10 @@ Capture broad language semantics from Wikipedia so your model can interpret word
    from fastapi import FastAPI
    from pydantic import BaseModel
    import torch
+   import numpy as np
+   from typing import Optional
+   import os
+   import logging
 
    app = FastAPI()
 
@@ -343,23 +376,116 @@ Capture broad language semantics from Wikipedia so your model can interpret word
        title: str
        author: str
        url: str
-       age: float
+       post_time: str
+       user_karma: Optional[int] = None
+       user_age_days: Optional[int] = None
 
-   # Load your model and word2vec in startup event or global scope
-   model = torch.load("hn_upvote_model.pth")
-   word2vec = # load your Word2Vec
+   # Define schema for response
+   class PredictionResponse(BaseModel):
+       predicted_upvotes: int
+       log_predicted_upvotes: float
+       title: str
+       author: str
+       features_used: dict
+       embedding_model: str  # Indicates which model was used (skipgram or cbow_softmax)
 
-   @app.post("/predict")
+   # Configure paths to model artifacts
+   skipgram_model_path = "data/models/skipgram_word2vec.pt"
+   cbow_softmax_model_path = "data/models/cbow_softmax_word2vec.pt"
+   mlp_model_path = "data/models/upvote_predictor.pt"
+   vocab_path = "data/processed/vocabulary.json"
+
+   # Load models at startup
+   @app.on_event("startup")
+   async def load_models():
+       global word2vec_model, mlp_model, vocab, embedding_model_type
+       
+       logging.info("Loading prediction models...")
+       
+       # First try to load Skip-gram model
+       if os.path.exists(skipgram_model_path):
+           word2vec_model = SkipGramModel.load(skipgram_model_path)
+           embedding_model_type = "skipgram"
+           logging.info("Loaded Skip-gram Word2Vec model")
+       # Then try CBOW softmax model
+       elif os.path.exists(cbow_softmax_model_path):
+           word2vec_model = CBOWSoftmaxModel.load(cbow_softmax_model_path)
+           embedding_model_type = "cbow_softmax"
+           logging.info("Loaded CBOW softmax Word2Vec model")
+       # Fall back to dummy if neither is available
+       else:
+           # Create dummy model for testing
+           logging.warning("No Word2Vec models found. Using dummy embeddings.")
+           word2vec_model = DummyEmbedder(embedding_dim=100)
+           embedding_model_type = "dummy"
+       
+       # Load MLP model
+       mlp_model = torch.load(mlp_model_path)
+       mlp_model.eval()
+       
+       # Load vocabulary
+       with open(vocab_path, 'r') as f:
+           vocab = json.load(f)
+       
+       logging.info("Models loaded successfully")
+
+   @app.post("/predict", response_model=PredictionResponse)
    def predict_upvotes(post: HNPost):
-       # 1) Tokenize title, get embedding
-       # 2) Get author/domain embedding
-       # 3) Combine with age
-       # 4) Pass through MLP
-       # 5) Return predicted upvotes as JSON
-       fused_input = create_fused_vector(post, word2vec)
+       # 1) Tokenize title
+       tokens = preprocess_text(post.title)
+       
+       # 2) Get embeddings using the loaded model (either Skip-gram or CBOW)
+       title_embedding = word2vec_model.get_sentence_embedding(tokens)
+       
+       # 3) Extract features from other fields
+       domain = extract_domain(post.url)
+       timestamp = parse_datetime(post.post_time)
+       
+       # 4) Create feature dictionary
+       features = {
+           "title_embedding": title_embedding,
+           "title_length": len(post.title),
+           "title_word_count": len(tokens),
+           "domain": encode_domain(domain),
+           "year": timestamp.year,
+           "month": timestamp.month,
+           "day_of_week": timestamp.weekday(),
+           "hour": timestamp.hour
+       }
+       
+       # 5) Add user features if available
+       if post.user_karma is not None:
+           features["log_karma"] = np.log1p(post.user_karma)
+       
+       if post.user_age_days is not None:
+           features["account_age_days"] = post.user_age_days
+       
+       # 6) Create fused vector
+       fused_vector = create_fused_vector(features)
+       
+       # 7) Get prediction from MLP model
        with torch.no_grad():
-           prediction = model(fused_input).item()
-       return {"predicted_upvotes": prediction}
+           log_prediction = mlp_model(torch.tensor(fused_vector, dtype=torch.float32)).item()
+       
+       # 8) Return prediction and metadata
+       return PredictionResponse(
+           predicted_upvotes=int(np.expm1(log_prediction)),
+           log_predicted_upvotes=float(log_prediction),
+           title=post.title,
+           author=post.author,
+           features_used={
+               "title_embedding_size": len(title_embedding),
+               "title_length": features["title_length"],
+               "title_word_count": features["title_word_count"],
+               "account_age_days": features.get("account_age_days"),
+               "log_karma": features.get("log_karma"),
+               "year": features["year"],
+               "month": features["month"],
+               "day_of_week": features["day_of_week"],
+               "hour": features["hour"]
+           },
+           embedding_model=embedding_model_type
+       )
    ```
 
 2. **Dockerize**:
@@ -368,21 +494,35 @@ Capture broad language semantics from Wikipedia so your model can interpret word
    FROM python:3.9-slim
 
    WORKDIR /app
+   
+   # Install dependencies
    COPY requirements.txt .
-   RUN pip install -r requirements.txt
+   RUN pip install --no-cache-dir -r requirements.txt
 
+   # Copy code and models
    COPY . /app
+
+   # Make sure model directories exist
+   RUN mkdir -p data/models data/processed
 
    # Expose port
    EXPOSE 8000
 
+   # Run the FastAPI server
    CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
    ```
 
 3. **Build & Run**:
    ```bash
+   # Build the Docker image
    docker build -t hn-upvote-predictor .
-   docker run -d -p 8000:8000 hn-upvote-predictor
+   
+   # Run the container with models volume mounted
+   docker run -d \
+     -p 8000:8000 \
+     -v $(pwd)/data:/app/data \
+     --name hn-predictor \
+     hn-upvote-predictor
    ```
 
 4. **Test**:
@@ -393,14 +533,44 @@ Capture broad language semantics from Wikipedia so your model can interpret word
         "title": "Show HN: My new AI plugin",
         "author": "pg",
         "url": "http://paulgraham.com",
-        "age": 567890
+        "post_time": "2023-05-10T14:30:00Z",
+        "user_karma": 15000,
+        "user_age_days": 3650
    }'
    ```
 
-**Enhanced API Implementation**:
-- Our API accepts optional user-level features (karma, account age)
-- If not provided, the API uses reasonable defaults
-- API returns both the predicted upvotes and the log-transformed prediction
+5. **Response**:
+   ```json
+   {
+     "predicted_upvotes": 42,
+     "log_predicted_upvotes": 3.7612,
+     "title": "Show HN: My new AI plugin",
+     "author": "pg",
+     "features_used": {
+       "title_embedding_size": 100,
+       "title_length": 22,
+       "title_word_count": 5,
+       "account_age_days": 3650,
+       "log_karma": 9.6158,
+       "year": 2023,
+       "month": 5,
+       "day_of_week": 2,
+       "hour": 14
+     },
+     "embedding_model": "skipgram"
+   }
+   ```
+
+**Model Handling Features**:
+
+- **Automatic Architecture Detection**: The API automatically detects which Word2Vec models are available in the `data/models` directory
+- **Priority System**: Skip-gram is tried first, then CBOW softmax as a fallback
+- **Graceful Degradation**: If no models are available, a dummy embedder is used for testing
+- **Model Type Transparency**: The response includes which embedding model was used for the prediction
+- **Consistent Interface**: Both model architectures use the same interface for getting sentence embeddings
+- **Efficient Loading**: Models are loaded once at startup, not per-request
+- **No Code Duplication**: The same endpoint handles both models seamlessly
+- **Runtime Logging**: The API logs which model type was loaded for easier debugging
 
 ---
 
@@ -458,7 +628,7 @@ For database credentials and sensitive information, we use environment variables
    username = os.getenv('DB_USERNAME')
    ```
 
-3. **Add `.env` to `.gitignore`** to prevent committing credentials.
+3. **Add `.env` to `.gitignore** to prevent committing credentials.
 
 ---
 
@@ -487,11 +657,16 @@ project-root/
 │   └── TrainingExperiments.ipynb    # Model training experiments
 ├── src/
 │   ├── training/
-│   │   ├── word2vec_pipeline.py   # Word2Vec training and fine-tuning
+│   │   ├── word2vec_pipeline.py   # Word2Vec training and fine-tuning pipeline
+│   │   ├── word2vec_model.py      # PyTorch implementation of Word2Vec
+│   │   ├── vocabulary.py          # Vocabulary building and negative sampling
+│   │   ├── dataset.py             # SkipGramDataset for training
+│   │   ├── text_preprocessing.py  # Text cleaning and tokenization
+│   │   ├── training.py            # Training loop and optimization
+│   │   ├── embedding.py           # Embedding utilities
 │   │   └── model.py               # PyTorch MLP model definition
 │   ├── utils/
-│   │   ├── data_prep.py           # tokenization, transformations
-│   │   └── sql_queries.py
+│   │   ├── data_prep.py           # Data transformation utilities
 │   │   └── data_extraction.py     # Database extraction script
 │   └── api/
 │       ├── main.py                # FastAPI endpoint
@@ -561,10 +736,10 @@ project-root/
 
 ## 10. Final Checklist
 
-- [ ] **Environment Setup**: Virtual environment, dependencies, and .env file.
-- [ ] **EDA Completed**: SQL queries, distribution analysis, outlier detection, summary stats.  
-- [ ] **Word2Vec Pre-trained**: On Wikipedia or a large enough textual corpus.  
-- [ ] **Word2Vec Fine-tuned**: On Hacker News titles for domain adaptation.  
+- [x] **Environment Setup**: Virtual environment, dependencies, and .env file.
+- [x] **EDA Completed**: SQL queries, distribution analysis, outlier detection, summary stats.  
+- [ ] **Word2Vec Pre-trained**: Custom Word2Vec implementation from scratch on Wikipedia corpus.  
+- [ ] **Word2Vec Fine-tuned**: Fine-tuned on Hacker News titles for domain adaptation.  
 - [ ] **Feature Fusion**: Title embeddings, author/domain encoding, numeric features, user features.  
 - [ ] **MLP Model Trained**: Evaluate MSE/RMSE/MAE.  
 - [ ] **API Deployed**: `/predict` endpoint returning upvote predictions.  

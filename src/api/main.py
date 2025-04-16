@@ -11,7 +11,8 @@ from datetime import datetime
 
 # Add parent directory to path to import from other modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from training.word2vec_pipeline import get_title_embedding
+from training.embedding import get_title_embedding
+from training.word2vec_model import Word2VecModel, CBOWSoftmaxModel
 from training.model import UpvotePredictor
 
 # Initialize FastAPI app
@@ -22,8 +23,12 @@ app = FastAPI(title="Hacker News Upvote Predictor",
 # Model paths
 MODEL_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 
                          "data/processed/model")
-WORD2VEC_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 
-                            "data/processed/word2vec_hn_finetuned.model")
+EMBEDDINGS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 
+                           "data/processed")
+
+# Available embedding models
+SKIPGRAM_DIR = os.path.join(EMBEDDINGS_DIR, "word2vec_hn")
+CBOW_SOFTMAX_DIR = os.path.join(EMBEDDINGS_DIR, "cbow_softmax_hn")
 
 # Input model
 class HackerNewsPost(BaseModel):
@@ -53,34 +58,51 @@ class PredictionResponse(BaseModel):
     title: str
     author: str
     features_used: dict
+    embedding_model: str
 
 # Global variables for loaded models
-word2vec_model = None
+word2vec_embeddings = None
+word2vec_vocab = None
 predictor_model = None
 scaler = None
 input_dim = None
+embedding_model_type = None
+embedding_model_dir = None
 
 @app.on_event("startup")
 async def load_models():
     """Load models on startup."""
-    global word2vec_model, predictor_model, scaler, input_dim
+    global word2vec_embeddings, word2vec_vocab, predictor_model, scaler, input_dim, embedding_model_type, embedding_model_dir
     
     try:
-        # Import Word2Vec here to avoid loading it in global scope
-        from gensim.models import Word2Vec
+        # First try to load Skip-gram model
+        skipgram_vocab_path = os.path.join(SKIPGRAM_DIR, "vocab_hn.pth")
+        skipgram_embeddings_path = os.path.join(SKIPGRAM_DIR, "word2vec_hn_in.npy")
         
-        # Load Word2Vec model
-        if os.path.exists(WORD2VEC_PATH):
-            word2vec_model = Word2Vec.load(WORD2VEC_PATH)
-            print(f"Loaded Word2Vec model with {len(word2vec_model.wv.key_to_index)} vocabulary items")
+        # Then try to load CBOW softmax model
+        cbow_softmax_vocab_path = os.path.join(CBOW_SOFTMAX_DIR, "vocab_hn.pth")
+        cbow_softmax_embeddings_path = os.path.join(CBOW_SOFTMAX_DIR, "cbow_softmax_hn_in.npy")
+        
+        # Check which model files exist and load them
+        if os.path.exists(skipgram_vocab_path) and os.path.exists(skipgram_embeddings_path):
+            word2vec_vocab = torch.load(skipgram_vocab_path)
+            word2vec_embeddings = np.load(skipgram_embeddings_path)
+            embedding_model_type = "skipgram"
+            embedding_model_dir = SKIPGRAM_DIR
+            print(f"Loaded Skip-gram embeddings with {word2vec_embeddings.shape[0]} vocabulary items")
+        elif os.path.exists(cbow_softmax_vocab_path) and os.path.exists(cbow_softmax_embeddings_path):
+            word2vec_vocab = torch.load(cbow_softmax_vocab_path)
+            word2vec_embeddings = np.load(cbow_softmax_embeddings_path)
+            embedding_model_type = "cbow_softmax"
+            embedding_model_dir = CBOW_SOFTMAX_DIR
+            print(f"Loaded CBOW softmax embeddings with {word2vec_embeddings.shape[0]} vocabulary items")
         else:
-            print(f"WARNING: Word2Vec model not found at {WORD2VEC_PATH}. Using dummy embeddings.")
-            # Create a dummy model for testing
-            word2vec_model = type('obj', (object,), {
-                'vector_size': 100,
-                'wv': {'__getitem__': lambda self, key: np.zeros(100)}
-            })
-            word2vec_model.wv.__getitem__ = lambda key: np.zeros(100)
+            print(f"WARNING: No embedding files found. Using dummy embeddings.")
+            # Create dummy embeddings
+            word2vec_vocab = {'word_to_id': {}, 'id_to_word': {}}
+            word2vec_embeddings = np.zeros((1, 100))  # Default embedding size
+            embedding_model_type = "dummy"
+            embedding_model_dir = None
         
         # Load PyTorch model
         model_path = os.path.join(MODEL_DIR, "upvote_model.pth")
@@ -124,7 +146,8 @@ async def root():
         "message": "Hacker News Upvote Predictor API",
         "docs": "/docs",
         "models_loaded": {
-            "word2vec": word2vec_model is not None,
+            "word2vec": word2vec_embeddings is not None and word2vec_vocab is not None,
+            "embedding_model_type": embedding_model_type,
             "predictor": predictor_model is not None,
             "scaler": scaler is not None
         }
@@ -134,12 +157,12 @@ async def root():
 async def predict_upvotes(post: HackerNewsPost):
     """Predict upvotes for a Hacker News post."""
     # Check if models are loaded
-    if word2vec_model is None or predictor_model is None or scaler is None:
+    if word2vec_embeddings is None or word2vec_vocab is None or predictor_model is None or scaler is None:
         raise HTTPException(status_code=503, detail="Models not loaded. Please try again later.")
     
     try:
-        # Extract title embedding
-        title_embedding = get_title_embedding(post.title, word2vec_model)
+        # Extract title embedding using the appropriate model directory
+        title_embedding = get_title_embedding(post.title, embedding_model_dir)
         
         # Process other features
         title_length = len(post.title)
@@ -206,7 +229,8 @@ async def predict_upvotes(post: HackerNewsPost):
             log_predicted_upvotes=float(log_pred),
             title=post.title,
             author=post.author,
-            features_used=features_used
+            features_used=features_used,
+            embedding_model=embedding_model_type
         )
         
     except Exception as e:
@@ -218,7 +242,8 @@ async def health_check():
     return {
         "status": "healthy",
         "models_loaded": {
-            "word2vec": word2vec_model is not None,
+            "word2vec": word2vec_embeddings is not None and word2vec_vocab is not None,
+            "embedding_model_type": embedding_model_type,
             "predictor": predictor_model is not None,
             "scaler": scaler is not None
         }
