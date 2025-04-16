@@ -91,25 +91,158 @@ class Word2VecModel(nn.Module):
         logger.info(f"Saved embeddings to {output_file}")
 
 
+class CBOWSoftmaxModel(nn.Module):
+    """PyTorch implementation of Word2Vec CBOW with full softmax."""
+    
+    def __init__(self, vocab_size, embedding_dim=100):
+        """
+        Args:
+            vocab_size: Size of the vocabulary
+            embedding_dim: Dimensionality of the embeddings
+        """
+        super().__init__()
+        
+        # Input embeddings (context words)
+        self.context_embeddings = nn.Embedding(vocab_size, embedding_dim)
+        
+        # Output weights for softmax layer
+        self.output_weights = nn.Linear(embedding_dim, vocab_size, bias=False)
+        
+        # Initialize embeddings
+        self.context_embeddings.weight.data.uniform_(-0.5/embedding_dim, 0.5/embedding_dim)
+        
+        # Loss function
+        self.loss_fn = nn.CrossEntropyLoss()
+        
+        self.vocab_size = vocab_size
+        self.embedding_dim = embedding_dim
+    
+    def forward(self, context_words, target_word, num_context_words):
+        """Forward pass.
+        
+        Args:
+            context_words: Context word IDs [batch_size, max_context_len]
+            target_word: Target word IDs [batch_size]
+            num_context_words: Actual number of context words for each example [batch_size]
+            
+        Returns:
+            Loss value
+        """
+        batch_size = context_words.size(0)
+        max_context_len = context_words.size(1)
+        
+        # Create a mask for valid context words (non-padding)
+        mask = torch.arange(max_context_len).expand(batch_size, max_context_len).to(context_words.device)
+        mask = mask < num_context_words.unsqueeze(1)
+        
+        # Get context embeddings with mask to handle variable lengths
+        context_embed = self.context_embeddings(context_words)  # [batch_size, max_context_len, embed_dim]
+        
+        # Apply mask - set padding embeddings to zero
+        mask = mask.unsqueeze(2).float()  # Add embedding dimension [batch_size, max_context_len, 1]
+        context_embed = context_embed * mask
+        
+        # Average context embeddings for each example
+        context_sum = torch.sum(context_embed, dim=1)  # [batch_size, embed_dim]
+        
+        # Make sure to avoid division by zero
+        valid_counts = torch.clamp(num_context_words, min=1).unsqueeze(1).float()
+        avg_context_embed = context_sum / valid_counts  # [batch_size, embed_dim]
+        
+        # Project averaged context embeddings to vocabulary size
+        logits = self.output_weights(avg_context_embed)  # [batch_size, vocab_size]
+        
+        # Calculate loss using cross entropy
+        loss = self.loss_fn(logits, target_word)
+        
+        return loss
+    
+    def predict(self, context_words, num_context_words):
+        """Predict the probability distribution over target words.
+        
+        Args:
+            context_words: Context word IDs [batch_size, max_context_len]
+            num_context_words: Actual number of context words for each example [batch_size]
+            
+        Returns:
+            Probability distribution over vocabulary [batch_size, vocab_size]
+        """
+        batch_size = context_words.size(0)
+        max_context_len = context_words.size(1)
+        
+        # Create a mask for valid context words (non-padding)
+        mask = torch.arange(max_context_len).expand(batch_size, max_context_len).to(context_words.device)
+        mask = mask < num_context_words.unsqueeze(1)
+        
+        # Get context embeddings with mask to handle variable lengths
+        context_embed = self.context_embeddings(context_words)  # [batch_size, max_context_len, embed_dim]
+        
+        # Apply mask - set padding embeddings to zero
+        mask = mask.unsqueeze(2).float()  # Add embedding dimension [batch_size, max_context_len, 1]
+        context_embed = context_embed * mask
+        
+        # Average context embeddings for each example
+        context_sum = torch.sum(context_embed, dim=1)  # [batch_size, embed_dim]
+        
+        # Make sure to avoid division by zero
+        valid_counts = torch.clamp(num_context_words, min=1).unsqueeze(1).float()
+        avg_context_embed = context_sum / valid_counts  # [batch_size, embed_dim]
+        
+        # Project averaged context embeddings to vocabulary size
+        logits = self.output_weights(avg_context_embed)  # [batch_size, vocab_size]
+        
+        # Apply softmax to get probabilities
+        probs = torch.softmax(logits, dim=1)
+        
+        return probs
+    
+    def get_context_embeddings(self):
+        """Get the context (input) embeddings."""
+        return self.context_embeddings.weight.detach().cpu().numpy()
+    
+    def get_output_weights(self):
+        """Get the output weights."""
+        return self.output_weights.weight.detach().cpu().numpy()
+    
+    def get_word_vector(self, word_id):
+        """Get vector for a specific word."""
+        return self.context_embeddings.weight[word_id].detach().cpu().numpy()
+    
+    def save_embeddings(self, output_file):
+        """Save embeddings to numpy file."""
+        embeddings = self.get_context_embeddings()
+        np.save(output_file, embeddings)
+        logger.info(f"Saved embeddings to {output_file}")
+
+
 if __name__ == "__main__":
-    # Example usage
+    # Simple test
     vocab_size = 1000
-    embedding_dim = 100
-    batch_size = 3
+    batch_size = 16
     neg_samples = 5
+    embed_dim = 50
+    max_context_len = 8
     
-    # Create model
-    model = Word2VecModel(vocab_size=vocab_size, embedding_dim=embedding_dim)
+    # Test Skip-gram model
+    sg_model = Word2VecModel(vocab_size=vocab_size, embedding_dim=embed_dim)
     
-    # Create dummy batch
-    center_words = torch.LongTensor(batch_size, 1).random_(0, vocab_size)
-    context_words = torch.LongTensor(batch_size, 1).random_(0, vocab_size)
-    neg_words = torch.LongTensor(batch_size, neg_samples).random_(0, vocab_size)
+    # Create some dummy data
+    center_words = torch.randint(0, vocab_size, (batch_size, 1))
+    context_words = torch.randint(0, vocab_size, (batch_size, 1))
+    neg_words = torch.randint(0, vocab_size, (batch_size, neg_samples))
     
     # Forward pass
-    loss = model(center_words, context_words, neg_words)
+    sg_loss = sg_model(center_words, context_words, neg_words)
+    print(f"Skip-gram model loss: {sg_loss.item()}")
     
-    print(f"Model parameters: vocab_size={vocab_size}, embedding_dim={embedding_dim}")
-    print(f"Example batch loss: {loss.item():.4f}")
-    print(f"Center embedding shape: {model.get_center_embeddings().shape}")
-    print(f"Context embedding shape: {model.get_context_embeddings().shape}") 
+    # Test CBOW model with softmax
+    cbow_softmax_model = CBOWSoftmaxModel(vocab_size=vocab_size, embedding_dim=embed_dim)
+    
+    # Create dummy data for CBOW with softmax
+    context_words = torch.randint(0, vocab_size, (batch_size, max_context_len))
+    target_words = torch.randint(0, vocab_size, (batch_size,))  # No need for squeeze dimension with softmax
+    num_context_words = torch.randint(1, max_context_len + 1, (batch_size,))
+    
+    # Forward pass
+    cbow_softmax_loss = cbow_softmax_model(context_words, target_words, num_context_words)
+    print(f"CBOW model with softmax loss: {cbow_softmax_loss.item()}") 

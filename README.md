@@ -123,6 +123,29 @@ source venv/bin/activate
 
 We've implemented a custom Word2Vec from scratch, broken down into modular components for better understanding and team collaboration. Each component handles a specific part of the Word2Vec pipeline:
 
+### Available Models
+
+Our implementation supports two Word2Vec architectures:
+
+1. **Skip-gram with Negative Sampling**
+   - Predicts context words from a center word
+   - Uses negative sampling for efficient training
+   - Better for infrequent words and larger datasets
+   - Generally produces higher quality embeddings
+
+2. **CBOW (Continuous Bag of Words) with Softmax**
+   - Predicts a target word from surrounding context words
+   - Uses full softmax for output probability distribution
+   - Computationally more expensive but potentially more accurate
+   - Better for smaller datasets with frequent terms
+
+To specify which model to use, set the `--model_type` parameter when running the pipeline:
+```bash
+python src/training/word2vec_pipeline.py --model_type skipgram
+# or
+python src/training/word2vec_pipeline.py --model_type cbow_softmax
+```
+
 ### Components
 
 1. **Text Preprocessing (`text_preprocessing.py`)**
@@ -137,22 +160,22 @@ We've implemented a custom Word2Vec from scratch, broken down into modular compo
    - Main class: `Word2VecVocab`
 
 3. **Dataset Preparation (`dataset.py`)**
-   - Creates training pairs (center word + context word)
-   - Implements context window sampling
-   - Generates negative samples for training
-   - Main class: `SkipGramDataset` (extends PyTorch's Dataset)
+   - Creates training pairs based on model architecture
+   - For Skip-gram: center word + context word pairs
+   - For CBOW with softmax: context words + target word pairs
+   - Main classes: `SkipGramDataset` and `CBOWSoftmaxDataset`
 
 4. **Model Architecture (`word2vec_model.py`)**
-   - Implements Skip-gram with negative sampling using PyTorch
-   - Maintains separate input/output embedding matrices
-   - Computes loss for positive and negative examples
-   - Main class: `Word2VecModel` (extends nn.Module)
+   - Implements both available architectures using PyTorch
+   - Skip-gram with negative sampling: `Word2VecModel` class
+   - CBOW with softmax: `CBOWSoftmaxModel` class
+   - Maintains appropriate embedding matrices for each approach
 
 5. **Training Process (`training.py`)**
    - Functions for training and fine-tuning Word2Vec models
    - Implements learning rate scheduling for better convergence
    - Handles model saving and loading
-   - Main functions: `train_word2vec_custom()`, `finetune_word2vec_custom()`
+   - Main functions: `train_word2vec_custom()`, `train_cbow_softmax_custom()`, `finetune_word2vec_custom()`, `finetune_cbow_softmax_custom()`
 
 6. **Embedding Utilities (`embedding.py`)**
    - Functions for generating embeddings from trained models
@@ -171,7 +194,7 @@ The Word2Vec pipeline follows this flow:
 
 1. Text data is cleaned and tokenized (`text_preprocessing.py`)
 2. Vocabulary is built from tokens (`vocabulary.py`)
-3. Training dataset is created with positive and negative examples (`dataset.py`)
+3. Training dataset is created based on the chosen model architecture (`dataset.py`)
 4. Model is initialized with random embeddings (`word2vec_model.py`)
 5. Training occurs through batched gradient descent (`training.py`)
 6. Trained model generates embeddings for new text (`embedding.py`)
@@ -210,6 +233,54 @@ The database connection details are stored in the `.env` file. The default value
 ### User-level Features
 - Author karma
 - Account age at post time
+
+## API Implementation
+
+The project includes a FastAPI service that serves predictions through an HTTP endpoint:
+
+### API Features
+- Automatically detects and loads either Skip-gram or CBOW softmax model
+- Prioritizes Skip-gram if available, falls back to CBOW softmax
+- Returns the model type used in the prediction response
+- Handles optional user features (karma, account age)
+- Returns both log-transformed and exponentiated predictions
+- Includes detailed feature information used for the prediction
+
+### Example Request
+```bash
+curl -X POST "http://localhost:8000/predict" \
+-H "Content-Type: application/json" \
+-d '{
+     "title": "Show HN: My new AI plugin",
+     "author": "pg",
+     "url": "http://paulgraham.com",
+     "post_time": "2023-05-10T14:30:00Z",
+     "user_karma": 15000,
+     "user_age_days": 3650
+}'
+```
+
+### Example Response
+```json
+{
+  "predicted_upvotes": 42,
+  "log_predicted_upvotes": 3.7612,
+  "title": "Show HN: My new AI plugin",
+  "author": "pg",
+  "features_used": {
+    "title_embedding_size": 100,
+    "title_length": 22,
+    "title_word_count": 5,
+    "account_age_days": 3650,
+    "log_karma": 9.6158,
+    "year": 2023,
+    "month": 5,
+    "day_of_week": 2,
+    "hour": 14
+  },
+  "embedding_model": "skipgram"
+}
+```
 
 ## Contributors
 
