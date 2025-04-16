@@ -155,22 +155,51 @@ A high-level flow of your system:
 
 Our implementation uses PyTorch to build Word2Vec from scratch, with the following components:
 
+#### Available Word2Vec Models
+
+We support two Word2Vec architectures:
+
+1. **Skip-gram with Negative Sampling**
+   - Predicts context words from a center word
+   - Uses negative sampling to efficiently approximate the full softmax
+   - Handles rare words better than CBOW
+   - Computationally efficient for large vocabularies
+
+2. **CBOW (Continuous Bag of Words) with Softmax**
+   - Predicts a target word from its surrounding context words
+   - Uses full softmax over the vocabulary for output probabilities
+   - Computationally more intensive but can be more accurate
+   - May perform better on smaller datasets with frequent terms
+
+The model type can be specified when running the Word2Vec pipeline:
+```bash
+python src/training/word2vec_pipeline.py --model_type skipgram
+# or
+python src/training/word2vec_pipeline.py --model_type cbow_softmax
+```
+
+#### Implementation Components
+
 1. **Vocabulary Management** (`vocabulary.py`):
    - Built word-to-id and id-to-word dictionaries for efficient token lookup
    - Implemented negative sampling with frequency-based distribution
    - Added subsampling of frequent words to improve training efficiency
 
-2. **Skip-gram Dataset** (`dataset.py`):
-   - Created a custom PyTorch Dataset for skip-gram with negative sampling
-   - Generates center-context word pairs from tokenized sentences
-   - Applies subsampling to reduce the impact of frequent words
-   - Returns tensors for center words, context words, and negative samples
+2. **Dataset Preparation** (`dataset.py`):
+   - `SkipGramDataset`: For Skip-gram with negative sampling
+     - Creates center-context word pairs from tokenized sentences
+     - Generates negative samples for each positive example
+   - `CBOWSoftmaxDataset`: For CBOW with softmax
+     - Creates context-target word pairs from tokenized sentences
+     - Handles variable-length contexts with padding
 
-3. **Word2Vec Model** (`word2vec_model.py`):
-   - Implemented a PyTorch module for the Skip-gram model
-   - Separate embedding layers for center and context words
-   - Binary cross-entropy loss for positive and negative samples
-   - Gradient clipping to prevent exploding gradients
+3. **Model Architecture** (`word2vec_model.py`):
+   - `Word2VecModel`: Skip-gram with negative sampling
+     - Separate embedding layers for center and context words
+     - Optimized loss function with positive and negative sampling
+   - `CBOWSoftmaxModel`: CBOW with softmax
+     - Context word embeddings and output projection layer
+     - Uses CrossEntropyLoss for the softmax computation
 
 4. **Training Pipeline** (`training.py`):
    - Optimized with Adam optimizer and learning rate scheduling
@@ -186,7 +215,7 @@ Our implementation uses PyTorch to build Word2Vec from scratch, with the followi
 **Our Implementation Checklist**:
 - [x] **Vocabulary-building**: Created dictionaries for word-to-id and id-to-word mappings
 - [x] **Negative sampling**: Implemented efficient training approach with unigram distribution
-- [x] **Properly sampling context windows**: Created positive and negative word pairs
+- [x] **Context window sampling**: Created appropriate word pairs for both model types
 - [x] **Learning rate scheduling**: Added cosine annealing scheduler for better convergence
 
 ---
@@ -204,13 +233,23 @@ Our implementation uses PyTorch to build Word2Vec from scratch, with the followi
    - Remove punctuation  
    - Possibly remove stopwords if it helps
 3. **Initialize from Pre-trained Weights**  
-   - Load `W_in` from Wikipedia training.  
-   - Rebuild your skip-gram/CBOW training loop but with smaller data from HN.  
-   - Let the initial embeddings = `W_in (wiki)`.  
-4. **Adapt**  
-   - Add new HN-specific tokens to your vocabulary if not present.  
-   - Train a few epochs on HN titles to shift embeddings toward Hacker News lingo.  
-   - Save final `W_in` again, e.g. `hn_finetuned_in.npy`.
+   - Load the pretrained embeddings from Wikipedia training
+   - For Skip-gram: load center and context embeddings
+   - For CBOW with softmax: load context embeddings and output weights
+4. **Fine-tuning Process**
+   - Using the same model architecture (Skip-gram or CBOW softmax)
+   - Train for a few epochs on Hacker News titles
+   - Lower learning rate to avoid catastrophic forgetting
+   - Expand vocabulary as needed for HN-specific terms
+5. **Handling New Vocabulary**
+   - Identify new words in HN titles not present in Wikipedia
+   - Expand embedding matrices to accommodate new vocabulary
+   - Initialize new word vectors with random values
+   - Update vocabulary mappings with new words
+6. **Save Fine-tuned Model**
+   - Save the model state dict for later use
+   - Export embeddings as NumPy arrays for easier integration
+   - Save updated vocabulary for consistent tokenization
 
 ---
 
