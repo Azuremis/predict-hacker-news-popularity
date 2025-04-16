@@ -21,9 +21,16 @@ def get_title_embedding(title, model_dir):
     Returns:
         Numpy array with title embedding (average of word vectors)
     """
-    # Load model data
-    vocab_path = os.path.join(model_dir, "vocab_hn.pth")
-    embedding_path = os.path.join(model_dir, "word2vec_hn_in.npy")
+    # Check if this is a CBOW or Skip-gram model based on file names
+    is_cbow = 'cbow' in os.path.basename(model_dir)
+    
+    # Set file paths based on model type
+    if is_cbow:
+        vocab_path = os.path.join(model_dir, "vocab_hn.pth")
+        embedding_path = os.path.join(model_dir, "cbow_hn_in.npy")
+    else:  # Skip-gram
+        vocab_path = os.path.join(model_dir, "vocab_hn.pth")
+        embedding_path = os.path.join(model_dir, "word2vec_hn_in.npy")
     
     # Load vocabulary and embeddings
     vocab_data = torch.load(vocab_path)
@@ -55,8 +62,13 @@ def evaluate_word2vec_model(model, vocab, word_pairs=None):
     """
     logger.info("Evaluating Word2Vec model")
     
-    # Get embeddings
-    embeddings = model.get_center_embeddings()
+    # Get embeddings - use appropriate method based on model type
+    if hasattr(model, 'get_center_embeddings'):
+        # Skip-gram model
+        embeddings = model.get_center_embeddings()
+    else:
+        # CBOW model
+        embeddings = model.get_context_embeddings()
     
     # Normalize embeddings for cosine similarity
     norms = np.sqrt((embeddings ** 2).sum(axis=1))
@@ -114,7 +126,13 @@ def find_analogy(model, vocab, word1, word2, word3, top_n=5):
         List of (word, similarity) tuples for top matches
     """
     # Get and normalize embeddings
-    embeddings = model.get_center_embeddings()
+    if hasattr(model, 'get_center_embeddings'):
+        # Skip-gram model
+        embeddings = model.get_center_embeddings()
+    else:
+        # CBOW model
+        embeddings = model.get_context_embeddings()
+    
     norms = np.sqrt((embeddings ** 2).sum(axis=1))
     normalized_embeddings = embeddings / norms[:, np.newaxis]
     
@@ -150,6 +168,54 @@ def find_analogy(model, vocab, word1, word2, word3, top_n=5):
     return sorted(results, key=lambda x: x[1], reverse=True)[:top_n]
 
 
+def load_embeddings_model(model_dir):
+    """Load embeddings and vocabulary from model directory.
+    
+    Args:
+        model_dir: Directory containing the saved model
+        
+    Returns:
+        model: Loaded model
+        vocab: Loaded vocabulary
+    """
+    # Check if this is a CBOW or Skip-gram model based on file names
+    is_cbow = 'cbow' in os.path.basename(model_dir)
+    
+    if is_cbow:
+        from word2vec_model import CBOWModel
+        model_path = os.path.join(model_dir, "cbow_model.pth")
+    else:
+        from word2vec_model import Word2VecModel
+        model_path = os.path.join(model_dir, "word2vec_model.pth")
+    
+    vocab_path = os.path.join(model_dir, "vocab.pth")
+    
+    # Check if files exist
+    if not os.path.exists(model_path) or not os.path.exists(vocab_path):
+        logger.error(f"Model files not found in {model_dir}")
+        return None, None
+    
+    # Load model data
+    checkpoint = torch.load(model_path)
+    vocab_data = torch.load(vocab_path)
+    
+    # Initialize model with trained weights
+    if is_cbow:
+        model = CBOWModel(vocab_size=checkpoint['vocab_size'], embedding_dim=checkpoint['embedding_dim'])
+    else:
+        model = Word2VecModel(vocab_size=checkpoint['vocab_size'], embedding_dim=checkpoint['embedding_dim'])
+    
+    model.load_state_dict(checkpoint['model_state_dict'])
+    
+    # Reconstruct vocabulary
+    from vocabulary import Word2VecVocab
+    vocab = Word2VecVocab(min_count=1)
+    vocab.word_to_id = vocab_data['word_to_id']
+    vocab.id_to_word = vocab_data['id_to_word']
+    
+    return model, vocab
+
+
 if __name__ == "__main__":
     # Example usage
     import sys
@@ -158,26 +224,12 @@ if __name__ == "__main__":
     # Add parent directory to path
     sys.path.append(str(Path(__file__).parent))
     
-    from word2vec_model import Word2VecModel
-    from vocabulary import Word2VecVocab
-    
     # Load a trained model
-    model_dir = "example_model"  # Replace with your model directory
+    model_dir = "example_skipgram_model"  # Replace with your model directory
     
-    if os.path.exists(os.path.join(model_dir, "word2vec_model.pth")):
-        # Load model
-        checkpoint = torch.load(os.path.join(model_dir, "word2vec_model.pth"))
-        vocab_data = torch.load(os.path.join(model_dir, "vocab.pth"))
-        
-        # Initialize model with trained weights
-        model = Word2VecModel(vocab_size=checkpoint['vocab_size'], embedding_dim=checkpoint['embedding_dim'])
-        model.load_state_dict(checkpoint['model_state_dict'])
-        
-        # Reconstruct vocabulary
-        vocab = Word2VecVocab(min_count=1)
-        vocab.word_to_id = vocab_data['word_to_id']
-        vocab.id_to_word = vocab_data['id_to_word']
-        
+    model, vocab = load_embeddings_model(model_dir)
+    
+    if model and vocab:
         # Get embedding for a sample title
         title = "How to effectively train word embeddings"
         embedding = get_title_embedding(title, model_dir)
