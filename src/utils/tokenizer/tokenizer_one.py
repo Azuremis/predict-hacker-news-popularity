@@ -4,6 +4,16 @@ import re
 import os
 import json
 from nltk.corpus import words
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("tokenizer_one.log"),
+        logging.StreamHandler()
+    ]
+)
 
 inputs = {
   'wiki': os.path.join(
@@ -84,22 +94,17 @@ def clean(input):
           os.path.dirname(__file__)
         )
       )
-    ), 'data', 'raw', 'tokens.json'
+    ), 'tokens', 'tokens.json'
   )
-  with open(output_path, 'w', encoding='utf-8') as f:
-    json.dump(tokens, f, indent=2)
-  print(f'Saved tokens to: {output_path}')
+  with open(output_path, "r+", encoding="utf-8") as f:
+    f.seek(0)
+    json.dump(tokens, f, ensure_ascii=False, indent=2)
+    f.truncate()
+    json.dump(tokens, f, ensure_ascii=False, indent=2)
+    f.truncate()
+  logging.info(f'Saved tokens to: {output_path}')
 
   return tokens
 
-# word2idx = {word: i for i, (word, _) in enumerate(vocab.items())}
-# idx2word = {i: word for word, i in word2idx.items()}
-
-# >>> tagged = nltk.pos_tag(tokens)
-# >>> tagged[0:6]
-# [('At', 'IN'), ('eight', 'CD'), ("o'clock", 'JJ'), ('on', 'IN'),
-# ('Thursday', 'NNP'), ('morning', 'NN')]
-
-# =1 Test Run
-
-clean(inputs['wiki'])
+if __name__ == "__main__":
+  clean(inputs['wiki'])

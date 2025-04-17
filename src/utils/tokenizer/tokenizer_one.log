@@ -1,0 +1,1697 @@
+2025-04-17 16:11:29,591 [INFO] Tokenizing titles...
+2025-04-17 16:11:29,592 [INFO] Processed 0 titles so far
+2025-04-17 16:11:51,068 [INFO] Tokenizing titles...
+2025-04-17 16:11:51,068 [INFO] Processed 0 titles so far
+2025-04-17 16:12:12,264 [INFO] Tokenizing titles...
+2025-04-17 16:12:12,264 [INFO] Processed 0 titles so far
+2025-04-17 16:12:33,480 [INFO] Tokenizing titles...
+2025-04-17 16:12:33,480 [INFO] Processed 0 titles so far
+2025-04-17 16:12:55,735 [INFO] Tokenizing titles...
+2025-04-17 16:12:55,735 [INFO] Processed 0 titles so far
+2025-04-17 16:13:16,638 [INFO] Tokenizing titles...
+2025-04-17 16:13:16,638 [INFO] Processed 0 titles so far
+2025-04-17 16:13:37,288 [INFO] Tokenizing titles...
+2025-04-17 16:13:37,288 [INFO] Processed 0 titles so far
+2025-04-17 16:14:15,067 [INFO] Tokenizing titles...
+2025-04-17 16:14:15,068 [INFO] Processed 0 titles so far
+2025-04-17 16:14:47,861 [INFO] Tokenizing titles...
+2025-04-17 16:14:47,862 [INFO] Processed 0 titles so far
+2025-04-17 16:15:20,850 [INFO] Tokenizing titles...
+2025-04-17 16:15:20,851 [INFO] Processed 0 titles so far
+2025-04-17 16:19:27,322 [INFO] Tokenizing titles...
+2025-04-17 16:20:04,173 [INFO] Tokenizing titles...
+2025-04-17 16:20:36,291 [INFO] Processed 1000 titles so far
+2025-04-17 16:20:36,293 [INFO] Tokenizing titles...
+2025-04-17 16:21:09,267 [INFO] Processed 2000 titles so far
+2025-04-17 16:21:09,268 [INFO] Tokenizing titles...
+2025-04-17 16:21:42,051 [INFO] Processed 3000 titles so far
+2025-04-17 16:21:42,052 [INFO] Tokenizing titles...
+2025-04-17 16:22:14,678 [INFO] Processed 4000 titles so far
+2025-04-17 16:22:14,678 [INFO] Tokenizing titles...
+2025-04-17 16:22:42,045 [INFO] Tokenizing titles...
+2025-04-17 16:23:15,691 [INFO] Processed 1000 titles so far
+2025-04-17 16:23:15,691 [INFO] Holding 36643 tokens so far
+2025-04-17 16:23:15,691 [INFO] Tokenizing titles...
+2025-04-17 16:23:47,671 [INFO] Processed 2000 titles so far
+2025-04-17 16:23:47,672 [INFO] Holding 36643 tokens so far
+2025-04-17 16:23:47,672 [INFO] Tokenizing titles...
+2025-04-17 16:24:19,496 [INFO] Processed 3000 titles so far
+2025-04-17 16:24:19,496 [INFO] Holding 36643 tokens so far
+2025-04-17 16:24:19,497 [INFO] Tokenizing titles...
+2025-04-17 16:24:51,508 [INFO] Processed 4000 titles so far
+2025-04-17 16:24:51,509 [INFO] Holding 36643 tokens so far
+2025-04-17 16:24:51,509 [INFO] Tokenizing titles...
+2025-04-17 16:25:24,089 [INFO] Processed 5000 titles so far
+2025-04-17 16:25:24,089 [INFO] Holding 36644 tokens so far
+2025-04-17 16:25:24,089 [INFO] Tokenizing titles...
+2025-04-17 16:25:55,971 [INFO] Processed 6000 titles so far
+2025-04-17 16:25:55,972 [INFO] Holding 36645 tokens so far
+2025-04-17 16:25:55,972 [INFO] Tokenizing titles...
+2025-04-17 16:26:27,616 [INFO] Processed 7000 titles so far
+2025-04-17 16:26:27,616 [INFO] Holding 36645 tokens so far
+2025-04-17 16:26:27,616 [INFO] Tokenizing titles...
+2025-04-17 16:33:56,737 [INFO] Tokenizing titles...
+2025-04-17 16:33:56,766 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,766 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,766 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,766 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,766 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,766 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,766 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,766 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,766 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,766 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,767 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,767 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,767 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,767 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,767 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,767 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,767 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,767 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,767 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,767 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,767 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,767 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,767 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,841 [INFO] Holding 39 words in set
+2025-04-17 16:33:56,841 [INFO] Tokenizing titles...
+2025-04-17 16:33:56,841 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,841 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,841 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,841 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,841 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,901 [INFO] Holding 41 words in set
+2025-04-17 16:33:56,901 [INFO] Tokenizing titles...
+2025-04-17 16:33:56,902 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,902 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,955 [INFO] Holding 37 words in set
+2025-04-17 16:33:56,955 [INFO] Tokenizing titles...
+2025-04-17 16:33:56,955 [INFO] Holding 0 words in list
+2025-04-17 16:33:56,955 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,010 [INFO] Holding 47 words in set
+2025-04-17 16:33:57,010 [INFO] Tokenizing titles...
+2025-04-17 16:33:57,010 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,010 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,010 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,010 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,010 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,010 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,010 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,011 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,011 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,011 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,011 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,011 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,011 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,011 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,011 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,011 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,011 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,065 [INFO] Holding 47 words in set
+2025-04-17 16:33:57,065 [INFO] Tokenizing titles...
+2025-04-17 16:33:57,065 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,066 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,066 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,119 [INFO] Holding 44 words in set
+2025-04-17 16:33:57,119 [INFO] Tokenizing titles...
+2025-04-17 16:33:57,119 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,172 [INFO] Holding 48 words in set
+2025-04-17 16:33:57,172 [INFO] Tokenizing titles...
+2025-04-17 16:33:57,172 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,173 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,173 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,225 [INFO] Holding 42 words in set
+2025-04-17 16:33:57,225 [INFO] Tokenizing titles...
+2025-04-17 16:33:57,278 [INFO] Holding 40 words in set
+2025-04-17 16:33:57,278 [INFO] Tokenizing titles...
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,278 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,279 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,279 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,279 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,279 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,279 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,279 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,332 [INFO] Holding 60 words in set
+2025-04-17 16:33:57,332 [INFO] Tokenizing titles...
+2025-04-17 16:33:57,332 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,332 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,332 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,332 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,332 [INFO] Holding 0 words in list
+2025-04-17 16:33:57,368 [INFO] Holding 10 words in set
+2025-04-17 16:33:57,393 [INFO] Updated dictionary now has 36645 tokens.
+2025-04-17 16:37:18,989 [INFO] Tokenizing titles...
+2025-04-17 16:37:19,014 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,014 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,014 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,014 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,014 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,014 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,014 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,014 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,015 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,015 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,015 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,015 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,015 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,015 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,015 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,015 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,015 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,015 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,015 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,015 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,015 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,016 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,016 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,089 [INFO] Holding 39 words in set
+2025-04-17 16:37:19,090 [INFO] Tokenizing titles...
+2025-04-17 16:37:19,090 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,090 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,090 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,090 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,090 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,143 [INFO] Holding 41 words in set
+2025-04-17 16:37:19,143 [INFO] Tokenizing titles...
+2025-04-17 16:37:19,144 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,144 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,196 [INFO] Holding 37 words in set
+2025-04-17 16:37:19,196 [INFO] Tokenizing titles...
+2025-04-17 16:37:19,197 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,197 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 47 words in set
+2025-04-17 16:37:19,250 [INFO] Tokenizing titles...
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,250 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,305 [INFO] Holding 47 words in set
+2025-04-17 16:37:19,305 [INFO] Tokenizing titles...
+2025-04-17 16:37:19,305 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,305 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,305 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,360 [INFO] Holding 44 words in set
+2025-04-17 16:37:19,360 [INFO] Tokenizing titles...
+2025-04-17 16:37:19,360 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,413 [INFO] Holding 48 words in set
+2025-04-17 16:37:19,414 [INFO] Tokenizing titles...
+2025-04-17 16:37:19,414 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,414 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,414 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,469 [INFO] Holding 42 words in set
+2025-04-17 16:37:19,469 [INFO] Tokenizing titles...
+2025-04-17 16:37:19,524 [INFO] Holding 40 words in set
+2025-04-17 16:37:19,525 [INFO] Tokenizing titles...
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,525 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,526 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,526 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,526 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,526 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,526 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,526 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,581 [INFO] Holding 60 words in set
+2025-04-17 16:37:19,581 [INFO] Tokenizing titles...
+2025-04-17 16:37:19,581 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,581 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,581 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,581 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,581 [INFO] Holding 0 words in list
+2025-04-17 16:37:19,620 [INFO] Holding 10 words in set
+2025-04-17 16:37:19,647 [INFO] Updated dictionary now has 36645 tokens.
+2025-04-17 16:38:20,971 [INFO] Tokenizing titles...
+2025-04-17 16:38:21,070 [INFO] Holding 39 words in set
+2025-04-17 16:38:21,071 [INFO] Tokenizing titles...
+2025-04-17 16:38:21,124 [INFO] Holding 41 words in set
+2025-04-17 16:38:21,124 [INFO] Tokenizing titles...
+2025-04-17 16:38:21,178 [INFO] Holding 37 words in set
+2025-04-17 16:38:21,178 [INFO] Tokenizing titles...
+2025-04-17 16:38:21,232 [INFO] Holding 47 words in set
+2025-04-17 16:38:21,233 [INFO] Tokenizing titles...
+2025-04-17 16:38:21,286 [INFO] Holding 47 words in set
+2025-04-17 16:38:21,287 [INFO] Tokenizing titles...
+2025-04-17 16:38:21,341 [INFO] Holding 44 words in set
+2025-04-17 16:38:21,341 [INFO] Tokenizing titles...
+2025-04-17 16:38:21,396 [INFO] Holding 48 words in set
+2025-04-17 16:38:21,396 [INFO] Tokenizing titles...
+2025-04-17 16:38:21,450 [INFO] Holding 42 words in set
+2025-04-17 16:38:21,450 [INFO] Tokenizing titles...
+2025-04-17 16:38:21,508 [INFO] Holding 40 words in set
+2025-04-17 16:38:21,508 [INFO] Tokenizing titles...
+2025-04-17 16:38:21,563 [INFO] Holding 60 words in set
+2025-04-17 16:38:21,563 [INFO] Tokenizing titles...
+2025-04-17 16:38:21,606 [INFO] Holding 10 words in set
+2025-04-17 16:38:21,631 [INFO] Updated dictionary now has 36645 tokens.
+2025-04-17 16:38:42,368 [INFO] Tokenizing titles...
+2025-04-17 16:38:42,469 [INFO] Holding 36 words in set
+2025-04-17 16:38:42,469 [INFO] Tokenizing titles...
+2025-04-17 16:38:42,525 [INFO] Holding 43 words in set
+2025-04-17 16:38:42,525 [INFO] Tokenizing titles...
+2025-04-17 16:38:42,580 [INFO] Holding 47 words in set
+2025-04-17 16:38:42,580 [INFO] Tokenizing titles...
+2025-04-17 16:38:42,638 [INFO] Holding 41 words in set
+2025-04-17 16:38:42,638 [INFO] Tokenizing titles...
+2025-04-17 16:38:42,694 [INFO] Holding 42 words in set
+2025-04-17 16:38:42,694 [INFO] Tokenizing titles...
+2025-04-17 16:38:42,750 [INFO] Holding 47 words in set
+2025-04-17 16:38:42,750 [INFO] Tokenizing titles...
+2025-04-17 16:38:42,806 [INFO] Holding 42 words in set
+2025-04-17 16:38:42,806 [INFO] Tokenizing titles...
+2025-04-17 16:38:42,860 [INFO] Holding 47 words in set
+2025-04-17 16:38:42,861 [INFO] Tokenizing titles...
+2025-04-17 16:38:42,914 [INFO] Holding 38 words in set
+2025-04-17 16:38:42,914 [INFO] Tokenizing titles...
+2025-04-17 16:38:42,968 [INFO] Holding 48 words in set
+2025-04-17 16:38:42,968 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,024 [INFO] Holding 44 words in set
+2025-04-17 16:38:43,024 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,078 [INFO] Holding 39 words in set
+2025-04-17 16:38:43,078 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,133 [INFO] Holding 41 words in set
+2025-04-17 16:38:43,133 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,186 [INFO] Holding 39 words in set
+2025-04-17 16:38:43,186 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,241 [INFO] Holding 36 words in set
+2025-04-17 16:38:43,241 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,295 [INFO] Holding 50 words in set
+2025-04-17 16:38:43,295 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,349 [INFO] Holding 45 words in set
+2025-04-17 16:38:43,350 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,403 [INFO] Holding 54 words in set
+2025-04-17 16:38:43,403 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,456 [INFO] Holding 41 words in set
+2025-04-17 16:38:43,457 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,510 [INFO] Holding 50 words in set
+2025-04-17 16:38:43,510 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,565 [INFO] Holding 41 words in set
+2025-04-17 16:38:43,565 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,620 [INFO] Holding 50 words in set
+2025-04-17 16:38:43,620 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,674 [INFO] Holding 34 words in set
+2025-04-17 16:38:43,674 [INFO] Tokenizing titles...
+2025-04-17 16:38:43,725 [INFO] Holding 34 words in set
+2025-04-17 16:38:43,751 [INFO] Updated dictionary now has 36647 tokens.
+2025-04-17 16:38:52,852 [INFO] Tokenizing titles...
+2025-04-17 16:38:52,953 [INFO] Holding 49 words in set
+2025-04-17 16:38:52,953 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,009 [INFO] Holding 37 words in set
+2025-04-17 16:38:53,010 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,064 [INFO] Holding 54 words in set
+2025-04-17 16:38:53,064 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,121 [INFO] Holding 39 words in set
+2025-04-17 16:38:53,121 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,177 [INFO] Holding 56 words in set
+2025-04-17 16:38:53,177 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,231 [INFO] Holding 56 words in set
+2025-04-17 16:38:53,231 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,285 [INFO] Holding 50 words in set
+2025-04-17 16:38:53,285 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,338 [INFO] Holding 45 words in set
+2025-04-17 16:38:53,339 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,393 [INFO] Holding 37 words in set
+2025-04-17 16:38:53,393 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,446 [INFO] Holding 45 words in set
+2025-04-17 16:38:53,446 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,501 [INFO] Holding 43 words in set
+2025-04-17 16:38:53,501 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,555 [INFO] Holding 41 words in set
+2025-04-17 16:38:53,555 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,609 [INFO] Holding 44 words in set
+2025-04-17 16:38:53,609 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,663 [INFO] Holding 31 words in set
+2025-04-17 16:38:53,664 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,717 [INFO] Holding 60 words in set
+2025-04-17 16:38:53,718 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,771 [INFO] Holding 45 words in set
+2025-04-17 16:38:53,771 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,824 [INFO] Holding 44 words in set
+2025-04-17 16:38:53,824 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,878 [INFO] Holding 47 words in set
+2025-04-17 16:38:53,878 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,931 [INFO] Holding 43 words in set
+2025-04-17 16:38:53,931 [INFO] Tokenizing titles...
+2025-04-17 16:38:53,984 [INFO] Holding 39 words in set
+2025-04-17 16:38:53,984 [INFO] Tokenizing titles...
+2025-04-17 16:38:54,038 [INFO] Holding 41 words in set
+2025-04-17 16:38:54,038 [INFO] Tokenizing titles...
+2025-04-17 16:38:54,091 [INFO] Holding 34 words in set
+2025-04-17 16:38:54,091 [INFO] Tokenizing titles...
+2025-04-17 16:38:54,144 [INFO] Holding 47 words in set
+2025-04-17 16:38:54,144 [INFO] Tokenizing titles...
+2025-04-17 16:38:54,198 [INFO] Holding 39 words in set
+2025-04-17 16:38:54,198 [INFO] Tokenizing titles...
+2025-04-17 16:38:54,257 [INFO] Holding 19 words in set
+2025-04-17 16:38:54,291 [INFO] Updated dictionary now has 36652 tokens.
+2025-04-17 16:39:00,419 [INFO] Tokenizing titles...
+2025-04-17 16:39:00,520 [INFO] Holding 49 words in set
+2025-04-17 16:39:00,520 [INFO] Tokenizing titles...
+2025-04-17 16:39:00,573 [INFO] Holding 41 words in set
+2025-04-17 16:39:00,574 [INFO] Tokenizing titles...
+2025-04-17 16:39:00,628 [INFO] Holding 44 words in set
+2025-04-17 16:39:00,628 [INFO] Tokenizing titles...
+2025-04-17 16:39:00,684 [INFO] Holding 34 words in set
+2025-04-17 16:39:00,684 [INFO] Tokenizing titles...
+2025-04-17 16:39:00,741 [INFO] Holding 37 words in set
+2025-04-17 16:39:00,741 [INFO] Tokenizing titles...
+2025-04-17 16:39:00,795 [INFO] Holding 44 words in set
+2025-04-17 16:39:00,795 [INFO] Tokenizing titles...
+2025-04-17 16:39:00,848 [INFO] Holding 36 words in set
+2025-04-17 16:39:00,848 [INFO] Tokenizing titles...
+2025-04-17 16:39:00,903 [INFO] Holding 39 words in set
+2025-04-17 16:39:00,903 [INFO] Tokenizing titles...
+2025-04-17 16:39:00,957 [INFO] Holding 38 words in set
+2025-04-17 16:39:00,957 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,011 [INFO] Holding 45 words in set
+2025-04-17 16:39:01,012 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,065 [INFO] Holding 32 words in set
+2025-04-17 16:39:01,065 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,119 [INFO] Holding 37 words in set
+2025-04-17 16:39:01,120 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,174 [INFO] Holding 46 words in set
+2025-04-17 16:39:01,174 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,228 [INFO] Holding 42 words in set
+2025-04-17 16:39:01,228 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,283 [INFO] Holding 40 words in set
+2025-04-17 16:39:01,283 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,336 [INFO] Holding 46 words in set
+2025-04-17 16:39:01,336 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,389 [INFO] Holding 40 words in set
+2025-04-17 16:39:01,390 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,444 [INFO] Holding 48 words in set
+2025-04-17 16:39:01,444 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,500 [INFO] Holding 48 words in set
+2025-04-17 16:39:01,500 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,555 [INFO] Holding 46 words in set
+2025-04-17 16:39:01,555 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,643 [INFO] Holding 40 words in set
+2025-04-17 16:39:01,643 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,719 [INFO] Holding 49 words in set
+2025-04-17 16:39:01,719 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,776 [INFO] Holding 45 words in set
+2025-04-17 16:39:01,776 [INFO] Tokenizing titles...
+2025-04-17 16:39:01,821 [INFO] Holding 26 words in set
+2025-04-17 16:39:01,847 [INFO] Updated dictionary now has 36653 tokens.
+2025-04-17 16:39:10,892 [INFO] Tokenizing titles...
+2025-04-17 16:39:10,974 [INFO] Holding 33 words in set
+2025-04-17 16:39:10,974 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,035 [INFO] Holding 39 words in set
+2025-04-17 16:39:11,035 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,094 [INFO] Holding 51 words in set
+2025-04-17 16:39:11,094 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,154 [INFO] Holding 45 words in set
+2025-04-17 16:39:11,155 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,213 [INFO] Holding 43 words in set
+2025-04-17 16:39:11,214 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,274 [INFO] Holding 40 words in set
+2025-04-17 16:39:11,275 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,335 [INFO] Holding 49 words in set
+2025-04-17 16:39:11,335 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,458 [INFO] Holding 45 words in set
+2025-04-17 16:39:11,458 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,514 [INFO] Holding 47 words in set
+2025-04-17 16:39:11,515 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,571 [INFO] Holding 54 words in set
+2025-04-17 16:39:11,572 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,627 [INFO] Holding 43 words in set
+2025-04-17 16:39:11,627 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,684 [INFO] Holding 39 words in set
+2025-04-17 16:39:11,684 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,740 [INFO] Holding 51 words in set
+2025-04-17 16:39:11,740 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,796 [INFO] Holding 35 words in set
+2025-04-17 16:39:11,796 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,853 [INFO] Holding 45 words in set
+2025-04-17 16:39:11,853 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,913 [INFO] Holding 41 words in set
+2025-04-17 16:39:11,913 [INFO] Tokenizing titles...
+2025-04-17 16:39:11,971 [INFO] Holding 34 words in set
+2025-04-17 16:39:11,971 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,029 [INFO] Holding 50 words in set
+2025-04-17 16:39:12,029 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,086 [INFO] Holding 40 words in set
+2025-04-17 16:39:12,086 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,143 [INFO] Holding 48 words in set
+2025-04-17 16:39:12,143 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,199 [INFO] Holding 41 words in set
+2025-04-17 16:39:12,199 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,256 [INFO] Holding 37 words in set
+2025-04-17 16:39:12,256 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,313 [INFO] Holding 39 words in set
+2025-04-17 16:39:12,313 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,370 [INFO] Holding 44 words in set
+2025-04-17 16:39:12,370 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,426 [INFO] Holding 44 words in set
+2025-04-17 16:39:12,426 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,482 [INFO] Holding 48 words in set
+2025-04-17 16:39:12,482 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,539 [INFO] Holding 40 words in set
+2025-04-17 16:39:12,539 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,595 [INFO] Holding 39 words in set
+2025-04-17 16:39:12,595 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,650 [INFO] Holding 43 words in set
+2025-04-17 16:39:12,651 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,709 [INFO] Holding 31 words in set
+2025-04-17 16:39:12,709 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,766 [INFO] Holding 40 words in set
+2025-04-17 16:39:12,766 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,823 [INFO] Holding 46 words in set
+2025-04-17 16:39:12,824 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,879 [INFO] Holding 49 words in set
+2025-04-17 16:39:12,879 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,936 [INFO] Holding 42 words in set
+2025-04-17 16:39:12,937 [INFO] Tokenizing titles...
+2025-04-17 16:39:12,994 [INFO] Holding 51 words in set
+2025-04-17 16:39:12,994 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,052 [INFO] Holding 43 words in set
+2025-04-17 16:39:13,052 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,108 [INFO] Holding 39 words in set
+2025-04-17 16:39:13,109 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,165 [INFO] Holding 53 words in set
+2025-04-17 16:39:13,165 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,223 [INFO] Holding 42 words in set
+2025-04-17 16:39:13,223 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,278 [INFO] Holding 42 words in set
+2025-04-17 16:39:13,279 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,334 [INFO] Holding 44 words in set
+2025-04-17 16:39:13,334 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,391 [INFO] Holding 45 words in set
+2025-04-17 16:39:13,391 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,450 [INFO] Holding 39 words in set
+2025-04-17 16:39:13,450 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,505 [INFO] Holding 36 words in set
+2025-04-17 16:39:13,505 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,561 [INFO] Holding 49 words in set
+2025-04-17 16:39:13,561 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,618 [INFO] Holding 44 words in set
+2025-04-17 16:39:13,618 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,675 [INFO] Holding 44 words in set
+2025-04-17 16:39:13,675 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,731 [INFO] Holding 39 words in set
+2025-04-17 16:39:13,731 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,787 [INFO] Holding 47 words in set
+2025-04-17 16:39:13,787 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,842 [INFO] Holding 39 words in set
+2025-04-17 16:39:13,842 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,899 [INFO] Holding 42 words in set
+2025-04-17 16:39:13,899 [INFO] Tokenizing titles...
+2025-04-17 16:39:13,954 [INFO] Holding 48 words in set
+2025-04-17 16:39:13,954 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,012 [INFO] Holding 41 words in set
+2025-04-17 16:39:14,012 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,069 [INFO] Holding 43 words in set
+2025-04-17 16:39:14,069 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,130 [INFO] Holding 34 words in set
+2025-04-17 16:39:14,130 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,187 [INFO] Holding 51 words in set
+2025-04-17 16:39:14,188 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,244 [INFO] Holding 42 words in set
+2025-04-17 16:39:14,244 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,301 [INFO] Holding 34 words in set
+2025-04-17 16:39:14,301 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,358 [INFO] Holding 42 words in set
+2025-04-17 16:39:14,358 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,414 [INFO] Holding 46 words in set
+2025-04-17 16:39:14,414 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,470 [INFO] Holding 40 words in set
+2025-04-17 16:39:14,471 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,526 [INFO] Holding 43 words in set
+2025-04-17 16:39:14,526 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,581 [INFO] Holding 37 words in set
+2025-04-17 16:39:14,582 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,637 [INFO] Holding 43 words in set
+2025-04-17 16:39:14,637 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,693 [INFO] Holding 44 words in set
+2025-04-17 16:39:14,693 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,751 [INFO] Holding 34 words in set
+2025-04-17 16:39:14,751 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,806 [INFO] Holding 33 words in set
+2025-04-17 16:39:14,806 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,861 [INFO] Holding 42 words in set
+2025-04-17 16:39:14,861 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,917 [INFO] Holding 40 words in set
+2025-04-17 16:39:14,917 [INFO] Tokenizing titles...
+2025-04-17 16:39:14,974 [INFO] Holding 45 words in set
+2025-04-17 16:39:14,974 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,031 [INFO] Holding 53 words in set
+2025-04-17 16:39:15,031 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,087 [INFO] Holding 33 words in set
+2025-04-17 16:39:15,087 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,142 [INFO] Holding 42 words in set
+2025-04-17 16:39:15,142 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,197 [INFO] Holding 37 words in set
+2025-04-17 16:39:15,197 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,251 [INFO] Holding 55 words in set
+2025-04-17 16:39:15,251 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,306 [INFO] Holding 41 words in set
+2025-04-17 16:39:15,306 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,361 [INFO] Holding 40 words in set
+2025-04-17 16:39:15,362 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,417 [INFO] Holding 47 words in set
+2025-04-17 16:39:15,417 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,473 [INFO] Holding 49 words in set
+2025-04-17 16:39:15,473 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,528 [INFO] Holding 45 words in set
+2025-04-17 16:39:15,528 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,584 [INFO] Holding 39 words in set
+2025-04-17 16:39:15,584 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,639 [INFO] Holding 44 words in set
+2025-04-17 16:39:15,639 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,694 [INFO] Holding 41 words in set
+2025-04-17 16:39:15,695 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,752 [INFO] Holding 40 words in set
+2025-04-17 16:39:15,752 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,807 [INFO] Holding 48 words in set
+2025-04-17 16:39:15,807 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,863 [INFO] Holding 48 words in set
+2025-04-17 16:39:15,864 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,920 [INFO] Holding 42 words in set
+2025-04-17 16:39:15,920 [INFO] Tokenizing titles...
+2025-04-17 16:39:15,975 [INFO] Holding 56 words in set
+2025-04-17 16:39:15,975 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,033 [INFO] Holding 50 words in set
+2025-04-17 16:39:16,033 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,094 [INFO] Holding 36 words in set
+2025-04-17 16:39:16,094 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,151 [INFO] Holding 50 words in set
+2025-04-17 16:39:16,151 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,206 [INFO] Holding 37 words in set
+2025-04-17 16:39:16,207 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,263 [INFO] Holding 58 words in set
+2025-04-17 16:39:16,263 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,320 [INFO] Holding 46 words in set
+2025-04-17 16:39:16,321 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,376 [INFO] Holding 38 words in set
+2025-04-17 16:39:16,377 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,431 [INFO] Holding 44 words in set
+2025-04-17 16:39:16,432 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,487 [INFO] Holding 36 words in set
+2025-04-17 16:39:16,487 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,542 [INFO] Holding 45 words in set
+2025-04-17 16:39:16,542 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,598 [INFO] Holding 43 words in set
+2025-04-17 16:39:16,598 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,654 [INFO] Holding 49 words in set
+2025-04-17 16:39:16,654 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,709 [INFO] Holding 51 words in set
+2025-04-17 16:39:16,709 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,764 [INFO] Holding 44 words in set
+2025-04-17 16:39:16,764 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,818 [INFO] Holding 37 words in set
+2025-04-17 16:39:16,819 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,873 [INFO] Holding 39 words in set
+2025-04-17 16:39:16,873 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,928 [INFO] Holding 36 words in set
+2025-04-17 16:39:16,928 [INFO] Tokenizing titles...
+2025-04-17 16:39:16,982 [INFO] Holding 51 words in set
+2025-04-17 16:39:16,983 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,037 [INFO] Holding 53 words in set
+2025-04-17 16:39:17,037 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,092 [INFO] Holding 37 words in set
+2025-04-17 16:39:17,092 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,146 [INFO] Holding 42 words in set
+2025-04-17 16:39:17,146 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,201 [INFO] Holding 48 words in set
+2025-04-17 16:39:17,201 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,256 [INFO] Holding 42 words in set
+2025-04-17 16:39:17,256 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,311 [INFO] Holding 36 words in set
+2025-04-17 16:39:17,312 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,367 [INFO] Holding 36 words in set
+2025-04-17 16:39:17,367 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,423 [INFO] Holding 41 words in set
+2025-04-17 16:39:17,423 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,478 [INFO] Holding 32 words in set
+2025-04-17 16:39:17,479 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,533 [INFO] Holding 46 words in set
+2025-04-17 16:39:17,534 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,588 [INFO] Holding 46 words in set
+2025-04-17 16:39:17,588 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,645 [INFO] Holding 33 words in set
+2025-04-17 16:39:17,645 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,700 [INFO] Holding 47 words in set
+2025-04-17 16:39:17,700 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,754 [INFO] Holding 38 words in set
+2025-04-17 16:39:17,754 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,809 [INFO] Holding 46 words in set
+2025-04-17 16:39:17,809 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,864 [INFO] Holding 41 words in set
+2025-04-17 16:39:17,864 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,920 [INFO] Holding 39 words in set
+2025-04-17 16:39:17,920 [INFO] Tokenizing titles...
+2025-04-17 16:39:17,977 [INFO] Holding 48 words in set
+2025-04-17 16:39:17,977 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,032 [INFO] Holding 37 words in set
+2025-04-17 16:39:18,032 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,086 [INFO] Holding 41 words in set
+2025-04-17 16:39:18,086 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,141 [INFO] Holding 39 words in set
+2025-04-17 16:39:18,141 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,195 [INFO] Holding 43 words in set
+2025-04-17 16:39:18,196 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,250 [INFO] Holding 39 words in set
+2025-04-17 16:39:18,251 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,305 [INFO] Holding 37 words in set
+2025-04-17 16:39:18,305 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,360 [INFO] Holding 42 words in set
+2025-04-17 16:39:18,360 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,416 [INFO] Holding 32 words in set
+2025-04-17 16:39:18,416 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,471 [INFO] Holding 42 words in set
+2025-04-17 16:39:18,471 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,526 [INFO] Holding 44 words in set
+2025-04-17 16:39:18,526 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,581 [INFO] Holding 46 words in set
+2025-04-17 16:39:18,581 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,636 [INFO] Holding 36 words in set
+2025-04-17 16:39:18,636 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,692 [INFO] Holding 44 words in set
+2025-04-17 16:39:18,693 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,747 [INFO] Holding 43 words in set
+2025-04-17 16:39:18,747 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,801 [INFO] Holding 41 words in set
+2025-04-17 16:39:18,802 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,856 [INFO] Holding 32 words in set
+2025-04-17 16:39:18,856 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,911 [INFO] Holding 47 words in set
+2025-04-17 16:39:18,911 [INFO] Tokenizing titles...
+2025-04-17 16:39:18,965 [INFO] Holding 49 words in set
+2025-04-17 16:39:18,966 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,021 [INFO] Holding 33 words in set
+2025-04-17 16:39:19,021 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,076 [INFO] Holding 37 words in set
+2025-04-17 16:39:19,076 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,130 [INFO] Holding 38 words in set
+2025-04-17 16:39:19,131 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,185 [INFO] Holding 47 words in set
+2025-04-17 16:39:19,185 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,239 [INFO] Holding 42 words in set
+2025-04-17 16:39:19,240 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,294 [INFO] Holding 53 words in set
+2025-04-17 16:39:19,294 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,349 [INFO] Holding 46 words in set
+2025-04-17 16:39:19,349 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,405 [INFO] Holding 41 words in set
+2025-04-17 16:39:19,405 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,460 [INFO] Holding 41 words in set
+2025-04-17 16:39:19,460 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,514 [INFO] Holding 38 words in set
+2025-04-17 16:39:19,514 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,569 [INFO] Holding 45 words in set
+2025-04-17 16:39:19,569 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,624 [INFO] Holding 37 words in set
+2025-04-17 16:39:19,624 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,679 [INFO] Holding 40 words in set
+2025-04-17 16:39:19,679 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,733 [INFO] Holding 46 words in set
+2025-04-17 16:39:19,733 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,789 [INFO] Holding 46 words in set
+2025-04-17 16:39:19,789 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,848 [INFO] Holding 43 words in set
+2025-04-17 16:39:19,848 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,905 [INFO] Holding 44 words in set
+2025-04-17 16:39:19,905 [INFO] Tokenizing titles...
+2025-04-17 16:39:19,962 [INFO] Holding 36 words in set
+2025-04-17 16:39:19,962 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,083 [INFO] Holding 38 words in set
+2025-04-17 16:39:20,084 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,144 [INFO] Holding 45 words in set
+2025-04-17 16:39:20,145 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,211 [INFO] Holding 40 words in set
+2025-04-17 16:39:20,211 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,268 [INFO] Holding 40 words in set
+2025-04-17 16:39:20,268 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,326 [INFO] Holding 45 words in set
+2025-04-17 16:39:20,326 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,382 [INFO] Holding 53 words in set
+2025-04-17 16:39:20,382 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,435 [INFO] Holding 48 words in set
+2025-04-17 16:39:20,436 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,489 [INFO] Holding 46 words in set
+2025-04-17 16:39:20,489 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,547 [INFO] Holding 41 words in set
+2025-04-17 16:39:20,547 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,603 [INFO] Holding 43 words in set
+2025-04-17 16:39:20,603 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,656 [INFO] Holding 49 words in set
+2025-04-17 16:39:20,656 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,709 [INFO] Holding 47 words in set
+2025-04-17 16:39:20,709 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,761 [INFO] Holding 39 words in set
+2025-04-17 16:39:20,762 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,814 [INFO] Holding 42 words in set
+2025-04-17 16:39:20,815 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,867 [INFO] Holding 35 words in set
+2025-04-17 16:39:20,867 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,919 [INFO] Holding 38 words in set
+2025-04-17 16:39:20,919 [INFO] Tokenizing titles...
+2025-04-17 16:39:20,974 [INFO] Holding 38 words in set
+2025-04-17 16:39:20,974 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,029 [INFO] Holding 33 words in set
+2025-04-17 16:39:21,029 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,084 [INFO] Holding 43 words in set
+2025-04-17 16:39:21,084 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,139 [INFO] Holding 43 words in set
+2025-04-17 16:39:21,139 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,194 [INFO] Holding 46 words in set
+2025-04-17 16:39:21,194 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,248 [INFO] Holding 50 words in set
+2025-04-17 16:39:21,249 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,304 [INFO] Holding 43 words in set
+2025-04-17 16:39:21,304 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,376 [INFO] Holding 40 words in set
+2025-04-17 16:39:21,376 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,471 [INFO] Holding 40 words in set
+2025-04-17 16:39:21,472 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,545 [INFO] Holding 45 words in set
+2025-04-17 16:39:21,546 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,609 [INFO] Holding 45 words in set
+2025-04-17 16:39:21,610 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,670 [INFO] Holding 53 words in set
+2025-04-17 16:39:21,670 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,730 [INFO] Holding 45 words in set
+2025-04-17 16:39:21,730 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,786 [INFO] Holding 37 words in set
+2025-04-17 16:39:21,786 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,844 [INFO] Holding 44 words in set
+2025-04-17 16:39:21,844 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,903 [INFO] Holding 37 words in set
+2025-04-17 16:39:21,904 [INFO] Tokenizing titles...
+2025-04-17 16:39:21,963 [INFO] Holding 43 words in set
+2025-04-17 16:39:21,964 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,022 [INFO] Holding 41 words in set
+2025-04-17 16:39:22,022 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,080 [INFO] Holding 49 words in set
+2025-04-17 16:39:22,080 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,136 [INFO] Holding 45 words in set
+2025-04-17 16:39:22,138 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,194 [INFO] Holding 51 words in set
+2025-04-17 16:39:22,194 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,251 [INFO] Holding 42 words in set
+2025-04-17 16:39:22,252 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,308 [INFO] Holding 43 words in set
+2025-04-17 16:39:22,308 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,366 [INFO] Holding 40 words in set
+2025-04-17 16:39:22,366 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,425 [INFO] Holding 38 words in set
+2025-04-17 16:39:22,425 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,481 [INFO] Holding 36 words in set
+2025-04-17 16:39:22,481 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,537 [INFO] Holding 29 words in set
+2025-04-17 16:39:22,537 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,592 [INFO] Holding 46 words in set
+2025-04-17 16:39:22,592 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,648 [INFO] Holding 52 words in set
+2025-04-17 16:39:22,648 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,705 [INFO] Holding 48 words in set
+2025-04-17 16:39:22,705 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,761 [INFO] Holding 40 words in set
+2025-04-17 16:39:22,761 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,815 [INFO] Holding 40 words in set
+2025-04-17 16:39:22,815 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,869 [INFO] Holding 39 words in set
+2025-04-17 16:39:22,869 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,925 [INFO] Holding 45 words in set
+2025-04-17 16:39:22,925 [INFO] Tokenizing titles...
+2025-04-17 16:39:22,979 [INFO] Holding 44 words in set
+2025-04-17 16:39:22,979 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,034 [INFO] Holding 41 words in set
+2025-04-17 16:39:23,034 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,088 [INFO] Holding 46 words in set
+2025-04-17 16:39:23,088 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,143 [INFO] Holding 38 words in set
+2025-04-17 16:39:23,143 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,198 [INFO] Holding 42 words in set
+2025-04-17 16:39:23,198 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,253 [INFO] Holding 46 words in set
+2025-04-17 16:39:23,253 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,307 [INFO] Holding 45 words in set
+2025-04-17 16:39:23,307 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,362 [INFO] Holding 50 words in set
+2025-04-17 16:39:23,362 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,416 [INFO] Holding 53 words in set
+2025-04-17 16:39:23,416 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,471 [INFO] Holding 45 words in set
+2025-04-17 16:39:23,471 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,524 [INFO] Holding 42 words in set
+2025-04-17 16:39:23,525 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,580 [INFO] Holding 44 words in set
+2025-04-17 16:39:23,580 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,637 [INFO] Holding 40 words in set
+2025-04-17 16:39:23,637 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,694 [INFO] Holding 50 words in set
+2025-04-17 16:39:23,694 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,750 [INFO] Holding 38 words in set
+2025-04-17 16:39:23,751 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,806 [INFO] Holding 46 words in set
+2025-04-17 16:39:23,806 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,861 [INFO] Holding 49 words in set
+2025-04-17 16:39:23,861 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,917 [INFO] Holding 41 words in set
+2025-04-17 16:39:23,917 [INFO] Tokenizing titles...
+2025-04-17 16:39:23,971 [INFO] Holding 41 words in set
+2025-04-17 16:39:23,972 [INFO] Tokenizing titles...
+2025-04-17 16:39:24,026 [INFO] Holding 43 words in set
+2025-04-17 16:39:24,027 [INFO] Tokenizing titles...
+2025-04-17 16:39:24,081 [INFO] Holding 47 words in set
+2025-04-17 16:39:24,081 [INFO] Tokenizing titles...
+2025-04-17 16:39:24,132 [INFO] Holding 42 words in set
+2025-04-17 16:39:24,161 [INFO] Updated dictionary now has 36673 tokens.
+2025-04-17 16:40:00,803 [INFO] Tokenizing titles...
+2025-04-17 16:40:00,907 [INFO] Holding 1000 words in list
+2025-04-17 16:40:00,907 [INFO] Holding 1000 words in list
+2025-04-17 16:40:00,907 [INFO] Holding 1000 words in list
+2025-04-17 16:40:00,991 [INFO] Holding 2000 words in list
+2025-04-17 16:40:00,991 [INFO] Holding 2000 words in list
+2025-04-17 16:40:00,991 [INFO] Holding 2000 words in list
+2025-04-17 16:40:00,991 [INFO] Holding 2000 words in list
+2025-04-17 16:40:00,991 [INFO] Holding 2000 words in list
+2025-04-17 16:40:00,991 [INFO] Holding 2000 words in list
+2025-04-17 16:40:00,991 [INFO] Holding 2000 words in list
+2025-04-17 16:40:00,991 [INFO] Holding 2000 words in list
+2025-04-17 16:40:00,991 [INFO] Holding 2000 words in list
+2025-04-17 16:40:00,991 [INFO] Holding 2000 words in list
+2025-04-17 16:40:00,992 [INFO] Holding 2000 words in list
+2025-04-17 16:40:00,992 [INFO] Holding 2000 words in list
+2025-04-17 16:40:00,992 [INFO] Holding 2000 words in list
+2025-04-17 16:40:01,330 [INFO] Holding 6000 words in list
+2025-04-17 16:40:01,330 [INFO] Holding 6000 words in list
+2025-04-17 16:40:01,586 [INFO] Holding 9000 words in list
+2025-04-17 16:40:01,759 [INFO] Holding 11000 words in list
+2025-04-17 16:40:01,759 [INFO] Holding 11000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,025 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,026 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,026 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,026 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,026 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,026 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,026 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,026 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,026 [INFO] Holding 14000 words in list
+2025-04-17 16:40:02,202 [INFO] Holding 16000 words in list
+2025-04-17 16:40:02,202 [INFO] Holding 16000 words in list
+2025-04-17 16:40:02,202 [INFO] Holding 16000 words in list
+2025-04-17 16:40:02,202 [INFO] Holding 16000 words in list
+2025-04-17 16:40:02,202 [INFO] Holding 16000 words in list
+2025-04-17 16:40:02,202 [INFO] Holding 16000 words in list
+2025-04-17 16:40:02,374 [INFO] Holding 18000 words in list
+2025-04-17 16:40:02,374 [INFO] Holding 18000 words in list
+2025-04-17 16:40:02,374 [INFO] Holding 18000 words in list
+2025-04-17 16:40:02,374 [INFO] Holding 18000 words in list
+2025-04-17 16:40:02,374 [INFO] Holding 18000 words in list
+2025-04-17 16:40:02,374 [INFO] Holding 18000 words in list
+2025-04-17 16:40:02,374 [INFO] Holding 18000 words in list
+2025-04-17 16:40:02,374 [INFO] Holding 18000 words in list
+2025-04-17 16:40:02,374 [INFO] Holding 18000 words in list
+2025-04-17 16:40:02,374 [INFO] Holding 18000 words in list
+2025-04-17 16:40:02,374 [INFO] Holding 18000 words in list
+2025-04-17 16:40:02,374 [INFO] Holding 18000 words in list
+2025-04-17 16:40:02,450 [INFO] Holding 19000 words in list
+2025-04-17 16:40:02,450 [INFO] Holding 19000 words in list
+2025-04-17 16:40:02,451 [INFO] Holding 19000 words in list
+2025-04-17 16:40:02,451 [INFO] Holding 19000 words in list
+2025-04-17 16:40:02,451 [INFO] Holding 19000 words in list
+2025-04-17 16:40:02,451 [INFO] Holding 19000 words in list
+2025-04-17 16:40:02,451 [INFO] Holding 19000 words in list
+2025-04-17 16:40:02,623 [INFO] Holding 21000 words in list
+2025-04-17 16:40:03,691 [INFO] Holding 33000 words in list
+2025-04-17 16:40:03,691 [INFO] Holding 33000 words in list
+2025-04-17 16:40:03,691 [INFO] Holding 33000 words in list
+2025-04-17 16:40:03,691 [INFO] Holding 33000 words in list
+2025-04-17 16:40:03,691 [INFO] Holding 33000 words in list
+2025-04-17 16:40:03,691 [INFO] Holding 33000 words in list
+2025-04-17 16:40:03,691 [INFO] Holding 33000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,875 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,876 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,877 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,877 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,877 [INFO] Holding 35000 words in list
+2025-04-17 16:40:03,877 [INFO] Holding 35000 words in list
+2025-04-17 16:40:04,047 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,047 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,047 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,047 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,047 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,047 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,047 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,047 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,047 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,047 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,047 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,047 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,048 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,048 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,048 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,048 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,048 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,048 [INFO] Holding 37000 words in list
+2025-04-17 16:40:04,228 [INFO] Holding 39000 words in list
+2025-04-17 16:40:04,228 [INFO] Holding 39000 words in list
+2025-04-17 16:40:04,228 [INFO] Holding 39000 words in list
+2025-04-17 16:40:04,228 [INFO] Holding 39000 words in list
+2025-04-17 16:40:04,228 [INFO] Holding 39000 words in list
+2025-04-17 16:40:04,228 [INFO] Holding 39000 words in list
+2025-04-17 16:40:04,309 [INFO] Holding 40000 words in list
+2025-04-17 16:40:04,309 [INFO] Holding 40000 words in list
+2025-04-17 16:40:04,309 [INFO] Holding 40000 words in list
+2025-04-17 16:40:04,309 [INFO] Holding 40000 words in list
+2025-04-17 16:40:04,309 [INFO] Holding 40000 words in list
+2025-04-17 16:40:04,309 [INFO] Holding 40000 words in list
+2025-04-17 16:40:04,485 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,485 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,485 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,485 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,485 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,485 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,485 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,485 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,485 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,485 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,485 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,485 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,486 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,486 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,486 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,486 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,486 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,486 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,486 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,486 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,486 [INFO] Holding 42000 words in list
+2025-04-17 16:40:04,746 [INFO] Holding 45000 words in list
+2025-04-17 16:40:04,747 [INFO] Holding 45000 words in list
+2025-04-17 16:40:05,258 [INFO] Holding 51000 words in list
+2025-04-17 16:40:05,258 [INFO] Holding 51000 words in list
+2025-04-17 16:40:05,258 [INFO] Holding 51000 words in list
+2025-04-17 16:40:05,258 [INFO] Holding 51000 words in list
+2025-04-17 16:40:05,423 [INFO] Holding 53000 words in list
+2025-04-17 16:40:05,423 [INFO] Holding 53000 words in list
+2025-04-17 16:40:05,423 [INFO] Holding 53000 words in list
+2025-04-17 16:40:05,511 [INFO] Holding 54000 words in list
+2025-04-17 16:40:05,511 [INFO] Holding 54000 words in list
+2025-04-17 16:40:05,597 [INFO] Holding 55000 words in list
+2025-04-17 16:40:05,597 [INFO] Holding 55000 words in list
+2025-04-17 16:40:05,597 [INFO] Holding 55000 words in list
+2025-04-17 16:40:05,597 [INFO] Holding 55000 words in list
+2025-04-17 16:40:05,597 [INFO] Holding 55000 words in list
+2025-04-17 16:40:05,597 [INFO] Holding 55000 words in list
+2025-04-17 16:40:05,597 [INFO] Holding 55000 words in list
+2025-04-17 16:40:05,597 [INFO] Holding 55000 words in list
+2025-04-17 16:40:05,708 [INFO] Holding 1922 words in set
+2025-04-17 16:40:05,741 [INFO] Updated dictionary now has 36673 tokens.
+2025-04-17 16:41:11,708 [INFO] Tokenizing titles...
+2025-04-17 16:41:11,975 [INFO] Holding 3000 words in list
+2025-04-17 16:41:12,146 [INFO] Holding 5000 words in list
+2025-04-17 16:41:12,232 [INFO] Holding 6000 words in list
+2025-04-17 16:41:12,313 [INFO] Holding 7000 words in list
+2025-04-17 16:41:12,396 [INFO] Holding 8000 words in list
+2025-04-17 16:41:12,653 [INFO] Holding 11000 words in list
+2025-04-17 16:41:12,914 [INFO] Holding 14000 words in list
+2025-04-17 16:41:13,004 [INFO] Holding 15000 words in list
+2025-04-17 16:41:13,190 [INFO] Holding 17000 words in list
+2025-04-17 16:41:13,282 [INFO] Holding 18000 words in list
+2025-04-17 16:41:13,365 [INFO] Holding 19000 words in list
+2025-04-17 16:41:13,634 [INFO] Holding 22000 words in list
+2025-04-17 16:41:13,986 [INFO] Holding 26000 words in list
+2025-04-17 16:41:14,068 [INFO] Holding 27000 words in list
+2025-04-17 16:41:14,244 [INFO] Holding 29000 words in list
+2025-04-17 16:41:14,330 [INFO] Holding 30000 words in list
+2025-04-17 16:41:14,488 [INFO] Holding 32000 words in list
+2025-04-17 16:41:14,564 [INFO] Holding 33000 words in list
+2025-04-17 16:41:14,649 [INFO] Holding 34000 words in list
+2025-04-17 16:41:14,734 [INFO] Holding 35000 words in list
+2025-04-17 16:41:15,338 [INFO] Holding 42000 words in list
+2025-04-17 16:41:15,604 [INFO] Holding 45000 words in list
+2025-04-17 16:41:15,785 [INFO] Holding 47000 words in list
+2025-04-17 16:41:15,874 [INFO] Holding 48000 words in list
+2025-04-17 16:41:16,040 [INFO] Holding 50000 words in list
+2025-04-17 16:41:16,209 [INFO] Holding 52000 words in list
+2025-04-17 16:41:16,462 [INFO] Holding 55000 words in list
+2025-04-17 16:41:16,726 [INFO] Holding 58000 words in list
+2025-04-17 16:41:16,809 [INFO] Holding 59000 words in list
+2025-04-17 16:41:16,890 [INFO] Holding 60000 words in list
+2025-04-17 16:41:16,971 [INFO] Holding 61000 words in list
+2025-04-17 16:41:17,051 [INFO] Holding 62000 words in list
+2025-04-17 16:41:17,548 [INFO] Holding 68000 words in list
+2025-04-17 16:41:17,959 [INFO] Holding 73000 words in list
+2025-04-17 16:41:18,137 [INFO] Holding 75000 words in list
+2025-04-17 16:41:18,300 [INFO] Holding 77000 words in list
+2025-04-17 16:41:18,463 [INFO] Holding 2231 words in set
+2025-04-17 16:41:18,500 [INFO] Updated dictionary now has 36702 tokens.
+2025-04-17 16:42:29,467 [INFO] Tokenizing titles...
+2025-04-17 16:42:29,649 [INFO] Holding 2000 words in list
+2025-04-17 16:42:29,811 [INFO] Holding 4000 words in list
+2025-04-17 16:42:30,383 [INFO] Holding 11000 words in list
+2025-04-17 16:42:30,464 [INFO] Holding 12000 words in list
+2025-04-17 16:42:30,632 [INFO] Holding 14000 words in list
+2025-04-17 16:42:30,716 [INFO] Holding 15000 words in list
+2025-04-17 16:42:30,800 [INFO] Holding 16000 words in list
+2025-04-17 16:42:30,977 [INFO] Holding 18000 words in list
+2025-04-17 16:42:31,060 [INFO] Holding 19000 words in list
+2025-04-17 16:42:31,321 [INFO] Holding 22000 words in list
+2025-04-17 16:42:31,750 [INFO] Holding 27000 words in list
+2025-04-17 16:42:31,920 [INFO] Holding 29000 words in list
+2025-04-17 16:42:32,001 [INFO] Holding 30000 words in list
+2025-04-17 16:42:32,257 [INFO] Holding 33000 words in list
+2025-04-17 16:42:32,507 [INFO] Holding 36000 words in list
+2025-04-17 16:42:32,662 [INFO] Holding 38000 words in list
+2025-04-17 16:42:32,822 [INFO] Holding 40000 words in list
+2025-04-17 16:42:32,914 [INFO] Holding 41000 words in list
+2025-04-17 16:42:33,219 [INFO] Holding 44000 words in list
+2025-04-17 16:42:33,301 [INFO] Holding 45000 words in list
+2025-04-17 16:42:33,388 [INFO] Holding 46000 words in list
+2025-04-17 16:42:33,572 [INFO] Holding 48000 words in list
+2025-04-17 16:42:33,846 [INFO] Holding 51000 words in list
+2025-04-17 16:42:34,182 [INFO] Holding 55000 words in list
+2025-04-17 16:42:34,440 [INFO] Holding 58000 words in list
+2025-04-17 16:42:34,766 [INFO] Holding 62000 words in list
+2025-04-17 16:42:35,249 [INFO] Holding 68000 words in list
+2025-04-17 16:42:35,497 [INFO] Holding 71000 words in list
+2025-04-17 16:42:35,723 [INFO] Holding 2135 words in set
+2025-04-17 16:42:35,724 [INFO] Added 23 tokens
+2025-04-17 16:42:35,757 [INFO] Updated dictionary now has 36725 tokens.
+2025-04-17 16:43:00,272 [INFO] Tokenizing titles...
+2025-04-17 16:43:00,615 [INFO] Holding 4000 words in list
+2025-04-17 16:43:00,686 [INFO] Holding 5000 words in list
+2025-04-17 16:43:00,837 [INFO] Holding 7000 words in list
+2025-04-17 16:43:01,054 [INFO] Holding 10000 words in list
+2025-04-17 16:43:01,191 [INFO] Holding 12000 words in list
+2025-04-17 16:43:01,266 [INFO] Holding 13000 words in list
+2025-04-17 16:43:01,412 [INFO] Holding 15000 words in list
+2025-04-17 16:43:01,626 [INFO] Holding 18000 words in list
+2025-04-17 16:43:01,911 [INFO] Holding 22000 words in list
+2025-04-17 16:43:01,984 [INFO] Holding 23000 words in list
+2025-04-17 16:43:02,210 [INFO] Holding 26000 words in list
+2025-04-17 16:43:02,726 [INFO] Holding 32000 words in list
+2025-04-17 16:43:02,948 [INFO] Holding 35000 words in list
+2025-04-17 16:43:03,162 [INFO] Holding 38000 words in list
+2025-04-17 16:43:03,312 [INFO] Holding 40000 words in list
+2025-04-17 16:43:03,450 [INFO] Holding 42000 words in list
+2025-04-17 16:43:03,520 [INFO] Holding 43000 words in list
+2025-04-17 16:43:03,589 [INFO] Holding 44000 words in list
+2025-04-17 16:43:03,735 [INFO] Holding 46000 words in list
+2025-04-17 16:43:03,945 [INFO] Holding 49000 words in list
+2025-04-17 16:43:04,181 [INFO] Holding 52000 words in list
+2025-04-17 16:43:04,538 [INFO] Holding 57000 words in list
+2025-04-17 16:43:04,973 [INFO] Holding 63000 words in list
+2025-04-17 16:43:05,194 [INFO] Holding 66000 words in list
+2025-04-17 16:43:05,341 [INFO] Holding 68000 words in list
+2025-04-17 16:43:05,686 [INFO] Holding 73000 words in list
+2025-04-17 16:43:05,760 [INFO] Holding 74000 words in list
+2025-04-17 16:43:05,840 [INFO] Holding 75000 words in list
+2025-04-17 16:43:05,989 [INFO] Holding 77000 words in list
+2025-04-17 16:43:06,058 [INFO] Holding 78000 words in list
+2025-04-17 16:43:06,129 [INFO] Holding 79000 words in list
+2025-04-17 16:43:06,338 [INFO] Holding 82000 words in list
+2025-04-17 16:43:06,413 [INFO] Holding 83000 words in list
+2025-04-17 16:43:06,633 [INFO] Holding 86000 words in list
+2025-04-17 16:43:06,705 [INFO] Holding 87000 words in list
+2025-04-17 16:43:06,844 [INFO] Holding 89000 words in list
+2025-04-17 16:43:06,916 [INFO] Holding 90000 words in list
+2025-04-17 16:43:07,200 [INFO] Holding 94000 words in list
+2025-04-17 16:43:07,276 [INFO] Holding 95000 words in list
+2025-04-17 16:43:07,341 [INFO] Holding 96000 words in list
+2025-04-17 16:43:07,474 [INFO] Holding 98000 words in list
+2025-04-17 16:43:07,543 [INFO] Holding 99000 words in list
+2025-04-17 16:43:07,687 [INFO] Holding 101000 words in list
+2025-04-17 16:43:07,830 [INFO] Holding 103000 words in list
+2025-04-17 16:43:07,900 [INFO] Holding 104000 words in list
+2025-04-17 16:43:07,970 [INFO] Holding 105000 words in list
+2025-04-17 16:43:08,042 [INFO] Holding 106000 words in list
+2025-04-17 16:43:08,123 [INFO] Holding 107000 words in list
+2025-04-17 16:43:08,267 [INFO] Holding 109000 words in list
+2025-04-17 16:43:08,638 [INFO] Holding 114000 words in list
+2025-04-17 16:43:08,782 [INFO] Holding 116000 words in list
+2025-04-17 16:43:09,009 [INFO] Holding 119000 words in list
+2025-04-17 16:43:09,086 [INFO] Holding 120000 words in list
+2025-04-17 16:43:09,163 [INFO] Holding 121000 words in list
+2025-04-17 16:43:09,449 [INFO] Holding 124000 words in list
+2025-04-17 16:43:09,673 [INFO] Holding 127000 words in list
+2025-04-17 16:43:09,741 [INFO] Holding 128000 words in list
+2025-04-17 16:43:09,885 [INFO] Holding 130000 words in list
+2025-04-17 16:43:10,029 [INFO] Holding 132000 words in list
+2025-04-17 16:43:10,099 [INFO] Holding 133000 words in list
+2025-04-17 16:43:10,170 [INFO] Holding 134000 words in list
+2025-04-17 16:43:10,458 [INFO] Holding 138000 words in list
+2025-04-17 16:43:10,613 [INFO] Holding 140000 words in list
+2025-04-17 16:43:10,823 [INFO] Holding 143000 words in list
+2025-04-17 16:43:10,895 [INFO] Holding 144000 words in list
+2025-04-17 16:43:10,961 [INFO] Holding 145000 words in list
+2025-04-17 16:43:11,101 [INFO] Holding 147000 words in list
+2025-04-17 16:43:11,303 [INFO] Holding 150000 words in list
+2025-04-17 16:43:11,378 [INFO] Holding 151000 words in list
+2025-04-17 16:43:11,450 [INFO] Holding 152000 words in list
+2025-04-17 16:43:11,880 [INFO] Holding 158000 words in list
+2025-04-17 16:43:11,950 [INFO] Holding 159000 words in list
+2025-04-17 16:43:12,384 [INFO] Holding 165000 words in list
+2025-04-17 16:43:12,453 [INFO] Holding 166000 words in list
+2025-04-17 16:43:12,525 [INFO] Holding 167000 words in list
+2025-04-17 16:43:12,737 [INFO] Holding 170000 words in list
+2025-04-17 16:43:12,799 [INFO] Holding 171000 words in list
+2025-04-17 16:43:12,871 [INFO] Holding 172000 words in list
+2025-04-17 16:43:12,941 [INFO] Holding 173000 words in list
+2025-04-17 16:43:13,082 [INFO] Holding 175000 words in list
+2025-04-17 16:43:13,154 [INFO] Holding 176000 words in list
+2025-04-17 16:43:13,307 [INFO] Holding 178000 words in list
+2025-04-17 16:43:13,536 [INFO] Holding 181000 words in list
+2025-04-17 16:43:13,683 [INFO] Holding 183000 words in list
+2025-04-17 16:43:13,751 [INFO] Holding 184000 words in list
+2025-04-17 16:43:14,106 [INFO] Holding 189000 words in list
+2025-04-17 16:43:14,318 [INFO] Holding 192000 words in list
+2025-04-17 16:43:14,830 [INFO] Holding 199000 words in list
+2025-04-17 16:43:14,975 [INFO] Holding 201000 words in list
+2025-04-17 16:43:15,042 [INFO] Holding 202000 words in list
+2025-04-17 16:43:15,115 [INFO] Holding 203000 words in list
+2025-04-17 16:43:15,612 [INFO] Holding 210000 words in list
+2025-04-17 16:43:16,040 [INFO] Holding 213000 words in list
+2025-04-17 16:43:16,341 [INFO] Holding 217000 words in list
+2025-04-17 16:43:16,414 [INFO] Holding 218000 words in list
+2025-04-17 16:43:16,635 [INFO] Holding 221000 words in list
+2025-04-17 16:43:16,781 [INFO] Holding 223000 words in list
+2025-04-17 16:43:16,991 [INFO] Holding 226000 words in list
+2025-04-17 16:43:17,064 [INFO] Holding 227000 words in list
+2025-04-17 16:43:17,644 [INFO] Holding 235000 words in list
+2025-04-17 16:43:17,719 [INFO] Holding 236000 words in list
+2025-04-17 16:43:17,786 [INFO] Holding 237000 words in list
+2025-04-17 16:43:18,007 [INFO] Holding 240000 words in list
+2025-04-17 16:43:18,163 [INFO] Holding 242000 words in list
+2025-04-17 16:43:18,470 [INFO] Holding 246000 words in list
+2025-04-17 16:43:18,624 [INFO] Holding 248000 words in list
+2025-04-17 16:43:18,695 [INFO] Holding 249000 words in list
+2025-04-17 16:43:18,830 [INFO] Holding 251000 words in list
+2025-04-17 16:43:19,618 [INFO] Holding 262000 words in list
+2025-04-17 16:43:19,698 [INFO] Holding 263000 words in list
+2025-04-17 16:43:19,787 [INFO] Holding 264000 words in list
+2025-04-17 16:43:20,065 [INFO] Holding 267000 words in list
+2025-04-17 16:43:20,358 [INFO] Holding 269000 words in list
+2025-04-17 16:43:20,428 [INFO] Holding 270000 words in list
+2025-04-17 16:43:20,572 [INFO] Holding 272000 words in list
+2025-04-17 16:43:20,720 [INFO] Holding 274000 words in list
+2025-04-17 16:43:20,792 [INFO] Holding 275000 words in list
+2025-04-17 16:43:20,867 [INFO] Holding 276000 words in list
+2025-04-17 16:43:21,086 [INFO] Holding 279000 words in list
+2025-04-17 16:43:21,164 [INFO] Holding 280000 words in list
+2025-04-17 16:43:21,302 [INFO] Holding 282000 words in list
+2025-04-17 16:43:21,378 [INFO] Holding 283000 words in list
+2025-04-17 16:43:21,453 [INFO] Holding 284000 words in list
+2025-04-17 16:43:21,835 [INFO] Holding 289000 words in list
+2025-04-17 16:43:21,918 [INFO] Holding 290000 words in list
+2025-04-17 16:43:22,147 [INFO] Holding 293000 words in list
+2025-04-17 16:43:22,294 [INFO] Holding 295000 words in list
+2025-04-17 16:43:22,934 [INFO] Holding 303000 words in list
+2025-04-17 16:43:23,177 [INFO] Holding 306000 words in list
+2025-04-17 16:43:23,438 [INFO] Holding 309000 words in list
+2025-04-17 16:43:23,520 [INFO] Holding 310000 words in list
+2025-04-17 16:43:23,597 [INFO] Holding 311000 words in list
+2025-04-17 16:43:23,674 [INFO] Holding 312000 words in list
+2025-04-17 16:43:23,761 [INFO] Holding 313000 words in list
+2025-04-17 16:43:23,932 [INFO] Holding 315000 words in list
+2025-04-17 16:43:24,179 [INFO] Holding 317000 words in list
+2025-04-17 16:43:24,343 [INFO] Holding 319000 words in list
+2025-04-17 16:43:24,517 [INFO] Holding 321000 words in list
+2025-04-17 16:43:24,896 [INFO] Holding 325000 words in list
+2025-04-17 16:43:24,970 [INFO] Holding 326000 words in list
+2025-04-17 16:43:25,046 [INFO] Holding 327000 words in list
+2025-04-17 16:43:25,130 [INFO] Holding 328000 words in list
+2025-04-17 16:43:25,460 [INFO] Holding 332000 words in list
+2025-04-17 16:43:26,186 [INFO] Holding 341000 words in list
+2025-04-17 16:43:26,348 [INFO] Holding 343000 words in list
+2025-04-17 16:43:26,430 [INFO] Holding 344000 words in list
+2025-04-17 16:43:26,598 [INFO] Holding 346000 words in list
+2025-04-17 16:43:26,842 [INFO] Holding 349000 words in list
+2025-04-17 16:43:26,918 [INFO] Holding 350000 words in list
+2025-04-17 16:43:26,995 [INFO] Holding 351000 words in list
+2025-04-17 16:43:27,394 [INFO] Holding 356000 words in list
+2025-04-17 16:43:27,474 [INFO] Holding 357000 words in list
+2025-04-17 16:43:27,627 [INFO] Holding 359000 words in list
+2025-04-17 16:43:27,781 [INFO] Holding 361000 words in list
+2025-04-17 16:43:27,931 [INFO] Holding 363000 words in list
+2025-04-17 16:43:28,169 [INFO] Holding 366000 words in list
+2025-04-17 16:43:28,239 [INFO] Holding 367000 words in list
+2025-04-17 16:43:28,322 [INFO] Holding 368000 words in list
+2025-04-17 16:43:28,477 [INFO] Holding 370000 words in list
+2025-04-17 16:43:28,561 [INFO] Holding 371000 words in list
+2025-04-17 16:43:28,889 [INFO] Holding 375000 words in list
+2025-04-17 16:43:28,968 [INFO] Holding 376000 words in list
+2025-04-17 16:43:29,293 [INFO] Holding 380000 words in list
+2025-04-17 16:43:29,551 [INFO] Holding 383000 words in list
+2025-04-17 16:43:29,630 [INFO] Holding 384000 words in list
+2025-04-17 16:43:30,205 [INFO] Holding 391000 words in list
+2025-04-17 16:43:30,287 [INFO] Holding 392000 words in list
+2025-04-17 16:43:30,368 [INFO] Holding 393000 words in list
+2025-04-17 16:43:30,451 [INFO] Holding 394000 words in list
+2025-04-17 16:43:30,536 [INFO] Holding 395000 words in list
+2025-04-17 16:43:30,696 [INFO] Holding 397000 words in list
+2025-04-17 16:43:31,254 [INFO] Holding 404000 words in list
+2025-04-17 16:43:31,484 [INFO] Holding 407000 words in list
+2025-04-17 16:43:31,653 [INFO] Holding 409000 words in list
+2025-04-17 16:43:31,732 [INFO] Holding 410000 words in list
+2025-04-17 16:43:31,814 [INFO] Holding 411000 words in list
+2025-04-17 16:43:32,050 [INFO] Holding 414000 words in list
+2025-04-17 16:43:32,130 [INFO] Holding 415000 words in list
+2025-04-17 16:43:32,212 [INFO] Holding 416000 words in list
+2025-04-17 16:43:32,432 [INFO] Holding 418000 words in list
+2025-04-17 16:43:32,592 [INFO] Holding 420000 words in list
+2025-04-17 16:43:32,905 [INFO] Holding 424000 words in list
+2025-04-17 16:43:32,978 [INFO] Holding 425000 words in list
+2025-04-17 16:43:33,051 [INFO] Holding 426000 words in list
+2025-04-17 16:43:33,283 [INFO] Holding 429000 words in list
+2025-04-17 16:43:33,362 [INFO] Holding 430000 words in list
+2025-04-17 16:43:33,514 [INFO] Holding 432000 words in list
+2025-04-17 16:43:33,595 [INFO] Holding 433000 words in list
+2025-04-17 16:43:33,758 [INFO] Holding 435000 words in list
+2025-04-17 16:43:33,840 [INFO] Holding 436000 words in list
+2025-04-17 16:43:34,160 [INFO] Holding 440000 words in list
+2025-04-17 16:43:35,209 [INFO] Holding 453000 words in list
+2025-04-17 16:43:35,685 [INFO] Holding 458000 words in list
+2025-04-17 16:43:35,846 [INFO] Holding 460000 words in list
+2025-04-17 16:43:36,006 [INFO] Holding 462000 words in list
+2025-04-17 16:43:36,260 [INFO] Holding 465000 words in list
+2025-04-17 16:43:36,496 [INFO] Holding 468000 words in list
+2025-04-17 16:43:36,577 [INFO] Holding 469000 words in list
+2025-04-17 16:43:36,813 [INFO] Holding 472000 words in list
+2025-04-17 16:43:36,978 [INFO] Holding 474000 words in list
+2025-04-17 16:43:37,221 [INFO] Holding 477000 words in list
+2025-04-17 16:43:37,304 [INFO] Holding 478000 words in list
+2025-04-17 16:43:37,875 [INFO] Holding 485000 words in list
+2025-04-17 16:43:37,955 [INFO] Holding 486000 words in list
+2025-04-17 16:43:38,286 [INFO] Holding 490000 words in list
+2025-04-17 16:43:38,612 [INFO] Holding 494000 words in list
+2025-04-17 16:43:38,691 [INFO] Holding 495000 words in list
+2025-04-17 16:43:38,926 [INFO] Holding 498000 words in list
+2025-04-17 16:43:39,163 [INFO] Holding 501000 words in list
+2025-04-17 16:43:39,403 [INFO] Holding 504000 words in list
+2025-04-17 16:43:39,640 [INFO] Holding 507000 words in list
+2025-04-17 16:43:39,717 [INFO] Holding 508000 words in list
+2025-04-17 16:43:39,878 [INFO] Holding 510000 words in list
+2025-04-17 16:43:40,277 [INFO] Holding 515000 words in list
+2025-04-17 16:43:40,762 [INFO] Holding 521000 words in list
+2025-04-17 16:43:40,989 [INFO] Holding 524000 words in list
+2025-04-17 16:43:41,533 [INFO] Holding 531000 words in list
+2025-04-17 16:43:41,615 [INFO] Holding 532000 words in list
+2025-04-17 16:43:41,685 [INFO] Holding 533000 words in list
+2025-04-17 16:43:42,009 [INFO] Holding 536000 words in list
+2025-04-17 16:43:42,098 [INFO] Holding 537000 words in list
+2025-04-17 16:43:42,249 [INFO] Holding 539000 words in list
+2025-04-17 16:43:42,566 [INFO] Holding 543000 words in list
+2025-04-17 16:43:42,798 [INFO] Holding 546000 words in list
+2025-04-17 16:43:42,960 [INFO] Holding 548000 words in list
+2025-04-17 16:43:43,037 [INFO] Holding 549000 words in list
+2025-04-17 16:43:43,112 [INFO] Holding 550000 words in list
+2025-04-17 16:43:43,192 [INFO] Holding 551000 words in list
+2025-04-17 16:43:43,281 [INFO] Holding 552000 words in list
+2025-04-17 16:43:43,357 [INFO] Holding 553000 words in list
+2025-04-17 16:43:43,436 [INFO] Holding 554000 words in list
+2025-04-17 16:43:43,593 [INFO] Holding 556000 words in list
+2025-04-17 16:43:43,670 [INFO] Holding 557000 words in list
+2025-04-17 16:43:43,751 [INFO] Holding 558000 words in list
+2025-04-17 16:43:43,987 [INFO] Holding 561000 words in list
+2025-04-17 16:43:44,142 [INFO] Holding 563000 words in list
+2025-04-17 16:43:44,225 [INFO] Holding 564000 words in list
+2025-04-17 16:43:44,399 [INFO] Holding 566000 words in list
+2025-04-17 16:43:44,643 [INFO] Holding 569000 words in list
+2025-04-17 16:43:44,737 [INFO] Holding 570000 words in list
+2025-04-17 16:43:44,921 [INFO] Holding 572000 words in list
+2025-04-17 16:43:45,709 [INFO] Holding 582000 words in list
+2025-04-17 16:43:45,943 [INFO] Holding 585000 words in list
+2025-04-17 16:43:46,022 [INFO] Holding 586000 words in list
+2025-04-17 16:43:46,181 [INFO] Holding 588000 words in list
+2025-04-17 16:43:46,257 [INFO] Holding 589000 words in list
+2025-04-17 16:43:46,940 [INFO] Holding 597000 words in list
+2025-04-17 16:43:47,025 [INFO] Holding 598000 words in list
+2025-04-17 16:43:47,104 [INFO] Holding 599000 words in list
+2025-04-17 16:43:47,655 [INFO] Holding 606000 words in list
+2025-04-17 16:43:47,735 [INFO] Holding 607000 words in list
+2025-04-17 16:43:47,806 [INFO] Holding 608000 words in list
+2025-04-17 16:43:48,054 [INFO] Holding 611000 words in list
+2025-04-17 16:43:48,129 [INFO] Holding 612000 words in list
+2025-04-17 16:43:48,290 [INFO] Holding 614000 words in list
+2025-04-17 16:43:48,372 [INFO] Holding 615000 words in list
+2025-04-17 16:43:48,602 [INFO] Holding 618000 words in list
+2025-04-17 16:43:48,676 [INFO] Holding 619000 words in list
+2025-04-17 16:43:48,755 [INFO] Holding 620000 words in list
+2025-04-17 16:43:48,832 [INFO] Holding 621000 words in list
+2025-04-17 16:43:48,989 [INFO] Holding 623000 words in list
+2025-04-17 16:43:49,064 [INFO] Holding 624000 words in list
+2025-04-17 16:43:49,139 [INFO] Holding 625000 words in list
+2025-04-17 16:43:49,302 [INFO] Holding 627000 words in list
+2025-04-17 16:43:49,381 [INFO] Holding 628000 words in list
+2025-04-17 16:43:49,529 [INFO] Holding 630000 words in list
+2025-04-17 16:43:49,776 [INFO] Holding 633000 words in list
+2025-04-17 16:43:49,853 [INFO] Holding 634000 words in list
+2025-04-17 16:43:50,017 [INFO] Holding 636000 words in list
+2025-04-17 16:43:50,167 [INFO] Holding 638000 words in list
+2025-04-17 16:43:50,323 [INFO] Holding 640000 words in list
+2025-04-17 16:43:50,403 [INFO] Holding 641000 words in list
+2025-04-17 16:43:50,564 [INFO] Holding 643000 words in list
+2025-04-17 16:43:50,642 [INFO] Holding 644000 words in list
+2025-04-17 16:43:50,795 [INFO] Holding 646000 words in list
+2025-04-17 16:43:50,872 [INFO] Holding 647000 words in list
+2025-04-17 16:43:51,106 [INFO] Holding 650000 words in list
+2025-04-17 16:43:51,267 [INFO] Holding 652000 words in list
+2025-04-17 16:43:51,419 [INFO] Holding 654000 words in list
+2025-04-17 16:43:51,657 [INFO] Holding 657000 words in list
+2025-04-17 16:43:51,734 [INFO] Holding 658000 words in list
+2025-04-17 16:43:51,818 [INFO] Holding 659000 words in list
+2025-04-17 16:43:51,903 [INFO] Holding 660000 words in list
+2025-04-17 16:43:51,979 [INFO] Holding 661000 words in list
+2025-04-17 16:43:52,048 [INFO] Holding 662000 words in list
+2025-04-17 16:43:52,125 [INFO] Holding 663000 words in list
+2025-04-17 16:43:52,205 [INFO] Holding 664000 words in list
+2025-04-17 16:43:52,445 [INFO] Holding 667000 words in list
+2025-04-17 16:43:52,521 [INFO] Holding 668000 words in list
+2025-04-17 16:43:52,755 [INFO] Holding 671000 words in list
+2025-04-17 16:43:52,841 [INFO] Holding 672000 words in list
+2025-04-17 16:43:52,991 [INFO] Holding 674000 words in list
+2025-04-17 16:43:53,455 [INFO] Holding 680000 words in list
+2025-04-17 16:43:53,690 [INFO] Holding 683000 words in list
+2025-04-17 16:43:53,770 [INFO] Holding 684000 words in list
+2025-04-17 16:43:53,925 [INFO] Holding 686000 words in list
+2025-04-17 16:43:54,162 [INFO] Holding 689000 words in list
+2025-04-17 16:43:54,240 [INFO] Holding 690000 words in list
+2025-04-17 16:43:54,318 [INFO] Holding 691000 words in list
+2025-04-17 16:43:54,544 [INFO] Holding 694000 words in list
+2025-04-17 16:43:54,623 [INFO] Holding 695000 words in list
+2025-04-17 16:43:54,853 [INFO] Holding 698000 words in list
+2025-04-17 16:43:55,090 [INFO] Holding 701000 words in list
+2025-04-17 16:43:55,401 [INFO] Holding 705000 words in list
+2025-04-17 16:43:55,632 [INFO] Holding 708000 words in list
+2025-04-17 16:43:55,785 [INFO] Holding 710000 words in list
+2025-04-17 16:43:55,938 [INFO] Holding 712000 words in list
+2025-04-17 16:43:56,010 [INFO] Holding 713000 words in list
+2025-04-17 16:43:56,618 [INFO] Holding 721000 words in list
+2025-04-17 16:43:56,852 [INFO] Holding 724000 words in list
+2025-04-17 16:43:57,005 [INFO] Holding 726000 words in list
+2025-04-17 16:43:57,077 [INFO] Holding 727000 words in list
+2025-04-17 16:43:57,159 [INFO] Holding 728000 words in list
+2025-04-17 16:43:57,243 [INFO] Holding 729000 words in list
+2025-04-17 16:43:57,320 [INFO] Holding 730000 words in list
+2025-04-17 16:43:57,400 [INFO] Holding 731000 words in list
+2025-04-17 16:43:57,553 [INFO] Holding 733000 words in list
+2025-04-17 16:43:57,788 [INFO] Holding 736000 words in list
+2025-04-17 16:43:57,945 [INFO] Holding 738000 words in list
+2025-04-17 16:43:58,017 [INFO] Holding 739000 words in list
+2025-04-17 16:43:58,100 [INFO] Holding 740000 words in list
+2025-04-17 16:43:58,497 [INFO] Holding 745000 words in list
+2025-04-17 16:43:58,572 [INFO] Holding 746000 words in list
+2025-04-17 16:43:58,660 [INFO] Holding 747000 words in list
+2025-04-17 16:43:58,896 [INFO] Holding 750000 words in list
+2025-04-17 16:43:58,978 [INFO] Holding 751000 words in list
+2025-04-17 16:43:59,453 [INFO] Holding 757000 words in list
+2025-04-17 16:43:59,531 [INFO] Holding 758000 words in list
+2025-04-17 16:44:00,092 [INFO] Holding 765000 words in list
+2025-04-17 16:44:00,322 [INFO] Holding 768000 words in list
+2025-04-17 16:44:00,483 [INFO] Holding 770000 words in list
+2025-04-17 16:44:00,564 [INFO] Holding 771000 words in list
+2025-04-17 16:44:00,961 [INFO] Holding 776000 words in list
+2025-04-17 16:44:01,119 [INFO] Holding 778000 words in list
+2025-04-17 16:44:01,438 [INFO] Holding 782000 words in list
+2025-04-17 16:44:01,513 [INFO] Holding 783000 words in list
+2025-04-17 16:44:01,663 [INFO] Holding 785000 words in list
+2025-04-17 16:44:01,904 [INFO] Holding 788000 words in list
+2025-04-17 16:44:01,986 [INFO] Holding 789000 words in list
+2025-04-17 16:44:02,698 [INFO] Holding 798000 words in list
+2025-04-17 16:44:03,003 [INFO] Holding 802000 words in list
+2025-04-17 16:44:03,477 [INFO] Holding 808000 words in list
+2025-04-17 16:44:03,721 [INFO] Holding 811000 words in list
+2025-04-17 16:44:03,802 [INFO] Holding 812000 words in list
+2025-04-17 16:44:03,968 [INFO] Holding 814000 words in list
+2025-04-17 16:44:04,052 [INFO] Holding 815000 words in list
+2025-04-17 16:44:04,665 [INFO] Holding 823000 words in list
+2025-04-17 16:44:04,744 [INFO] Holding 824000 words in list
+2025-04-17 16:44:05,070 [INFO] Holding 828000 words in list
+2025-04-17 16:44:05,308 [INFO] Holding 831000 words in list
+2025-04-17 16:44:05,387 [INFO] Holding 832000 words in list
+2025-04-17 16:44:05,461 [INFO] Holding 833000 words in list
+2025-04-17 16:44:05,544 [INFO] Holding 834000 words in list
+2025-04-17 16:44:05,710 [INFO] Holding 836000 words in list
+2025-04-17 16:44:05,795 [INFO] Holding 837000 words in list
+2025-04-17 16:44:05,889 [INFO] Holding 838000 words in list
+2025-04-17 16:44:06,052 [INFO] Holding 840000 words in list
+2025-04-17 16:44:06,215 [INFO] Holding 842000 words in list
+2025-04-17 16:44:06,545 [INFO] Holding 846000 words in list
+2025-04-17 16:44:06,709 [INFO] Holding 848000 words in list
+2025-04-17 16:44:06,951 [INFO] Holding 851000 words in list
+2025-04-17 16:44:07,026 [INFO] Holding 852000 words in list
+2025-04-17 16:44:07,184 [INFO] Holding 854000 words in list
+2025-04-17 16:44:07,263 [INFO] Holding 855000 words in list
+2025-04-17 16:44:07,512 [INFO] Holding 858000 words in list
+2025-04-17 16:44:07,669 [INFO] Holding 860000 words in list
+2025-04-17 16:44:08,302 [INFO] Holding 868000 words in list
+2025-04-17 16:44:08,464 [INFO] Holding 870000 words in list
+2025-04-17 16:44:08,541 [INFO] Holding 871000 words in list
+2025-04-17 16:44:08,618 [INFO] Holding 872000 words in list
+2025-04-17 16:44:08,948 [INFO] Holding 876000 words in list
+2025-04-17 16:44:09,033 [INFO] Holding 877000 words in list
+2025-04-17 16:44:09,210 [INFO] Holding 879000 words in list
+2025-04-17 16:44:09,611 [INFO] Holding 884000 words in list
+2025-04-17 16:44:09,852 [INFO] Holding 887000 words in list
+2025-04-17 16:44:10,344 [INFO] Holding 893000 words in list
+2025-04-17 16:44:10,591 [INFO] Holding 896000 words in list
+2025-04-17 16:44:10,751 [INFO] Holding 898000 words in list
+2025-04-17 16:44:10,915 [INFO] Holding 900000 words in list
+2025-04-17 16:44:11,228 [INFO] Holding 904000 words in list
+2025-04-17 16:44:11,781 [INFO] Holding 911000 words in list
+2025-04-17 16:44:11,861 [INFO] Holding 912000 words in list
+2025-04-17 16:44:12,022 [INFO] Holding 914000 words in list
+2025-04-17 16:44:12,249 [INFO] Holding 917000 words in list
+2025-04-17 16:44:12,669 [INFO] Holding 922000 words in list
+2025-04-17 16:44:12,841 [INFO] Holding 924000 words in list
+2025-04-17 16:44:12,918 [INFO] Holding 925000 words in list
+2025-04-17 16:44:13,079 [INFO] Holding 927000 words in list
+2025-04-17 16:44:13,163 [INFO] Holding 928000 words in list
+2025-04-17 16:44:13,419 [INFO] Holding 931000 words in list
+2025-04-17 16:44:13,502 [INFO] Holding 932000 words in list
+2025-04-17 16:44:13,586 [INFO] Holding 933000 words in list
+2025-04-17 16:44:13,904 [INFO] Holding 937000 words in list
+2025-04-17 16:44:13,986 [INFO] Holding 938000 words in list
+2025-04-17 16:44:14,142 [INFO] Holding 940000 words in list
+2025-04-17 16:44:14,229 [INFO] Holding 941000 words in list
+2025-04-17 16:44:14,714 [INFO] Holding 947000 words in list
+2025-04-17 16:44:14,883 [INFO] Holding 949000 words in list
+2025-04-17 16:44:15,453 [INFO] Holding 956000 words in list
+2025-04-17 16:44:15,612 [INFO] Holding 958000 words in list
+2025-04-17 16:44:15,689 [INFO] Holding 959000 words in list
+2025-04-17 16:44:15,845 [INFO] Holding 961000 words in list
+2025-04-17 16:44:16,246 [INFO] Holding 966000 words in list
+2025-04-17 16:44:16,324 [INFO] Holding 967000 words in list
+2025-04-17 16:44:16,404 [INFO] Holding 968000 words in list
+2025-04-17 16:44:16,489 [INFO] Holding 969000 words in list
+2025-04-17 16:44:16,566 [INFO] Holding 970000 words in list
+2025-04-17 16:44:16,647 [INFO] Holding 971000 words in list
+2025-04-17 16:44:16,805 [INFO] Holding 973000 words in list
+2025-04-17 16:44:16,883 [INFO] Holding 974000 words in list
+2025-04-17 16:44:16,967 [INFO] Holding 975000 words in list
+2025-04-17 16:44:17,124 [INFO] Holding 977000 words in list
+2025-04-17 16:44:17,368 [INFO] Holding 980000 words in list
+2025-04-17 16:44:17,611 [INFO] Holding 983000 words in list
+2025-04-17 16:44:17,845 [INFO] Holding 986000 words in list
+2025-04-17 16:44:18,012 [INFO] Holding 988000 words in list
+2025-04-17 16:44:18,170 [INFO] Holding 990000 words in list
+2025-04-17 16:44:18,320 [INFO] Holding 992000 words in list
+2025-04-17 16:44:18,401 [INFO] Holding 993000 words in list
+2025-04-17 16:44:18,981 [INFO] Holding 1000000 words in list
+2025-04-17 16:44:19,056 [INFO] Holding 1001000 words in list
+2025-04-17 16:44:19,139 [INFO] Holding 1002000 words in list
+2025-04-17 16:44:19,222 [INFO] Holding 1003000 words in list
+2025-04-17 16:44:19,698 [INFO] Holding 1009000 words in list
+2025-04-17 16:44:19,861 [INFO] Holding 1011000 words in list
+2025-04-17 16:44:20,026 [INFO] Holding 1013000 words in list
+2025-04-17 16:44:20,481 [INFO] Holding 1018000 words in list
+2025-04-17 16:44:20,555 [INFO] Holding 1019000 words in list
+2025-04-17 16:44:20,632 [INFO] Holding 1020000 words in list
+2025-04-17 16:44:20,713 [INFO] Holding 1021000 words in list
+2025-04-17 16:44:20,791 [INFO] Holding 1022000 words in list
+2025-04-17 16:44:20,954 [INFO] Holding 1024000 words in list
+2025-04-17 16:44:21,362 [INFO] Holding 1029000 words in list
+2025-04-17 16:44:21,441 [INFO] Holding 1030000 words in list
+2025-04-17 16:44:21,517 [INFO] Holding 1031000 words in list
+2025-04-17 16:44:21,601 [INFO] Holding 1032000 words in list
+2025-04-17 16:44:21,777 [INFO] Holding 1034000 words in list
+2025-04-17 16:44:21,863 [INFO] Holding 1035000 words in list
+2025-04-17 16:44:21,938 [INFO] Holding 1036000 words in list
+2025-04-17 16:44:22,103 [INFO] Holding 1038000 words in list
+2025-04-17 16:44:22,261 [INFO] Holding 1040000 words in list
+2025-04-17 16:44:22,582 [INFO] Holding 1044000 words in list
+2025-04-17 16:44:22,668 [INFO] Holding 1045000 words in list
+2025-04-17 16:44:22,999 [INFO] Holding 1049000 words in list
+2025-04-17 16:44:23,258 [INFO] Holding 1052000 words in list
+2025-04-17 16:44:23,345 [INFO] Holding 1053000 words in list
+2025-04-17 16:44:23,433 [INFO] Holding 1054000 words in list
+2025-04-17 16:44:23,528 [INFO] Holding 1055000 words in list
+2025-04-17 16:44:23,616 [INFO] Holding 1056000 words in list
+2025-04-17 16:44:23,958 [INFO] Holding 1060000 words in list
+2025-04-17 16:44:24,038 [INFO] Holding 1061000 words in list
+2025-04-17 16:44:24,210 [INFO] Holding 1063000 words in list
+2025-04-17 16:44:24,296 [INFO] Holding 1064000 words in list
+2025-04-17 16:44:24,625 [INFO] Holding 1068000 words in list
+2025-04-17 16:44:24,881 [INFO] Holding 1071000 words in list
+2025-04-17 16:44:24,968 [INFO] Holding 1072000 words in list
+2025-04-17 16:44:25,206 [INFO] Holding 1075000 words in list
+2025-04-17 16:44:25,443 [INFO] Holding 1078000 words in list
+2025-04-17 16:44:25,624 [INFO] Holding 1080000 words in list
+2025-04-17 16:44:25,710 [INFO] Holding 1081000 words in list
+2025-04-17 16:44:25,787 [INFO] Holding 1082000 words in list
+2025-04-17 16:44:25,874 [INFO] Holding 1083000 words in list
+2025-04-17 16:44:25,952 [INFO] Holding 1084000 words in list
+2025-04-17 16:44:26,545 [INFO] Holding 1091000 words in list
+2025-04-17 16:44:26,706 [INFO] Holding 1093000 words in list
+2025-04-17 16:44:27,037 [INFO] Holding 1097000 words in list
+2025-04-17 16:44:27,289 [INFO] Holding 1100000 words in list
+2025-04-17 16:44:27,373 [INFO] Holding 1101000 words in list
+2025-04-17 16:44:27,454 [INFO] Holding 1102000 words in list
+2025-04-17 16:44:27,610 [INFO] Holding 1104000 words in list
+2025-04-17 16:44:27,863 [INFO] Holding 1107000 words in list
+2025-04-17 16:44:28,109 [INFO] Holding 1110000 words in list
+2025-04-17 16:44:28,191 [INFO] Holding 1111000 words in list
+2025-04-17 16:44:28,269 [INFO] Holding 1112000 words in list
+2025-04-17 16:44:28,434 [INFO] Holding 1114000 words in list
+2025-04-17 16:44:28,930 [INFO] Holding 1120000 words in list
+2025-04-17 16:44:29,101 [INFO] Holding 1122000 words in list
+2025-04-17 16:44:29,190 [INFO] Holding 1123000 words in list
+2025-04-17 16:44:29,278 [INFO] Holding 1124000 words in list
+2025-04-17 16:44:29,444 [INFO] Holding 1126000 words in list
+2025-04-17 16:44:29,526 [INFO] Holding 1127000 words in list
+2025-04-17 16:44:29,605 [INFO] Holding 1128000 words in list
+2025-04-17 16:44:29,855 [INFO] Holding 1131000 words in list
+2025-04-17 16:44:29,937 [INFO] Holding 1132000 words in list
+2025-04-17 16:44:30,106 [INFO] Holding 1134000 words in list
+2025-04-17 16:44:30,185 [INFO] Holding 1135000 words in list
+2025-04-17 16:44:30,440 [INFO] Holding 1138000 words in list
+2025-04-17 16:44:30,710 [INFO] Holding 1141000 words in list
+2025-04-17 16:44:30,795 [INFO] Holding 1142000 words in list
+2025-04-17 16:44:31,046 [INFO] Holding 1145000 words in list
+2025-04-17 16:44:31,128 [INFO] Holding 1146000 words in list
+2025-04-17 16:44:31,789 [INFO] Holding 1154000 words in list
+2025-04-17 16:44:32,127 [INFO] Holding 1158000 words in list
+2025-04-17 16:44:32,211 [INFO] Holding 1159000 words in list
+2025-04-17 16:44:32,376 [INFO] Holding 1161000 words in list
+2025-04-17 16:44:32,545 [INFO] Holding 1163000 words in list
+2025-04-17 16:44:32,903 [INFO] Holding 1167000 words in list
+2025-04-17 16:44:33,244 [INFO] Holding 1171000 words in list
+2025-04-17 16:44:33,328 [INFO] Holding 1172000 words in list
+2025-04-17 16:44:34,503 [INFO] Holding 1186000 words in list
+2025-04-17 16:44:34,849 [INFO] Holding 1190000 words in list
+2025-04-17 16:44:35,013 [INFO] Holding 1192000 words in list
+2025-04-17 16:44:35,263 [INFO] Holding 1195000 words in list
+2025-04-17 16:44:35,426 [INFO] Holding 1197000 words in list
+2025-04-17 16:44:35,591 [INFO] Holding 1199000 words in list
+2025-04-17 16:44:35,764 [INFO] Holding 1201000 words in list
+2025-04-17 16:44:35,853 [INFO] Holding 1202000 words in list
+2025-04-17 16:44:36,024 [INFO] Holding 1204000 words in list
+2025-04-17 16:44:36,538 [INFO] Holding 1210000 words in list
+2025-04-17 16:44:36,623 [INFO] Holding 1211000 words in list
+2025-04-17 16:44:36,798 [INFO] Holding 1213000 words in list
+2025-04-17 16:44:37,058 [INFO] Holding 1216000 words in list
+2025-04-17 16:44:37,137 [INFO] Holding 1217000 words in list
+2025-04-17 16:44:37,561 [INFO] Holding 1222000 words in list
+2025-04-17 16:44:37,734 [INFO] Holding 1224000 words in list
+2025-04-17 16:44:37,915 [INFO] Holding 1226000 words in list
+2025-04-17 16:44:38,091 [INFO] Holding 1228000 words in list
+2025-04-17 16:44:38,360 [INFO] Holding 1231000 words in list
+2025-04-17 16:44:38,617 [INFO] Holding 1234000 words in list
+2025-04-17 16:44:38,703 [INFO] Holding 1235000 words in list
+2025-04-17 16:44:38,968 [INFO] Holding 1238000 words in list
+2025-04-17 16:44:39,050 [INFO] Holding 1239000 words in list
+2025-04-17 16:44:39,137 [INFO] Holding 1240000 words in list
+2025-04-17 16:44:39,485 [INFO] Holding 1244000 words in list
+2025-04-17 16:44:39,817 [INFO] Holding 1248000 words in list
+2025-04-17 16:44:39,985 [INFO] Holding 1250000 words in list
+2025-04-17 16:44:40,330 [INFO] Holding 1254000 words in list
+2025-04-17 16:44:40,419 [INFO] Holding 1255000 words in list
+2025-04-17 16:44:40,572 [INFO] Holding 1257000 words in list
+2025-04-17 16:44:40,656 [INFO] Holding 1258000 words in list
+2025-04-17 16:44:40,928 [INFO] Holding 8421 words in set
+2025-04-17 16:44:40,930 [INFO] Added 261 tokens
+2025-04-17 16:44:41,160 [INFO] Updated dictionary now has 36986 tokens.
