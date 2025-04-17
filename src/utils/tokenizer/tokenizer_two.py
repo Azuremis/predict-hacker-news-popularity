@@ -1,13 +1,22 @@
 import json
 import os
 import psycopg2
+from tqdm import tqdm
 from dotenv import load_dotenv
-from tokenizer import get_tokens
+from tokenizer_one import getMorphemeList, getMorphemeSet, getTokens
 
 load_dotenv()  # Loads .env into environment variables
 
 # Load existing tokens
-with open("wiki.json", "r", encoding="utf-8") as f:
+with open(os.path.join(
+    os.path.dirname(
+      os.path.dirname(
+        os.path.dirname(
+          os.path.dirname(__file__)
+        )
+      )
+    ), 'data', 'raw', 'tokens.json'
+  ), "r", encoding="utf-8") as f:
     token_dict = json.load(f)
 
 # Start new IDs from the max existing ID + 1
@@ -25,14 +34,16 @@ conn = psycopg2.connect(
 cursor = conn.cursor()
 
 # Fetch story titles
-cursor.execute("SELECT title FROM items WHERE type = 'story'")
+cursor.execute("SELECT title FROM hacker_news.items_by_year_2024 WHERE type = 'story'")
 rows = cursor.fetchall()
 
 # Tokenize and add to dictionary
-for (title,) in rows:
+for (title,) in tqdm(rows):
     if not title:
         continue
-    tokens = get_tokens(title)
+    morphemes = getMorphemeList(title)
+    morpheme_set = getMorphemeSet(morphemes)
+    tokens = getTokens(morpheme_set)
     for token in tokens:
         if token not in token_dict:
             token_dict[token] = str(next_id)
