@@ -7,7 +7,6 @@ from tokenizer_one import getMorphemeList, getMorphemeSet, getTokens
 
 load_dotenv()  # Loads .env into environment variables
 
-# Load existing tokens
 with open(os.path.join(
     os.path.dirname(
       os.path.dirname(
@@ -15,15 +14,13 @@ with open(os.path.join(
           os.path.dirname(__file__)
         )
       )
-    ), 'data', 'raw', 'tokens.json'
+    ), 'tokens', 'tokens.json'
   ), "r", encoding="utf-8") as f:
     token_dict = json.load(f)
 
-# Start new IDs from the max existing ID + 1
 max_id = max(map(int, token_dict.values()), default=0)
 next_id = max_id + 1
 
-# Connect to the DB
 conn = psycopg2.connect(
     host=os.getenv("PGHOST"),
     port=os.getenv("PGPORT"),
@@ -33,24 +30,34 @@ conn = psycopg2.connect(
 )
 cursor = conn.cursor()
 
-# Fetch story titles
-cursor.execute("SELECT title FROM hacker_news.items_by_year_2024 WHERE type = 'story'")
-rows = cursor.fetchall()
+cursor.execute("SELECT title FROM hacker_news.items_by_month_2024_10 WHERE type = 'story'")
 
-# Tokenize and add to dictionary
-for (title,) in tqdm(rows):
-    if not title:
-        continue
-    morphemes = getMorphemeList(title)
-    morpheme_set = getMorphemeSet(morphemes)
-    tokens = getTokens(morpheme_set)
-    for token in tokens:
-        if token not in token_dict:
-            token_dict[token] = str(next_id)
-            next_id += 1
+chunk_size = 1000
+while True:
+    rows = cursor.fetchmany(chunk_size)
+    if not rows:
+        break
 
-# Save updated dictionary
-with open("wiki.json", "w", encoding="utf-8") as f:
+    for (title,) in rows:
+        if not title:
+            continue
+        morphemes = getMorphemeList(title)
+        morpheme_set = getMorphemeSet(morphemes)
+        tokens = getTokens(morpheme_set)
+        for token in tokens:
+            if token not in token_dict:
+                token_dict[token] = str(next_id)
+                next_id += 1
+
+with open(os.path.join(
+    os.path.dirname(
+      os.path.dirname(
+        os.path.dirname(
+          os.path.dirname(__file__)
+        )
+      )
+    ), 'tokens', 'tokens.json'
+  ), "w", encoding="utf-8") as f:
     json.dump(token_dict, f, ensure_ascii=False, indent=2)
 
 print(f"Updated dictionary now has {len(token_dict)} tokens.")
