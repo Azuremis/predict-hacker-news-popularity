@@ -3,6 +3,7 @@ from nltk.tokenize import word_tokenize
 import re
 import os
 import json
+import pickle
 from nltk.corpus import words
 import logging
 import nltk
@@ -91,8 +92,8 @@ def clean(input):
 
   print('--------------------------------')
 
-  # Save tokens to file
-  output_path = os.path.join(
+  # Save tokens to file - JSON format
+  json_output_path = os.path.join(
     os.path.dirname(
       os.path.dirname(
         os.path.dirname(
@@ -101,13 +102,23 @@ def clean(input):
       )
     ), 'tokens', 'tokens.json'
   )
-  with open(output_path, "r+", encoding="utf-8") as f:
-    f.seek(0)
+  with open(json_output_path, "w", encoding="utf-8") as f:
     json.dump(tokens, f, ensure_ascii=False, indent=2)
-    f.truncate()
-    json.dump(tokens, f, ensure_ascii=False, indent=2)
-    f.truncate()
-  logging.info(f'Saved tokens to: {output_path}')
+  logging.info(f'Saved tokens to JSON: {json_output_path}')
+  
+  # Save tokens to file - Pickle format
+  pickle_output_path = os.path.join(
+    os.path.dirname(
+      os.path.dirname(
+        os.path.dirname(
+          os.path.dirname(__file__)
+        )
+      )
+    ), 'tokens', 'tokens.pkl'
+  )
+  with open(pickle_output_path, "wb") as f:
+    pickle.dump(tokens, f)
+  logging.info(f'Saved tokens to pickle: {pickle_output_path}')
 
   return tokens
 

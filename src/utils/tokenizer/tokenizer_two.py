@@ -1,5 +1,6 @@
 import json
 import os
+import pickle
 import psycopg2
 from tqdm import tqdm
 from dotenv import load_dotenv
@@ -22,16 +23,27 @@ logging.basicConfig(
     ]
 )
 
-with open(os.path.join(
+# Try to load from pickle first, fall back to JSON if pickle file doesn't exist
+tokens_dir = os.path.join(
     os.path.dirname(
       os.path.dirname(
         os.path.dirname(
           os.path.dirname(__file__)
         )
       )
-    ), 'tokens', 'tokens.json'
-  ), "r", encoding="utf-8") as f:
-    token_dict = json.load(f)
+    ), 'tokens'
+)
+pickle_path = os.path.join(tokens_dir, 'tokens.pkl')
+json_path = os.path.join(tokens_dir, 'tokens.json')
+
+try:
+    with open(pickle_path, "rb") as f:
+        token_dict = pickle.load(f)
+    logging.info("Loaded tokens from pickle file")
+except (FileNotFoundError, pickle.PickleError):
+    logging.info("Pickle file not found or invalid, falling back to JSON")
+    with open(json_path, "r", encoding="utf-8") as f:
+        token_dict = json.load(f)
 
 max_id = max(map(int, token_dict.values()), default=0)
 next_id = max_id + 1
@@ -88,17 +100,18 @@ while True:
     
   
 
-with open(os.path.join(
-    os.path.dirname(
-      os.path.dirname(
-        os.path.dirname(
-          os.path.dirname(__file__)
-        )
-      )
-    ), 'tokens', 'tokens_upgrade.json'
-  ), "r+", encoding="utf-8") as f:
-    f.seek(0)
+# Save updated tokens to both JSON and pickle formats
+tokens_upgrade_json = os.path.join(tokens_dir, 'tokens_upgrade.json')
+tokens_upgrade_pkl = os.path.join(tokens_dir, 'tokens_upgrade.pkl')
+
+# Save as JSON
+with open(tokens_upgrade_json, "w", encoding="utf-8") as f:
     json.dump(token_dict, f, ensure_ascii=False, indent=2)
-    f.truncate()
+logging.info(f"Saved updated tokens to JSON: {tokens_upgrade_json}")
+
+# Save as pickle
+with open(tokens_upgrade_pkl, "wb") as f:
+    pickle.dump(token_dict, f)
+logging.info(f"Saved updated tokens to pickle: {tokens_upgrade_pkl}")
 
 logging.info(f"Updated dictionary now has {len(token_dict)} tokens.")
