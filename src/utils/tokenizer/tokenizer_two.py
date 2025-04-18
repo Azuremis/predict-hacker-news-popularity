@@ -5,6 +5,11 @@ from tqdm import tqdm
 from dotenv import load_dotenv
 from tokenizer_one import getMorphemeList, getMorphemeSet, getTokens
 import logging
+import nltk
+from nltk_setup import get_nltk_data_dir
+
+# Set NLTK data path to our custom directory
+nltk.data.path.insert(0, get_nltk_data_dir())
 
 load_dotenv()
 
@@ -71,28 +76,17 @@ while True:
 
     number_added = 0
 
-    for morpheme in morpheme_set:
+    for morpheme in morpheme_set[:5]:
+        token_dict[0] = '<PAD>'
         if morpheme not in token_dict:
             token_dict[morpheme] = int(next_id)
             number_added += 1
             next_id += 1
+        
     
     logging.info(f"Added {number_added} tokens")
     
-    # for title, in rows:
-    #     if not title:
-    #         continue
-    #     morphemes = getMorphemeList(title)
-    #     morpheme_set = getMorphemeSet(morphemes)
-    #     tokens = getTokens(morpheme_set)
-    #     for token in tokens:
-    #         if token not in token_dict:
-    #             token_dict[token] = str(next_id)
-    #             next_id += 1
-    #     total_processed += 1
-    #     if total_processed % 1000 == 0:
-    #         logging.info(f"Processed {total_processed} titles so far")
-    #         logging.info(f"Holding {len(token_dict)} tokens so far")
+  
 
 with open(os.path.join(
     os.path.dirname(
@@ -101,7 +95,7 @@ with open(os.path.join(
           os.path.dirname(__file__)
         )
       )
-    ), 'tokens', 'tokens.json'
+    ), 'tokens', 'tokens_upgrade.json'
   ), "r+", encoding="utf-8") as f:
     f.seek(0)
     json.dump(token_dict, f, ensure_ascii=False, indent=2)

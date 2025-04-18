@@ -5,6 +5,11 @@ import os
 import json
 from nltk.corpus import words
 import logging
+import nltk
+from nltk_setup import get_nltk_data_dir
+
+# Set NLTK data path to our custom directory
+nltk.data.path.insert(0, get_nltk_data_dir())
 
 logging.basicConfig(
     level=logging.INFO,
