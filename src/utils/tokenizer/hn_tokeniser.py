@@ -55,8 +55,12 @@ def get_tokens_dir():
 logging.info("Connecting to database and fetching Hacker News data...")
 conn = psycopg2.connect("postgres://sy91dhb:g5t49ao@178.156.142.230:5432/hd64m1ki")
 cur = conn.cursor()
-cur.execute("""SELECT title, score FROM "hacker_news"."items" 
-               WHERE title IS NOT NULL AND score IS NOT NULL;""")
+cur.execute("""
+    SELECT title, score FROM "hacker_news"."items"
+    WHERE title IS NOT NULL
+    AND score IS NOT NULL
+    AND time >= NOW() - INTERVAL '2 years';""")
+
 data = cur.fetchall()
 titles = [row[0] for row in data]
 scores = [row[1] for row in data]
