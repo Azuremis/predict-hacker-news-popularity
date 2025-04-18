@@ -15,6 +15,7 @@ import numpy as np
 import logging
 from tokenizer_one import getMorphemeList, getMorphemeSet, getTokens
 from nltk_setup import get_nltk_data_dir, download_nltk_resources
+from tqdm import tqdm
 
 # Configure logging
 logging.basicConfig(
@@ -70,17 +71,14 @@ logging.info(f"Sample scores: {scores[:3]}")
 #
 logging.info("Processing titles using tokenizer functions...")
 
-
 all_morphemes = []
 title_morphemes = []
-# Add progress bar for title processing
-from tqdm import tqdm
-
-logging.info("Starting tokenization with progress tracking...")
 # Create a progress bar for processing titles
 titles_with_progress = tqdm(titles, desc="Tokenizing titles", unit="title")
 
-for title in titles:
+logging.info("Starting tokenization with progress tracking...")
+
+for title in titles_with_progress:
     # Get morphemes for each title using the getMorphemeList function
     # This function already handles lowercasing and removing punctuation
     morphemes = getMorphemeList(title)
